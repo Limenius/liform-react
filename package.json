@@ -1,6 +1,6 @@
 {
   "name": "liform-react",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Generate forms from json-schema to use with React",
   "main": "src/liform.js",
   "scripts": {
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/nacmartin/liform-react.git"
+    "url": "https://github.com/limenius/liform-react.git"
   },
   "author": "Nacho Martin",
   "license": "MIT",
