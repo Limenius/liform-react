@@ -11,6 +11,10 @@
     "json-schema",
     "form"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nacmartin/liform-react.git"
+  },
   "author": "Nacho Martin",
   "license": "MIT",
   "devDependencies": {
