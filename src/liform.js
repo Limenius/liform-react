@@ -10,10 +10,11 @@ class Liform extends React.Component {
 
     renderFields() {
         return _.map(this.props.schema.properties, (schema, fieldName) => {
-            if (!this.state.theme[schema.type]) {
-                throw new Error('liform: ' + schema.type + ' is not defined in the theme');
+            var widget = schema.format || schema.type;
+            if (!this.state.theme[widget]) {
+                throw new Error('liform: ' + widget + ' is not defined in the theme');
             }
-            return React.createElement(this.state.theme[schema.type], {key: fieldName, fieldName: fieldName, schema});
+            return React.createElement(this.state.theme[widget], {key: fieldName, fieldName: fieldName, schema});
         });
     }
 

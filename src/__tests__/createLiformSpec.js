@@ -34,9 +34,6 @@ describe('createLiform', () => {
     it('raises exception if type is not defined', () => {
         const shallowRenderer = TestUtils.createRenderer();
         expect(function () {
-            throw new Error('boom!')
-        }).toThrow(/boom/);
-        expect(function () {
             shallowRenderer.render(React.createElement(Liform, {schema: schemaWrong}));
             shallowRenderer.getRenderOutput();
         }).toThrow(/liform:/);
