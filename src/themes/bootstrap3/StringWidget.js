@@ -6,11 +6,10 @@ class StringWidget extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="form-group">
                 <label htmlFor={'field-'+this.props.fieldName}>{this.props.fieldName}</label>
-                <input type="text" className="form-control" id={'field-'+this.props.fieldName}/>
+                <input type="text" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field}/>
             </div>
         );
     }
