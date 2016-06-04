@@ -1,6 +1,6 @@
 {
   "name": "liform-react",
-  "version": "0.8.1",
+  "version": "0.3.0",
   "description": "Generate forms from json-schema to use with React",
   "main": "src/liform.js",
   "scripts": {
