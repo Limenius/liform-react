@@ -19,7 +19,6 @@ describe('createLiform', () => {
         shallowRenderer.render(React.createElement(Liform, {schema: schema}));
 
         const component = shallowRenderer.getRenderOutput();
-        console.log(component);
         expect(component.type).toBe('div');
     });
 });
