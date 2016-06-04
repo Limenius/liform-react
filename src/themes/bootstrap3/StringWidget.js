@@ -5,17 +5,12 @@ class StringWidget extends React.Component {
         super(props);
     }
 
-    renderFields() {
-        return _.map(this.props.schema.properties, (schema, fieldName) => {
-            return (<div key={fieldName} schema={schema} >{fieldName}</div>);
-        });
-    }
-
     render() {
+        console.log(this.props);
         return (
-            <div class="form-group">
-                <label htmlFor="field-{props.name}">{props.name}</label>
-                <input type="text" class="form-control" id="field-{{props.name}}"/>
+            <div className="form-group">
+                <label htmlFor={'field-'+this.props.fieldName}>{this.props.fieldName}</label>
+                <input type="text" className="form-control" id={'field-'+this.props.fieldName}/>
             </div>
         );
     }
