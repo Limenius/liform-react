@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import _ from 'lodash';
 import DefaultTheme from './themes/bootstrap3';
 import {reduxForm} from 'redux-form';
+//import BaseForm from './BaseForm';
 
 class Liform extends React.Component {
     constructor(props) {
@@ -24,28 +25,25 @@ class Liform extends React.Component {
     }
 
     render() {
+
         class BaseForm extends React.Component {
             constructor(props) {
                 super(props);
             }
             render() {
                 return (
-                    <form onSubmit={this.props.handleSubmit}>
-                        {this.props.renderFields(this.props.fields)}
-                        <button type="submit">Submit
-                        </button>
-                    </form>);
+                <form onSubmit={this.props.handleSubmit}>
+                    {this.props.renderFields(this.props.fields)}
+                    <button type="submit">Submit
+                    </button>
+                </form>);
             }
-
-        };
-        //        return (<form onSubmit={this.props.handleSubmit}>
-        //                {this.renderFields()}
-        //            </form>);
+        }
         var FinalForm = reduxForm({
             form: this.props.schema.title || 'form',
             fields: this.getFields(),
         })(BaseForm);
-        return (<FinalForm renderFields={this.renderFields.bind(this)} onSubmit={this.props.handleSubmit}/>);
+        return <FinalForm renderFields={this.renderFields.bind(this)} onSubmit={this.props.handleSubmit}/>;
     }
 }
 
