@@ -2,6 +2,8 @@ import expect, {createSpy} from 'expect';
 import React, {Component, PropTypes} from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Liform from '../liform';
+import renderFields from '../renderFields';
+import DefaultTheme from '../themes/bootstrap3';
 
 
 describe('createLiform', () => {
@@ -25,17 +27,17 @@ describe('createLiform', () => {
 
     it('should render a form', () => {
         const shallowRenderer = TestUtils.createRenderer();
+        var li = React.createElement(Liform, {schema: schema});
         shallowRenderer.render(React.createElement(Liform, {schema: schema}));
 
         const component = shallowRenderer.getRenderOutput();
-        expect(component.type).toBe('div');
+        expect(component.type).toBeA('function');
     });
 
     it('raises exception if type is not defined', () => {
-        const shallowRenderer = TestUtils.createRenderer();
         expect(function () {
-            shallowRenderer.render(React.createElement(Liform, {schema: schemaWrong}));
-            shallowRenderer.getRenderOutput();
+            renderFields(['name'], schemaWrong, DefaultTheme);
+
         }).toThrow(/liform:/);
 
     });
