@@ -35,7 +35,7 @@ class Liform extends React.Component {
             form: this.props.schema.title || 'form',
             fields: this.getFields(),
         })(BaseForm);
-        return (<FinalForm renderFields={renderFields.bind(this)} onSubmit={this.props.handleSubmit}/>);
+        return (<FinalForm renderFields={renderFields.bind(this)} {...this.props} onSubmit={this.props.handleSubmit}/>);
     }
 }
 
@@ -45,3 +45,5 @@ Liform.propTypes = {
 }
 
 export default Liform;
+
+export { renderFields };
