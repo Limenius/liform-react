@@ -4,13 +4,20 @@ import _ from 'lodash';
 const buildValidators =
     schema => {
         var validators = [];
-        validators.push(
-            (values, errors) => {
-                if (!/aaa/i.test(values.name)) {
-                    errors.name = 'Invalid pattern'
-                }
+
+        _.forEach(schema.properties, (spec, fieldName) => {
+            if (spec.pattern) {
+                validators.push(
+                    (values, errors) => {
+                        var re = new RegExp(spec.pattern);
+                        if (!re.test(values[fieldName])) {
+                            errors.name = 'Invalid pattern'
+                        }
+                    }
+                );
             }
-        );
+        });
+
         return validators;
     }
 
