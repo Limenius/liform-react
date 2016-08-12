@@ -25,6 +25,15 @@ const buildValidators =
                     }
                 );
             }
+            if (spec.minLength) {
+                validators.push(
+                    (values, errors) => {
+                        if (values[fieldName].length < spec.minLength) {
+                            errors[fieldName] = 'Value too short'
+                        }
+                    }
+                );
+            }
         });
 
         return validators;

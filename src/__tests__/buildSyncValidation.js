@@ -38,4 +38,22 @@ describe('buildSyncValidation', () => {
         var errors2 = buildSyncValidation(schemaLength)({name: 'ho'});
         expect(errors2).toExcludeKey('name');
     });
+
+    const schemaLengthMin = {
+        title: 'A schema',
+        properties: {
+            name : {
+                type: 'string',
+                title: 'A name',
+                minLength: 3,
+            }
+        }
+    };
+
+    it('returns error if length is too short', () => {
+        var errors = buildSyncValidation(schemaLengthMin)({name: '123456'});
+        expect(errors).toExcludeKey('name');
+        var errors2 = buildSyncValidation(schemaLengthMin)({name: 'ho'});
+        expect(errors2).toIncludeKey('name');
+    });
 });
