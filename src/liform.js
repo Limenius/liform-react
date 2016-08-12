@@ -3,6 +3,7 @@ import _ from 'lodash';
 import DefaultTheme from './themes/bootstrap3';
 import {reduxForm} from 'redux-form';
 import renderFields from './renderFields';
+import buildSyncValidation from './buildSyncValidation';
 
 class Liform extends React.Component {
     constructor(props) {
@@ -33,14 +34,8 @@ class Liform extends React.Component {
         }
         var FinalForm = reduxForm({
             form: this.props.schema.title || 'form',
-            fields: this.getFields(),
-            validate: values => {
-                const errors = {};
-                if (!/somepattern/i.test(values.text)) {
-                    errors.text = 'Invalid pattern'
-                }
-                return errors
-            }
+            fields: this.getFields(this.props.schema),
+            validate: buildSyncValidation(this.props.schema),
         })(BaseForm);
         return (<FinalForm renderFields={renderFields.bind(this)} {...this.props} onSubmit={this.props.handleSubmit}/>);
     }
