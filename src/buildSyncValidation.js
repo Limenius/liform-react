@@ -11,7 +11,16 @@ const buildValidators =
                     (values, errors) => {
                         var re = new RegExp(spec.pattern);
                         if (!re.test(values[fieldName])) {
-                            errors.name = 'Invalid pattern'
+                            errors[fieldName] = 'Invalid pattern'
+                        }
+                    }
+                );
+            }
+            if (spec.maxLength) {
+                validators.push(
+                    (values, errors) => {
+                        if (values[fieldName].length > spec.maxLength) {
+                            errors[fieldName] = 'Value too long'
                         }
                     }
                 );
