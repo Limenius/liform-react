@@ -9,7 +9,13 @@ const renderFields =
             if (!theme[widget]) {
                 throw new Error('liform: ' + widget + ' is not defined in the theme');
             }
-            return React.createElement(theme[widget], {key: fieldName, fieldName: fieldName, schema, field: formFields[fieldName]});
+            return React.createElement(theme[widget], {
+                key: fieldName,
+                fieldName: fieldName,
+                label: schema.title || fieldName,
+                schema,
+                field: formFields[fieldName]
+            });
         });
     };
 

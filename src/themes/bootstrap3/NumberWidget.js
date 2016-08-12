@@ -8,7 +8,7 @@ class NumberWidget extends React.Component {
     render() {
         return (
             <div className="form-group">
-                <label htmlFor={'field-'+this.props.fieldName}>{this.props.fieldName}</label>
+                <label htmlFor={'field-'+this.props.fieldName}>{this.props.label}</label>
                 <input type="number" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field}/>
             </div>
         );
