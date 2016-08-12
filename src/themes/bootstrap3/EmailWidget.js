@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import classNames from 'classnames';
 
 class EmailWidget extends React.Component {
     constructor(props) {
@@ -6,10 +7,16 @@ class EmailWidget extends React.Component {
     }
 
     render() {
+        var field = this.props.field;
+        var className = classNames([
+            'form-group',
+            {'has-error' : field.touched && field.error}
+        ]);
         return (
-            <div className="form-group">
-                <label htmlFor={'field-'+this.props.fieldName}>{this.props.label}</label>
+            <div className={className}>
+                <label className="control-label" htmlFor={'field-'+this.props.fieldName}>{this.props.label}</label>
                 <input type="email" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field}/>
+                {field.touched && field.error && <span className="help-block">{field.error}</span>}
             </div>
         );
     }

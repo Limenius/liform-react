@@ -34,6 +34,13 @@ class Liform extends React.Component {
         var FinalForm = reduxForm({
             form: this.props.schema.title || 'form',
             fields: this.getFields(),
+            validate: values => {
+                const errors = {};
+                if (!/somepattern/i.test(values.text)) {
+                    errors.text = 'Invalid pattern'
+                }
+                return errors
+            }
         })(BaseForm);
         return (<FinalForm renderFields={renderFields.bind(this)} {...this.props} onSubmit={this.props.handleSubmit}/>);
     }
