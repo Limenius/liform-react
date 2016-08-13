@@ -13,7 +13,7 @@ const getPatternValidation =
         }
     }
 
-const getMaxLengthValidation = 
+const getMaxLengthValidation =
     (spec, fieldName) => {
         if (spec.maxLength) {
             return (values, errors) => {
@@ -24,7 +24,7 @@ const getMaxLengthValidation =
         }
     }
 
-const getMinLengthValidation = 
+const getMinLengthValidation =
     (spec, fieldName) => {
         if (spec.minLength) {
             return (values, errors) => {
@@ -35,12 +35,23 @@ const getMinLengthValidation =
         }
     }
 
-const getMultipleOf = 
+const getMultipleOf =
     (spec, fieldName) => {
         if (spec.multipleOf) {
             return (values, errors) => {
                 if (values[fieldName] % spec.multipleOf) {
                     errors[fieldName] = 'Value must be multiple of '+spec.multipleOf
+                }
+            };
+        }
+    }
+
+const getRequired =
+    (required, fieldName) => {
+        if (required.indexOf(fieldName) != -1) {
+            return (values, errors) => {
+                if (!values[fieldName]) {
+                    errors[fieldName] = 'Required';
                 }
             };
         }
@@ -58,6 +69,12 @@ const buildValidators =
                 rule = possibleRule(spec, fieldName);
                 rule && validators.push(rule);
             });
+
+            // Required is a special case because it is defined for the compoound
+            if (schema.required) {
+                rule = getRequired(schema.required, fieldName);
+                rule && validators.push(rule);
+            }
 
         });
 

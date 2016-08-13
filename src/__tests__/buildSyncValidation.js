@@ -73,4 +73,26 @@ describe('buildSyncValidation', () => {
         var errors2 = buildSyncValidation(schemaMultipleOf)({quantity: '16'});
         expect(errors2).toIncludeKey('quantity');
     });
+
+    const schemaRequired = {
+        title: 'A schema',
+        required: ['name'],
+        properties: {
+            name : {
+                type: 'string',
+            },
+            quantity : {
+                type: 'integer',
+            }
+        }
+    };
+
+    it('returns error if required field is lacking', () => {
+
+        var errors = buildSyncValidation(schemaRequired)({quantity: '6'});
+        expect(errors).toIncludeKey('name');
+
+        var errors2 = buildSyncValidation(schemaRequired)({name: 'hola'});
+        expect(errors2).toExcludeKey('name');
+    });
 });
