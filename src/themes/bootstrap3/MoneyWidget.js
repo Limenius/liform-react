@@ -19,6 +19,7 @@ class MoneyWidget extends React.Component {
                     <span className="input-group-addon">€ </span>
                     <input type="text" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field} required={this.props.required} placeholder={this.props.schema.default}/>
                 </div>
+                {this.props.schema.description && <span className="help-block">{this.props.schema.description}</span>}
                 {field.touched && field.error && <span className="help-block">{field.error}</span>}
             </div>
         );

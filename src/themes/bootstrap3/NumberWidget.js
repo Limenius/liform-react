@@ -16,6 +16,7 @@ class NumberWidget extends React.Component {
             <div className={className}>
                 <label htmlFor={'field-'+this.props.fieldName}>{this.props.label}</label>
                 <input type="number" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field} required={this.props.required} placeholder={this.props.schema.default}/>
+                {this.props.schema.description && <span className="help-block">{this.props.schema.description}</span>}
                 {field.touched && field.error && <span className="help-block">{field.error}</span>}
             </div>
         );
