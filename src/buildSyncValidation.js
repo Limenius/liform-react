@@ -1,48 +1,64 @@
 import React from 'react';
 import _ from 'lodash';
 
+const getPatternValidation =
+    (spec, fieldName) => {
+        if (spec.pattern) {
+            return (values, errors) => {
+                var re = new RegExp(spec.pattern);
+                if (!re.test(values[fieldName])) {
+                    errors[fieldName] = 'Invalid pattern'
+                }
+            };
+        }
+    }
+
+const getMaxLengthValidation = 
+    (spec, fieldName) => {
+        if (spec.maxLength) {
+            return (values, errors) => {
+                if (values[fieldName].length > spec.maxLength) {
+                    errors[fieldName] = 'Value too long'
+                }
+            };
+        }
+    }
+
+const getMinLengthValidation = 
+    (spec, fieldName) => {
+        if (spec.minLength) {
+            return (values, errors) => {
+                if (values[fieldName].length < spec.minLength) {
+                    errors[fieldName] = 'Value too short'
+                }
+            };
+        }
+    }
+
+const getMultipleOf = 
+    (spec, fieldName) => {
+        if (spec.multipleOf) {
+            return (values, errors) => {
+                if (values[fieldName] % spec.multipleOf) {
+                    errors[fieldName] = 'Value must be multiple of '+spec.multipleOf
+                }
+            };
+        }
+    }
+
+const validationBuilders = [getPatternValidation, getMaxLengthValidation, getMinLengthValidation, getMultipleOf];
+
 const buildValidators =
     schema => {
         var validators = [];
 
+        var rule;
         _.forEach(schema.properties, (spec, fieldName) => {
-            if (spec.pattern) {
-                validators.push(
-                    (values, errors) => {
-                        var re = new RegExp(spec.pattern);
-                        if (!re.test(values[fieldName])) {
-                            errors[fieldName] = 'Invalid pattern'
-                        }
-                    }
-                );
-            }
-            if (spec.maxLength) {
-                validators.push(
-                    (values, errors) => {
-                        if (values[fieldName].length > spec.maxLength) {
-                            errors[fieldName] = 'Value too long'
-                        }
-                    }
-                );
-            }
-            if (spec.minLength) {
-                validators.push(
-                    (values, errors) => {
-                        if (values[fieldName].length < spec.minLength) {
-                            errors[fieldName] = 'Value too short'
-                        }
-                    }
-                );
-            }
-            if (spec.multipleOf) {
-                validators.push(
-                    (values, errors) => {
-                        if (values[fieldName] % spec.multipleOf) {
-                            errors[fieldName] = 'Value must be multiple of '+spec.multipleOf
-                        }
-                    }
-                );
-            }
+            validationBuilders.forEach((possibleRule) => {
+                rule = possibleRule(spec, fieldName);
+                rule && validators.push(rule);
+            });
+
         });
 
         return validators;
