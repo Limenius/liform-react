@@ -15,7 +15,7 @@ class StringWidget extends React.Component {
         return (
             <div className={className}>
                 <label className="control-label" htmlFor={'field-'+this.props.fieldName}>{this.props.label}</label>
-                <input type="text" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field}/>
+                <input type="text" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field} required={this.props.required}/>
                 {field.touched && field.error && <span className="help-block">{field.error}</span>}
             </div>
         );
