@@ -56,4 +56,21 @@ describe('buildSyncValidation', () => {
         var errors2 = buildSyncValidation(schemaLengthMin)({name: 'ho'});
         expect(errors2).toIncludeKey('name');
     });
+
+    const schemaMultipleOf = {
+        title: 'A schema',
+        properties: {
+            quantity : {
+                type: 'integer',
+                multipleOf: 3,
+            }
+        }
+    };
+
+    it('returns error if fails multipleOf', () => {
+        var errors = buildSyncValidation(schemaMultipleOf)({quantity: '6'});
+        expect(errors).toExcludeKey('quantity');
+        var errors2 = buildSyncValidation(schemaMultipleOf)({quantity: '16'});
+        expect(errors2).toIncludeKey('quantity');
+    });
 });

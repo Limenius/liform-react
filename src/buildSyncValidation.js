@@ -34,6 +34,15 @@ const buildValidators =
                     }
                 );
             }
+            if (spec.multipleOf) {
+                validators.push(
+                    (values, errors) => {
+                        if (values[fieldName] % spec.multipleOf) {
+                            errors[fieldName] = 'Value must be multiple of '+spec.multipleOf
+                        }
+                    }
+                );
+            }
         });
 
         return validators;
