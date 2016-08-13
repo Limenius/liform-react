@@ -36,7 +36,7 @@ class Liform extends React.Component {
             form: this.props.schema.title || 'form',
             fields: this.getFields(this.props.schema),
             validate: buildSyncValidation(this.props.schema),
-        })(BaseForm);
+        }, this.props.mapStateToProps, this.props.mapDispatchToProps, this.props.mergeProps, this.props.options)(BaseForm);
         return (<FinalForm renderFields={renderFields.bind(this)} {...this.props} onSubmit={this.props.handleSubmit}/>);
     }
 }
