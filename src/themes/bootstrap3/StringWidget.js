@@ -1,5 +1,22 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import {Field} from 'redux-form';
+
+const renderInput = field => {
+    var className = classNames([
+        'form-group',
+        {'has-error' : field.meta.touched && field.meta.error}
+    ]);
+    return (
+        <div className={className}>
+            <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
+            <input type="text" className="form-control"/>
+            {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
+            {field.description && <span className="help-block">{field.description}</span>}
+        </div>
+    );
+}
+
 
 class StringWidget extends React.Component {
     constructor(props) {
@@ -8,21 +25,20 @@ class StringWidget extends React.Component {
 
     render() {
         var field = this.props.field;
-        var className = classNames([
-            'form-group',
-            {'has-error' : field.touched && field.error}
-        ]);
         return (
-            <div className={className}>
-                <label className="control-label" htmlFor={'field-'+this.props.fieldName}>{this.props.label}</label>
-                <input type="text" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field} required={this.props.required} placeholder={this.props.schema.default}/>
-                {this.props.schema.description && <span className="help-block">{this.props.schema.description}</span>}
-                {field.touched && field.error && <span className="help-block">{field.error}</span>}
-            </div>
+                <Field
+                    component={renderInput}
+                    label={this.props.label}
+                    name={this.props.fieldName}
+                    required={this.props.required}
+                    id={'field-'+this.props.fieldName}
+                    placeholder={this.props.schema.default}
+                    description={this.props.schema.description}
+                />
         );
     }
 }
 
-StringWidget.propTypes = { schema: PropTypes.object.isRequired };
+StringWidget.propTypes = { schema: React.PropTypes.object.isRequired };
 
 export default StringWidget;

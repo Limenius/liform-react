@@ -3,6 +3,7 @@ import _ from 'lodash';
 import DefaultTheme from './themes/bootstrap3';
 import {reduxForm} from 'redux-form';
 import renderFields from './renderFields';
+import StringWidget from './themes/bootstrap3/StringWidget'
 import buildSyncValidation from './buildSyncValidation';
 
 class Liform extends React.Component {
@@ -27,8 +28,7 @@ class Liform extends React.Component {
                 return (
                 <form onSubmit={this.props.handleSubmit}>
                     {renderFields(this.props.fields, schema, theme)}
-                    <button type="submit">Submit
-                    </button>
+                    <button type="submit">Submit</button>
                 </form>);
             }
         }
@@ -36,13 +36,13 @@ class Liform extends React.Component {
             form: this.props.schema.title || 'form',
             fields: this.getFields(this.props.schema),
             validate: buildSyncValidation(this.props.schema),
-        }, this.props.mapStateToProps, this.props.mapDispatchToProps, this.props.mergeProps, this.props.options)(BaseForm);
+        })(BaseForm);
         return (<FinalForm renderFields={renderFields.bind(this)} {...this.props} onSubmit={this.props.handleSubmit}/>);
     }
 }
 
 Liform.propTypes = {
-    schema: PropTypes.object.isRequired,
+    schema: React.PropTypes.object,
     //    handleSubmit: PropTypes.func.isRequired,
 }
 

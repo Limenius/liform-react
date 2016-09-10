@@ -27,21 +27,21 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
-    "eslint": "^2.7.0",
-    "eslint-config-airbnb": "^6.2.0",
-    "eslint-plugin-react": "^4.3.0",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.0.0",
+    "eslint-plugin-react": "^6.2.0",
     "expect": "^1.20.2",
-    "jsdom": "^8.3.1",
-    "mocha": "^2.4.5",
-    "react-addons-test-utils": "15.0.1",
+    "jsdom": "^9.5.0",
+    "mocha": "^3.0.2",
+    "react-addons-test-utils": "15.3.1",
     "webpack": "^1.12.15"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.10.0",
-    "react": "15.2.0",
+    "react": "15.3.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
-    "redux-form": "^5.2.5"
+    "redux-form": "^6.0.2"
   }
 }
