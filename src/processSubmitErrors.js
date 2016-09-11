@@ -3,7 +3,16 @@ import _ from 'lodash';
 import { SubmissionError } from 'redux-form';
 
 const processSubmitErrors = response => {
-    throw new SubmissionError({ name: 'User does not exist', _error: 'Login failed!' })
+    let errors = {};
+    if (response.hasOwnProperty('errors')) {
+        _.forIn(response.errors.children, (value, field) => {
+            if (value.hasOwnProperty('errors'))  {
+                errors.field = value.errors[0];
+            }
+        });
+
+    }
+    throw new SubmissionError(errors);
     return {};
 }
 

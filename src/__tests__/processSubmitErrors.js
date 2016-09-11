@@ -9,12 +9,12 @@ describe('processSubmitErrors', () => {
         "errors":
             {
                 "children":
-                {"name":
-                    {"errors":
-                        ["This value should not be equal to \"Mary\"."]
-                    },
-                    "color":[]
-                }
+                    {
+                        "name": {
+                                "errors": ["This value should not be equal to \"Mary\"."]
+                            },
+                        "color":[]
+                    }
             }
     };
 
