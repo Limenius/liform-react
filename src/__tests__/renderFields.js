@@ -27,13 +27,12 @@ describe('renderFields', () => {
 
     it('raises exception if type is not defined', () => {
         expect(function () {
-            renderFields(['name'], schemaWrong, DefaultTheme);
-
+            renderFields(schemaWrong, DefaultTheme);
         }).toThrow(/liform:/);
     });
 
     it('creates element with a label', () => {
-        var elems = renderFields(['name'], schema, DefaultTheme);
+        var elems = renderFields(schema, DefaultTheme);
         expect(elems[0].props).toIncludeKey('label');
 
     });

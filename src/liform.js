@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import DefaultTheme from './themes/bootstrap3';
 import {reduxForm, Field} from 'redux-form';
 import renderFields from './renderFields';
+import processSubmitErrors from './processSubmitErrors';
 import StringWidget from './themes/bootstrap3/StringWidget'
 import buildSyncValidation from './buildSyncValidation';
 
@@ -12,11 +13,14 @@ const renderInput = field => {
 }
 
 const BaseForm = props => {
-    const {schema, handleSubmit, theme} = props;
+    const {schema, handleSubmit, theme, error, submitting} = props;
     return (
         <form onSubmit={handleSubmit}>
             {renderFields(schema, theme || DefaultTheme)}
-            <button type="submit">Submit</button>
+            <div>
+            {error && <strong>{error}</strong>}
+            </div>
+            <button type="submit" disabled={submitting}>Submit</button>
         </form>);
 }
 
@@ -37,4 +41,4 @@ Liform.propTypes = {
 
 export default Liform;
 
-export { renderFields };
+export { renderFields, processSubmitErrors };
