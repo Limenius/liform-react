@@ -7,12 +7,12 @@ const processSubmitErrors = response => {
     if (response.hasOwnProperty('errors')) {
         _.forIn(response.errors.children, (value, field) => {
             if (value.hasOwnProperty('errors'))  {
-                errors.field = value.errors[0];
+                errors[field] = value.errors[0];
             }
         });
+        throw new SubmissionError(errors);
 
     }
-    throw new SubmissionError(errors);
     return {};
 }
 
