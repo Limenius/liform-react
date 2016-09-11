@@ -1,49 +1,38 @@
 import React, {Component, PropTypes} from 'react';
-import _ from 'lodash';
 import DefaultTheme from './themes/bootstrap3';
-import {reduxForm} from 'redux-form';
+import {reduxForm, Field} from 'redux-form';
 import renderFields from './renderFields';
 import StringWidget from './themes/bootstrap3/StringWidget'
 import buildSyncValidation from './buildSyncValidation';
 
-class Liform extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {theme: props.theme || DefaultTheme}
-    }
+const renderInput = field => {
+    return (
+            <input type="text" className="form-control"/>
+    );
+}
 
-    getFields() {
-        return _.keys(this.props.schema.properties);
-    }
+const BaseForm = props => {
+    const {schema, handleSubmit, theme} = props;
+    return (
+        <form onSubmit={handleSubmit}>
+            {renderFields(schema, theme || DefaultTheme)}
+            <button type="submit">Submit</button>
+        </form>);
+}
 
-
-    render() {
-        var theme = this.state.theme;
-        var schema = this.props.schema;
-        class BaseForm extends React.Component {
-            constructor(props) {
-                super(props);
-            }
-            render() {
-                return (
-                <form onSubmit={this.props.handleSubmit}>
-                    {renderFields(this.props.fields, schema, theme)}
-                    <button type="submit">Submit</button>
-                </form>);
-            }
-        }
-        var FinalForm = reduxForm({
-            form: this.props.schema.title || 'form',
-            fields: this.getFields(this.props.schema),
-            validate: buildSyncValidation(this.props.schema),
-        })(BaseForm);
-        return (<FinalForm renderFields={renderFields.bind(this)} {...this.props} onSubmit={this.props.handleSubmit}/>);
-    }
+const Liform = (props) => {
+    const FinalForm = reduxForm({
+        form: props.schema.title || 'form',
+        validate: buildSyncValidation(props.schema),
+    })(BaseForm);
+    return (
+        <FinalForm renderFields={renderFields.bind(this)} {...props}/>
+    )
 }
 
 Liform.propTypes = {
     schema: React.PropTypes.object,
-    //    handleSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
 }
 
 export default Liform;

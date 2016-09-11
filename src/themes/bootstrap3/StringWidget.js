@@ -10,7 +10,7 @@ const renderInput = field => {
     return (
         <div className={className}>
             <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
-            <input type="text" className="form-control"/>
+            <input {...field.input} type="text" className="form-control"/>
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             {field.description && <span className="help-block">{field.description}</span>}
         </div>

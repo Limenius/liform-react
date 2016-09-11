@@ -11,8 +11,9 @@ const isRequired =
     }
 
 const renderFields =
-    (formFields, schema, theme) =>
+    (schema, theme) =>
     {
+        const formFields = Object.keys(schema.properties);
         return _.map(schema.properties, (fieldSchema, fieldName) => {
             var widget = fieldSchema.format || fieldSchema.type;
             if (!theme[widget]) {
