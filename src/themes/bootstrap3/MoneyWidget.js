@@ -1,33 +1,40 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import {Field} from 'redux-form';
 
-class MoneyWidget extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        var field = this.props.field;
-        var className = classNames([
-            'form-group',
-            {'has-error' : field.touched && field.error}
-        ]);
-        return (
-            <div className="form-group">
-                <label className="control-label" htmlFor={'field-'+this.props.fieldName}>{this.props.label}</label>
-                <div className="input-group">
-                    <span className="input-group-addon">€ </span>
-                    <input type="text" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field} required={this.props.required} placeholder={this.props.schema.default}/>
-                </div>
-                {this.props.schema.description && <span className="help-block">{this.props.schema.description}</span>}
-                {field.touched && field.error && <span className="help-block">{field.error}</span>}
+const renderInput = field => {
+    var className = classNames([
+        'form-group',
+        {'has-error' : field.meta.touched && field.meta.error}
+    ]);
+    return (
+        <div className={className}>
+            <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
+            <div className="input-group">
+            <span className="input-group-addon">€ </span>
+            <input {...field.input} type="number" className="form-control" id={'field-'+field.fieldName} required={field.required} placeholder={field.placeholder}/>
             </div>
-        );
-    }
+            {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
+            {field.description && <span className="help-block">{field.description}</span>}
+        </div>
+    );
 }
 
-MoneyWidget.propTypes = {
-    schema: PropTypes.object
-};
 
-export default MoneyWidget;
+const NumberWidget = props =>  {
+    return (
+        <Field
+            component={renderInput}
+            label={props.label}
+            name={props.fieldName}
+            required={props.required}
+            id={'field-'+props.fieldName}
+            placeholder={props.schema.default}
+            description={props.schema.description}
+        />
+    );
+}
+
+NumberWidget.propTypes = { schema: React.PropTypes.object.isRequired };
+
+export default NumberWidget;

@@ -1,28 +1,37 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import {Field} from 'redux-form';
 
-class EmailWidget extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        var field = this.props.field;
-        var className = classNames([
-            'form-group',
-            {'has-error' : field.touched && field.error}
-        ]);
-        return (
-            <div className={className}>
-                <label className="control-label" htmlFor={'field-'+this.props.fieldName}>{this.props.label}</label>
-                <input type="email" className="form-control" id={'field-'+this.props.fieldName} {...this.props.field} required={this.props.required} placeholder={this.props.schema.default}/>
-                {this.props.schema.description && <span className="help-block">{this.props.schema.description}</span>}
-                {field.touched && field.error && <span className="help-block">{field.error}</span>}
-            </div>
-        );
-    }
+const renderInput = field => {
+    var className = classNames([
+        'form-group',
+        {'has-error' : field.meta.touched && field.meta.error}
+    ]);
+    return (
+        <div className={className}>
+            <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
+            <input {...field.input} type="email" className="form-control"/>
+            {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
+            {field.description && <span className="help-block">{field.description}</span>}
+        </div>
+    );
 }
 
-EmailWidget.propTypes = { schema: PropTypes.object.isRequired };
+
+const EmailWidget = props =>  {
+    return (
+        <Field
+            component={renderInput}
+            label={props.label}
+            name={props.fieldName}
+            required={props.required}
+            id={'field-'+props.fieldName}
+            placeholder={props.schema.default}
+            description={props.schema.description}
+        />
+    );
+}
+
+EmailWidget.propTypes = { schema: React.PropTypes.object.isRequired };
 
 export default EmailWidget;

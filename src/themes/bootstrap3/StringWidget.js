@@ -10,7 +10,7 @@ const renderInput = field => {
     return (
         <div className={className}>
             <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
-            <input {...field.input} type="text" className="form-control"/>
+            <input {...field.input} type="text" className="form-control" id={'field-'+field.fieldName} required={field.required} placeholder={field.placeholder}/>
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             {field.description && <span className="help-block">{field.description}</span>}
         </div>
@@ -18,25 +18,18 @@ const renderInput = field => {
 }
 
 
-class StringWidget extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        var field = this.props.field;
-        return (
-                <Field
-                    component={renderInput}
-                    label={this.props.label}
-                    name={this.props.fieldName}
-                    required={this.props.required}
-                    id={'field-'+this.props.fieldName}
-                    placeholder={this.props.schema.default}
-                    description={this.props.schema.description}
-                />
-        );
-    }
+const StringWidget = props =>  {
+    return (
+        <Field
+            component={renderInput}
+            label={props.label}
+            name={props.fieldName}
+            required={props.required}
+            id={'field-'+props.fieldName}
+            placeholder={props.schema.default}
+            description={props.schema.description}
+        />
+    );
 }
 
 StringWidget.propTypes = { schema: React.PropTypes.object.isRequired };
