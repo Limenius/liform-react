@@ -3,6 +3,7 @@ import TextareaWidget from './TextareaWidget';
 import EmailWidget from './EmailWidget';
 import NumberWidget from './NumberWidget';
 import MoneyWidget from './MoneyWidget';
+import ArrayWidget from './ArrayWidget';
 
 export default {
     string: StringWidget,
@@ -11,4 +12,5 @@ export default {
     integer: NumberWidget,
     number: NumberWidget,
     money: MoneyWidget,
+    array: ArrayWidget,
 }
