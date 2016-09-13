@@ -9,7 +9,6 @@ Library for generating React forms from [JSON schema](http://json-schema.org/) u
 npm install liform-react --save
 ```
 
-# Initial values
 # Basic usage
 
 ```jsx
