@@ -2,6 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import renderFields from '../../renderFields';
 import classNames from 'classnames';
 import { Field, FieldArray } from 'redux-form';
+import { connect } from 'react-redux'
+
+
+const renderArrayFields = (values, items, theme, fieldName) => {
+    return values.map((fieldValue, idx) => {
+        const prefix = fieldName + '.' + idx + '.';
+        return  renderFields(items, theme, prefix) ;
+    });
+
+}
 
 const renderInput = field => {
     var className = classNames([
@@ -10,23 +20,36 @@ const renderInput = field => {
     ]);
     return (
         <div className={className}>
-            { renderFields(field.schema.items, field.theme, field.name + '.0.') }
+            <label className="control-label" >{field.label}</label>
+            { renderArrayFields(field.values[field.name], field.schema.items, field.theme, field.name) }
         </div>
     );
 }
 
-
 const ArrayWidget = props =>  {
-    console.log(props.fieldName);
-    return (
-        <FieldArray
-            component={renderInput}
-            label={props.label}
-            name={props.fieldName}
-            schema={props.schema}
-            theme={props.theme}
-        />
-    );
+    const baseArray = props => {
+        return (
+            <FieldArray
+                component={renderInput}
+                label={props.label}
+                name={props.fieldName}
+                schema={props.schema}
+                theme={props.theme}
+                values={props.values}
+            />
+        )
+    };
+    const mapStateToProps = (state) => ( {
+        values : state.form.form.values
+    });
+
+    const ToRet = connect(mapStateToProps)(baseArray);
+    return <ToRet
+                label={props.label}
+                fieldName={props.fieldName}
+                schema={props.schema}
+                theme={props.theme}
+    />;
 }
 
 ArrayWidget.propTypes = { schema: React.PropTypes.object.isRequired };

@@ -16,7 +16,6 @@ const renderFields =
         const formFields = Object.keys(schema.properties);
         return _.map(schema.properties, (fieldSchema, fieldName) => {
             var widget = fieldSchema.format || fieldSchema.type;
-            console.log(widget);
             if (!theme[widget]) {
                 throw new Error('liform: ' + widget + ' is not defined in the theme');
             }
