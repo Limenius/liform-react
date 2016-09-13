@@ -12,7 +12,7 @@ npm install liform-react --save
 # Initial values
 # Basic usage
 
-```
+```jsx
 require('../sass/layout.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
