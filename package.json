@@ -1,6 +1,6 @@
 {
   "name": "liform-react",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Generate forms from json-schema to use with React (and redux-form)",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
@@ -40,14 +40,20 @@
     "jsdom": "^9.5.0",
     "mocha": "^3.0.2",
     "react-addons-test-utils": "15.3.1",
-    "webpack": "^1.12.15"
-  },
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "lodash": "^4.10.0",
+    "webpack": "^1.12.15",
     "react": "15.3.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-form": "^6.0.2"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.10.0"
+  },
+  "peerDependencies": {
+    "redux-form": "^6.0.2",
+    "react-redux": "^4.3.0",
+    "redux": "^3.0.0",
+    "react": "^15.0.0"
   }
 }
