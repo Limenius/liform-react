@@ -50,6 +50,6 @@ ReactDOM.render(
 )
 ```
 
-And, provided that you have a `<div id="form.holder">`, you should see something like this:
+And, provided that you have a `<div id="form-holder">`, you should see something like this:
 
 ![](https://raw.githubusercontent.com/Limenius/liform-react/master/docs/images/example-liform-react.png)
