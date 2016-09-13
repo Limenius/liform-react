@@ -1,15 +1,21 @@
 {
   "name": "liform-react",
   "version": "0.3.0",
-  "description": "Generate forms from json-schema to use with React",
-  "main": "src/liform.js",
+  "description": "Generate forms from json-schema to use with React (and redux-form)",
+  "main": "./lib/index.js",
+  "jsnext:main": "./es/index.js",
   "scripts": {
+    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/liform.js",
+    "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/liform.min.js",
     "test": "mocha --compilers js:babel-register --recursive 'src/**/__tests__/*' --require src/__tests__/setup.js"
   },
   "keywords": [
     "react",
     "json-schema",
-    "form"
+    "form",
+    "redux-form"
   ],
   "repository": {
     "type": "git",
