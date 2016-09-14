@@ -12,6 +12,7 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
     if (!theme[widget]) {
         throw new Error('liform: ' + widget + ' is not defined in the theme');
     }
+
     return React.createElement(theme[widget], {
         key: fieldName,
         fieldName: prefix ? prefix + fieldName : fieldName,

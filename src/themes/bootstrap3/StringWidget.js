@@ -8,7 +8,8 @@ const renderInput = field => {
         'form-group',
         {'has-error' : field.meta.touched && field.meta.error}
     ]);
-    return (
+    const out = 
+    (
         <div className={className}>
             <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
             <input {...field.input} type="text" className="form-control" id={'field-'+field.name} required={field.required} placeholder={field.placeholder}/>
@@ -16,6 +17,7 @@ const renderInput = field => {
             {field.description && <span className="help-block">{field.description}</span>}
         </div>
     );
+    return out;
 }
 
 const renderSelect = field => {
