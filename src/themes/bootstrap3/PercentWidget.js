@@ -11,8 +11,8 @@ const renderInput = field => {
         <div className={className}>
             <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
             <div className="input-group">
-            <span className="input-group-addon">€ </span>
             <input {...field.input} type="number" className="form-control" id={'field-'+field.name} required={field.required} placeholder={field.placeholder}/>
+            <span className="input-group-addon"> %</span>
             </div>
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             {field.description && <span className="help-block">{field.description}</span>}
@@ -21,7 +21,7 @@ const renderInput = field => {
 }
 
 
-const NumberWidget = props =>  {
+const Widget = props =>  {
     return (
         <Field
             component={renderInput}
@@ -35,6 +35,6 @@ const NumberWidget = props =>  {
     );
 }
 
-NumberWidget.propTypes = { schema: React.PropTypes.object.isRequired };
+Widget.propTypes = { schema: React.PropTypes.object.isRequired };
 
-export default NumberWidget;
+export default Widget;
