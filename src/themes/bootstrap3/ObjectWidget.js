@@ -6,7 +6,7 @@ const Widget = props =>  {
     return (
         <div>
         <label>{props.label}</label>
-        {renderFields(props.schema, props.theme, props.fieldName + '.')}
+        {renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.')}
         </div>
     );
 }
