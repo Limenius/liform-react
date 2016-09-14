@@ -6,8 +6,10 @@ import MoneyWidget from './MoneyWidget';
 import PercentWidget from './PercentWidget';
 import ArrayWidget from './ArrayWidget';
 import CheckboxWidget from './CheckboxWidget';
+import ObjectWidget from './ObjectWidget';
 
 export default {
+    object: ObjectWidget,
     string: StringWidget,
     textarea: TextareaWidget,
     email: EmailWidget,

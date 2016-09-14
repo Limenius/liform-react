@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 const renderArrayFields = (values, items, theme, fieldName) => {
     return values.map((fieldValue, idx) => {
         const prefix = fieldName + '.' + idx + '.';
-        return  renderFields(items, theme, prefix) ;
+        return renderFields(items, theme, prefix) ;
     });
 
 }
