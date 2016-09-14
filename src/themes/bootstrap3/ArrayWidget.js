@@ -19,9 +19,10 @@ const renderArrayFields = (count, schema, theme, fieldName) => {
 
 const renderInput = field => {
     return (
-        <div className="arrayType">
+        <div className="arrayType form-group">
             <legend className="control-label" >{field.label}</legend>
             { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.name) }
+            <button type="button" className="btn btn-primary" onClick={() => field.fields.push({})}>Add Member</button>
         </div>
     );
 }

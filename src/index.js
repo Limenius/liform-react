@@ -21,7 +21,7 @@ const BaseForm = props => {
             <div>
             {error && <strong>{error}</strong>}
             </div>
-            <button type="submit" disabled={submitting}>Submit</button>
+            <button className="btn btn-primary" type="submit" disabled={submitting}>Submit</button>
         </form>);
 }
 
