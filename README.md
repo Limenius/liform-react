@@ -9,11 +9,9 @@ Library for generating React forms from [JSON schema](http://json-schema.org/) u
 npm install liform-react --save
 ```
 
-# Initial values
 # Basic usage
 
-```
-require('../sass/layout.scss');
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -52,6 +50,6 @@ ReactDOM.render(
 )
 ```
 
-And, provided that you have a `<div id="form.holder">`, you should see something like this:
+And, provided that you have a `<div id="form-holder">`, you should see something like this:
 
 ![](https://raw.githubusercontent.com/Limenius/liform-react/master/docs/images/example-liform-react.png)
