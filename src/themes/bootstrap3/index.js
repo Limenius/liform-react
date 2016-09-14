@@ -4,6 +4,7 @@ import EmailWidget from './EmailWidget';
 import NumberWidget from './NumberWidget';
 import MoneyWidget from './MoneyWidget';
 import ArrayWidget from './ArrayWidget';
+import CheckboxWidget from './CheckboxWidget';
 
 export default {
     string: StringWidget,
@@ -13,4 +14,5 @@ export default {
     number: NumberWidget,
     money: MoneyWidget,
     array: ArrayWidget,
+    boolean: CheckboxWidget,
 }
