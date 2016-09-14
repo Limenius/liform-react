@@ -6,10 +6,15 @@ import { connect } from 'react-redux'
 
 
 const renderArrayFields = (values, items, theme, fieldName) => {
-    return values.map((fieldValue, idx) => {
-        const prefix = fieldName + '.' + idx + '.';
+    if (values && values[fieldName]) {
+        return values[fieldName].map((fieldValue, idx) => {
+            const prefix = fieldName + '.' + idx + '.';
+            return renderFields(items, theme, prefix) ;
+        });
+    } else {
+        const prefix = fieldName + '.0.';
         return renderFields(items, theme, prefix) ;
-    });
+    }
 
 }
 
@@ -21,7 +26,7 @@ const renderInput = field => {
     return (
         <div className={className}>
             <label className="control-label" >{field.label}</label>
-            { renderArrayFields(field.values[field.name], field.schema.items, field.theme, field.name) }
+            { renderArrayFields(field.values, field.schema.items, field.theme, field.name) }
         </div>
     );
 }
