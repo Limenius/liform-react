@@ -8,7 +8,7 @@ const isRequired = (schema, fieldName) => {
 };
 
 const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
-    var widget = fieldSchema.format || fieldSchema.type;
+    var widget = fieldSchema.format || fieldSchema.type || 'object';
     if (!theme[widget]) {
         throw new Error('liform: ' + widget + ' is not defined in the theme');
     }
@@ -17,7 +17,7 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
         key: fieldName,
         fieldName: prefix ? prefix + fieldName : fieldName,
         label: fieldSchema.title || fieldName,
-        required: isRequired(schema, fieldName),
+        required: isRequired(fieldSchema, fieldName),
         schema: fieldSchema,
         theme: theme,
     });
