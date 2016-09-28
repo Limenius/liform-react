@@ -9,7 +9,8 @@
     "build:lib": "babel src --out-dir lib",
     "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/liform.js",
     "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/liform.min.js",
-    "test": "mocha --compilers js:babel-register --recursive 'src/**/__tests__/*' --require src/__tests__/setup.js"
+    "test": "mocha --compilers js:babel-register --recursive 'src/**/__tests__/*' --require src/__tests__/setup.js",
+    "dev": "webpack-dev-server --content-base examples --config examples/webpack.config.js --inline --hot"
   },
   "keywords": [
     "react",
@@ -39,12 +40,13 @@
     "expect": "^1.20.2",
     "jsdom": "^9.5.0",
     "mocha": "^3.0.2",
-    "react-addons-test-utils": "15.3.1",
-    "webpack": "^1.12.15",
     "react": "15.3.1",
+    "react-addons-test-utils": "15.3.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
-    "redux-form": "^6.0.2"
+    "redux-form": "^6.0.2",
+    "webpack": "^1.12.15",
+    "webpack-dev-server": "^1.16.1"
   },
   "dependencies": {
     "classnames": "^2.2.5",
