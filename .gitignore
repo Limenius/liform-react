@@ -4,3 +4,4 @@ dist
 lib
 es
 .DS_Store
+yarn.lock
