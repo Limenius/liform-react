@@ -1,8 +1,6 @@
-import expect, {createSpy} from 'expect';
-import React, {Component, PropTypes} from 'react';
-import TestUtils from 'react-addons-test-utils';
-import renderFields from '../renderFields';
-import DefaultTheme from '../themes/bootstrap3';
+import expect from 'expect'
+import renderFields from '../renderFields'
+import DefaultTheme from '../themes/bootstrap3'
 
 
 describe('renderFields', () => {
@@ -14,7 +12,7 @@ describe('renderFields', () => {
                 title: 'A name',
             }
         }
-    };
+    }
 
     const schemaWrong = {
         title: 'A schema',
@@ -23,17 +21,17 @@ describe('renderFields', () => {
                 type: 'asdf',
             }
         }
-    };
+    }
 
     it('raises exception if type is not defined', () => {
         expect(function () {
-            renderFields(schemaWrong, DefaultTheme);
-        }).toThrow(/liform:/);
-    });
+            renderFields(schemaWrong, DefaultTheme)
+        }).toThrow(/liform:/)
+    })
 
     it('creates element with a label', () => {
-        var elems = renderFields(schema, DefaultTheme);
-        expect(elems[0].props).toIncludeKey('label');
+        const elems = renderFields(schema, DefaultTheme)
+        expect(elems[0].props).toIncludeKey('label')
 
-    });
-});
+    })
+})

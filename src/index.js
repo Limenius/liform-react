@@ -1,35 +1,29 @@
-import React, {Component, PropTypes} from 'react';
-import DefaultTheme from './themes/bootstrap3';
-import {reduxForm, Field} from 'redux-form';
-import renderFields from './renderFields';
-import renderField from './renderField';
-import processSubmitErrors from './processSubmitErrors';
-import StringWidget from './themes/bootstrap3/StringWidget'
-import buildSyncValidation from './buildSyncValidation';
-
-const renderInput = field => {
-    return (
-            <input type="text" className="form-control"/>
-    );
-}
+import React, { PropTypes } from 'react'
+import DefaultTheme from './themes/bootstrap3'
+import { reduxForm } from 'redux-form'
+import renderFields from './renderFields'
+import renderField from './renderField'
+import processSubmitErrors from './processSubmitErrors'
+import buildSyncValidation from './buildSyncValidation'
 
 const BaseForm = props => {
-    const {schema, handleSubmit, theme, error, submitting} = props;
+    const { schema, handleSubmit, theme, error, submitting } = props
     return (
         <form onSubmit={handleSubmit}>
             {renderField(schema, schema.title, theme || DefaultTheme)}
             <div>
-            {error && <strong>{error}</strong>}
+                {error && <strong>{error}</strong>}
             </div>
             <button className="btn btn-primary" type="submit" disabled={submitting}>Submit</button>
-        </form>);
+        </form>)
 }
 
 const Liform = (props) => {
     const FinalForm = reduxForm({
         form: props.schema.title || 'form',
         validate: buildSyncValidation(props.schema),
-    })(BaseForm);
+        initialValues: props.initialValues,
+    })(BaseForm)
     return (
         <FinalForm renderFields={renderField.bind(this)} {...props}/>
     )
@@ -40,6 +34,6 @@ Liform.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 }
 
-export default Liform;
+export default Liform
 
-export { renderFields, renderField, processSubmitErrors };
+export { renderFields, renderField, processSubmitErrors }

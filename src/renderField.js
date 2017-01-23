@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
-const isRequired = (schema, fieldName) => {
+export const isRequired = (schema, fieldName) => {
     if (!schema.required) {
-        return false;
+        return false
     }
-    return (schema.required.indexOf(fieldName) != 1);
-};
+    return (schema.required.indexOf(fieldName) != 1)
+}
 
 const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
-    var widget = fieldSchema.format || fieldSchema.type || 'object';
+    const widget = fieldSchema.format || fieldSchema.type || 'object'
     if (!theme[widget]) {
-        throw new Error('liform: ' + widget + ' is not defined in the theme');
+        throw new Error('liform: ' + widget + ' is not defined in the theme')
     }
 
     return React.createElement(theme[widget], {
@@ -20,7 +20,7 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
         required: isRequired(fieldSchema, fieldName),
         schema: fieldSchema,
         theme: theme,
-    });
-};
+    })
+}
 
-export default renderField;
+export default renderField

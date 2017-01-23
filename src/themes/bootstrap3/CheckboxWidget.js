@@ -1,23 +1,23 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import {Field} from 'redux-form';
+import React from 'react'
+import classNames from 'classnames'
+import { Field } from 'redux-form'
 
 const renderInput = field => {
-    var className = classNames([
+    const className = classNames([
         'form-group',
-        {'has-error' : field.meta.touched && field.meta.error}
-    ]);
+        { 'has-error' : field.meta.touched && field.meta.error }
+    ])
     return (
         <div className={className}>
             <div className="checkbox">
                 <label>
-                    <input {...field.input} type="checkbox" id={'field-'+field.name} /> Check me out
+                    <input {...field.input} type="checkbox" id={'field-'+field.name} /> { field.label }
                 </label>
             </div>
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             {field.description && <span className="help-block">{field.description}</span>}
         </div>
-    );
+    )
 }
 
 
@@ -32,9 +32,9 @@ const CheckboxWidget = props =>  {
             placeholder={props.schema.default}
             description={props.schema.description}
         />
-    );
+    )
 }
 
-CheckboxWidget.propTypes = { schema: React.PropTypes.object.isRequired };
+CheckboxWidget.propTypes = { schema: React.PropTypes.object.isRequired }
 
-export default CheckboxWidget;
+export default CheckboxWidget

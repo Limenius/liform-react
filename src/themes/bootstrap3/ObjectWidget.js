@@ -1,6 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import renderFields from '../../renderFields';
+import React from 'react'
+import renderFields from '../../renderFields'
 
 const Widget = props =>  {
     return (
@@ -8,9 +7,9 @@ const Widget = props =>  {
         <label>{props.label}</label>
         {renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.')}
         </div>
-    );
+    )
 }
 
-Widget.propTypes = { schema: React.PropTypes.object.isRequired };
+Widget.propTypes = { schema: React.PropTypes.object.isRequired }
 
-export default Widget;
+export default Widget

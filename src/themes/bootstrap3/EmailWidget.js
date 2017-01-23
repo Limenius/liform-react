@@ -1,37 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import {Field} from 'redux-form';
+import React from 'react'
+import BaseInputWidget from './BaseInputWidget'
 
-const renderInput = field => {
-    var className = classNames([
-        'form-group',
-        {'has-error' : field.meta.touched && field.meta.error}
-    ]);
+const EmailWidget = (props) => {
     return (
-        <div className={className}>
-            <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
-            <input {...field.input} type="email" className="form-control"/>
-            {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
-            {field.description && <span className="help-block">{field.description}</span>}
-        </div>
-    );
+        <BaseInputWidget type="email" {...props} />
+    )
 }
 
-
-const EmailWidget = props =>  {
-    return (
-        <Field
-            component={renderInput}
-            label={props.label}
-            name={props.fieldName}
-            required={props.required}
-            id={'field-'+props.fieldName}
-            placeholder={props.schema.default}
-            description={props.schema.description}
-        />
-    );
-}
-
-EmailWidget.propTypes = { schema: React.PropTypes.object.isRequired };
-
-export default EmailWidget;
+export default EmailWidget
