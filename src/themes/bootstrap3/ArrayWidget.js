@@ -3,15 +3,22 @@ import renderField from '../../renderField'
 import { FieldArray } from 'redux-form'
 import _ from 'lodash'
 
-const renderArrayFields = (count, schema, theme, fieldName) => {
+const renderArrayFields = (count, schema, theme, fieldName, remove) => {
     const prefix = fieldName + '.'
     if (count) {
         return _.times(count, (idx) => {
-
-            return renderField(schema, idx.toString(), theme, prefix)
+            return (
+            <div key={idx}>
+                {renderField({ ...schema, title: idx }, idx.toString(), theme, prefix)}
+                <button className="btn btn-danger" onClick={(e) => {
+                    e.preventDefault()
+                    remove(idx)
+                }}>Remove</button>
+            </div>
+            )
         })
     } else {
-        return renderField(schema, '0', theme, prefix)
+        return null
     }
 }
 
@@ -19,7 +26,7 @@ const renderInput = field => {
     return (
         <div className="arrayType form-group">
             <legend className="control-label" >{field.label}</legend>
-            { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.name) }
+            { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.name, (idx) => field.fields.remove(idx)) }
             <button type="button" className="btn btn-primary" onClick={() => field.fields.push({})}>Add Member</button>
         </div>
     )
