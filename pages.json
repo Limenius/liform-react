@@ -1,0 +1,124 @@
+{
+  "/": {
+    "file": "/README.md",
+    "title": "Redux Form",
+    "children": {
+      "/docs/GettingStarted.md": {
+        "file": "/docs/GettingStarted.md",
+        "title": "Getting Started"
+      },
+      "/docs/DocumentationVersions.md": {
+        "file": "/docs/DocumentationVersions.md",
+        "title": "Older Versions"
+      },
+      "/docs/MigrationGuide.md": {
+        "file": "/docs/MigrationGuide.md",
+        "title": "`v6` Migration Guide"
+      },
+      "/docs/ValueLifecycle.md": {
+        "file": "/docs/ValueLifecycle.md",
+        "title": "Value Lifecycle"
+      },
+      "/docs/faq": {
+        "file": "/docs/faq/README.md",
+        "title": "FAQ",
+        "children": {
+          "/docs/faq/CustomComponent.md": {
+            "file": "/docs/faq/CustomComponent.md",
+            "title": "Will `redux-form` work with a my custom input component?"
+          },
+          "/docs/faq/EnterToSubmit.md": {
+            "file": "/docs/faq/EnterToSubmit.md",
+            "title": "How can I submit my form when the users presses Enter?"
+          },
+          "/docs/faq/HandleVsOn.md": {
+            "file": "/docs/faq/HandleVsOn.md",
+            "title": "What's the difference between `handleSubmit` and `onSubmit`?"
+          },
+          "/docs/faq/HowToClear.md": {
+            "file": "/docs/faq/HowToClear.md",
+            "title": "How can I clear my form after my submission succeeds?"
+          },
+          "/docs/faq/ReactNative.md": {
+            "file": "/docs/faq/ReactNative.md",
+            "title": "Does `redux-form` work with React Native?"
+          },
+          "/docs/faq/SubmitFunction.md": {
+            "file": "/docs/faq/SubmitFunction.md",
+            "title": "My submit function isn't being called! Help?"
+          },
+          "/docs/faq/WebsocketSubmit.md": {
+            "file": "/docs/faq/WebsocketSubmit.md",
+            "title": "Can I submit my form using websockets?"
+          },
+          "/docs/faq/ImmutableJs.md": {
+            "file": "/docs/faq/ImmutableJs.md",
+            "title": "Does `redux-form` work ImmutableJS?"
+          }
+        }
+      },
+      "/docs/api": {
+        "file": "/docs/api/README.md",
+        "title": "API",
+        "children": {
+          "/docs/api/ReduxForm.md": {
+            "file": "/docs/api/ReduxForm.md",
+            "title": "`reduxForm()`"
+          },
+          "/docs/api/Reducer.md": {
+            "file": "/docs/api/Reducer.md",
+            "title": "`reducer`"
+          },
+          "/docs/api/ReducerPlugin.md": {
+            "file": "/docs/api/ReducerPlugin.md",
+            "title": "`reducer.plugin()`"
+          },
+          "/docs/api/Props.md": {
+            "file": "/docs/api/Props.md",
+            "title": "`props`"
+          },
+          "/docs/api/ActionCreators.md": {
+            "file": "/docs/api/ActionCreators.md",
+            "title": "Action Creators"
+          },
+          "/docs/api/Selectors.md": {
+            "file": "/docs/api/Selectors.md",
+            "title": "Selectors"
+          },
+          "/docs/api/SubmissionError.md": {
+            "file": "/docs/api/SubmissionError.md",
+            "title": "`SubmissionError`"
+          },
+          "/docs/api/Field.md": {
+            "file": "/docs/api/Field.md",
+            "title": "`Field`"
+          },
+          "/docs/api/Fields.md": {
+            "file": "/docs/api/Fields.md",
+            "title": "`Fields`"
+          },
+          "/docs/api/FormSection.md": {
+            "file": "/docs/api/FormSection.md",
+            "title": "`FormSection`"
+          },
+          "/docs/api/Form.md": {
+            "file": "/docs/api/Form.md",
+            "title": "`Form`"
+          },
+          "/docs/api/FormValueSelector.md": {
+            "file": "/docs/api/FormValueSelector.md",
+            "title": "`formValueSelector()`"
+          },
+          "/docs/api/FieldArray.md": {
+            "file": "/docs/api/FieldArray.md",
+            "title": "`FieldArray`"
+          }
+        }
+      },
+      "/examples": {
+        "file": "/examples/README.md",
+        "title": "Examples"
+      }
+    }
+  }
+}
