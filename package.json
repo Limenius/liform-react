@@ -2,7 +2,7 @@
   "name": "liform-react",
   "version": "0.4.1",
   "description": "Generate forms from json-schema to use with React (and redux-form)",
-  "main": "./lib/liform.js",
+  "main": "./lib/index.js",
   "scripts": {
     "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
     "build:lib": "babel src --out-dir lib",
@@ -33,9 +33,9 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
+    "eslint": "^3.5.0",
     "eslint-config-rackt": "^1.1.1",
     "eslint-plugin-react": "^6.9.0",
-    "eslint": "^3.5.0",
     "expect": "^1.20.2",
     "jsdom": "^9.5.0",
     "mocha": "^3.0.2",
@@ -48,14 +48,15 @@
     "webpack-dev-server": "^1.16.1"
   },
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
     "classnames": "^2.2.5",
     "cross-env": "^3.1.4",
     "lodash": "^4.10.0",
     "redux-form": "^6.0.2"
   },
   "peerDependencies": {
+    "react": "^15.0.0",
     "react-redux": "^4.3.0",
-    "redux": "^3.0.0",
-    "react": "^15.0.0"
+    "redux": "^3.0.0"
   }
 }
