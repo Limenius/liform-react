@@ -31,7 +31,7 @@ const Liform = (props) => {
 
 Liform.propTypes = {
     schema: React.PropTypes.object,
-    onSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func,
 }
 
 export default Liform
