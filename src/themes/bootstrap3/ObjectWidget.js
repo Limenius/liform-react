@@ -4,7 +4,7 @@ import renderFields from '../../renderFields'
 const Widget = props =>  {
     return (
         <div>
-        <label>{props.label}</label>
+        {props.label && <legend>{props.label}</legend>}
         {renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.')}
         </div>
     )

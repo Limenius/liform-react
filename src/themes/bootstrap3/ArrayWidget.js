@@ -7,13 +7,14 @@ const renderArrayFields = (count, schema, theme, fieldName, remove) => {
     const prefix = fieldName + '.'
     if (count) {
         return _.times(count, (idx) => {
+            console.log(idx)
             return (
             <div key={idx}>
-                {renderField({ ...schema, title: idx }, idx.toString(), theme, prefix)}
-                <button className="btn btn-danger" onClick={(e) => {
+                <button className="pull-right btn btn-danger" onClick={(e) => {
                     e.preventDefault()
                     remove(idx)
-                }}>Remove</button>
+                }}><span className="glyphicon glyphicon-trash"></span></button>
+                {renderField({ ...schema, title: '' }, idx.toString(), theme, prefix)}
             </div>
             )
         })
@@ -27,7 +28,8 @@ const renderInput = field => {
         <div className="arrayType form-group">
             <legend className="control-label" >{field.label}</legend>
             { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.name, (idx) => field.fields.remove(idx)) }
-            <button type="button" className="btn btn-primary" onClick={() => field.fields.push({})}>Add Member</button>
+            <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push({})}>Add</button>
+            <div className="clearfix"/>
         </div>
     )
 }
