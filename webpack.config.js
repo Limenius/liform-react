@@ -19,6 +19,8 @@ let config = {
     },
     module: {
         loaders: [
+            { test: /\.scss$/i, loaders: [ 'style-loader', 'css-loader', 'sass-loader' ] },
+            { test: /\.css$/i, loaders: [ 'style-loader', 'css-loader','sass-loader' ] },
             { test: /\.js?$/, loader: 'babel-loader', exclude: /node_modules/ },
             { test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
@@ -43,24 +45,18 @@ if (devBuild) {
     console.log('Webpack dev build');
     module.exports = merge(config, {
         devtool: 'eval-source-map',
-        module: {
-            loaders: [
-                { test: /\.scss$/i, loaders: ['style-loader', 'css-loader', 'sass-loader'] },
-                { test: /\.css$/i, loaders: ['style-loader', 'css-loader','sass-loader'] }
-            ],
-        },
     });
 } else {
     console.log('Webpack production build');
     module.exports = merge(config, {
-        module: {
-            loaders: [
-                { test: /\.scss$/i, loader: extractCSS.extract([ 'css','sass' ]) },
-                { test: /\.css$/i, loader: extractCSS.extract([ 'css' ]) }
-            ]
-        },
+        //module: {
+        //    loaders: [
+        //        { test: /\.scss$/i, loader: extractCSS.extract([ 'css','sass' ]) },
+        //        { test: /\.css$/i, loader: extractCSS.extract([ 'css' ]) }
+        //    ]
+        //},
         plugins: [
-            extractCSS,
+            //    extractCSS,
             new webpack.optimize.DedupePlugin(),
             new webpack.optimize.UglifyJsPlugin({
                 compress: {
