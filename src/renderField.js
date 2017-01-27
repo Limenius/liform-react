@@ -16,7 +16,7 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
     return React.createElement(theme[widget], {
         key: fieldName,
         fieldName: prefix ? prefix + fieldName : fieldName,
-        label: fieldSchema.title === null ? fieldName : fieldSchema.title,
+        label: fieldSchema.showLabel === false ? '' : fieldSchema.title || fieldName,
         required: isRequired(fieldSchema, fieldName),
         schema: fieldSchema,
         theme: theme,
