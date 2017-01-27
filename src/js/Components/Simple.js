@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { Provider } from 'react-redux'
 import Liform from 'liform-react'
-const code = require('./Home.md');
+import Markdown from './Markdown'
 
 const Demo = () => {
     const reducer = combineReducers({ form: formReducer })
@@ -31,11 +31,6 @@ const Demo = () => {
     )
 }
 
-const Code = () => (
-    <div>
-         <div dangerouslySetInnerHTML={{ __html: code }}/>
-    </div>
-)
 
 const Simple = () => (
   <div>
@@ -43,7 +38,7 @@ const Simple = () => (
     <h3>Form</h3>
     <Demo/>
     <h3>Code</h3>
-    <Code/>
+    <Markdown page={require('../Content/Simple.md')}/>
   </div>
 )
 
