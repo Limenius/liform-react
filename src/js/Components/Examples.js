@@ -2,11 +2,21 @@ import React from 'react'
 import { Match, Link } from 'react-router'
 import Simple from './Simple'
 
+const PillLink = ({ label, to, activeOnlyWhenExact }) => (
+    <Link activeOnlyWhenExact={activeOnlyWhenExact} to={to} >
+        { ({ isActive, href, onClick }) =>
+                <li role="presentation" className={isActive && 'active'}>
+                    <a onClick={onClick} href={href} >{label}</a>
+                </li>
+        }
+    </Link>
+)
+
 const Examples = ({ pathname }) => (
   <div>
     <h2>Examples</h2>
-    <ul>
-      <li><Link to={`${pathname}/simple`}>Simple Example</Link></li>
+    <ul className="nav nav-pills">
+        <PillLink to={`${pathname}/simple`} label="Simple Form"Form />
     </ul>
 
     <Match pattern={`${pathname}/simple`} component={Simple}/>

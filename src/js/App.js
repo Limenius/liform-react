@@ -6,7 +6,7 @@ import Examples from './Components/Examples'
 const NavLink = ({ label, to, activeOnlyWhenExact }) => (
     <Link activeOnlyWhenExact={activeOnlyWhenExact} to={to} >
         { ({ isActive, href, onClick }) =>
-                <li className={isActive ? 'active': ''}>
+                <li className={isActive && 'active'}>
                     <a onClick={onClick} href={href} >{label}</a>
                 </li>
         }
