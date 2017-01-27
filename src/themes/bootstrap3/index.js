@@ -11,6 +11,7 @@ import PasswordWidget from './PasswordWidget'
 import SearchWidget from './SearchWidget'
 import UrlWidget from './UrlWidget'
 import ColorWidget from './ColorWidget'
+import ChoiceWidget from './ChoiceWidget'
 
 export default {
     object: ObjectWidget,
@@ -27,4 +28,5 @@ export default {
     search: SearchWidget,
     url: UrlWidget,
     color: ColorWidget,
+    choice: ChoiceWidget,
 }

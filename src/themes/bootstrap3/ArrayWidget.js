@@ -2,19 +2,19 @@ import React from 'react'
 import renderField from '../../renderField'
 import { FieldArray } from 'redux-form'
 import _ from 'lodash'
+import ChoiceWidget from './ChoiceWidget'
 
 const renderArrayFields = (count, schema, theme, fieldName, remove) => {
     const prefix = fieldName + '.'
     if (count) {
         return _.times(count, (idx) => {
-            console.log(idx)
             return (
             <div key={idx}>
                 <button className="pull-right btn btn-danger" onClick={(e) => {
                     e.preventDefault()
                     remove(idx)
                 }}><span className="glyphicon glyphicon-trash"></span></button>
-                {renderField({ ...schema, title: '' }, idx.toString(), theme, prefix)}
+                {renderField({ ...schema, showLabel : false }, idx.toString(), theme, prefix)}
             </div>
             )
         })
@@ -34,7 +34,7 @@ const renderInput = field => {
     )
 }
 
-const ArrayWidget = props =>  {
+const CollectionWidget = props =>  {
     return (
         <FieldArray
             component={renderInput}
@@ -44,6 +44,15 @@ const ArrayWidget = props =>  {
             theme={props.theme}
         />
     )
+}
+
+const ArrayWidget = props =>  {
+    // Arrays are tricky because they can be multiselects or collections
+    if (props.schema.items.hasOwnProperty('enum') && props.schema.hasOwnProperty('uniqueItems') && props.schema.uniqueItems) {
+        return ChoiceWidget({ ...props, schema: props.schema.items, multiple: true })
+    } else {
+        return CollectionWidget(props)
+    }
 }
 
 ArrayWidget.propTypes = { schema: React.PropTypes.object.isRequired }
