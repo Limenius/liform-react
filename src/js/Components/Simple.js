@@ -11,11 +11,10 @@ const Demo = () => {
     const schema = {
         'type':'object',
         'properties': {
-            'title': { 'type':'string' },
-            'description': { 'type':'string' },
-            'someCheckbox': { 'type':'boolean' },
-            'someCountry': { 'enum':['One','Two'], 'type':"string" },
-            'color': { 'type':'color' },
+            'Title': { 'type':'string' },
+            'Type': { 'enum':[ 'One','Two' ], 'type':'string' },
+            'Color': { 'type':'color' },
+            'Checkbox': { 'type':'boolean' }
         }
     }
     return (
