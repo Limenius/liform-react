@@ -12,7 +12,8 @@
         "clean": "rimraf dist",
         "lint": "eslint src",
         "webpack-dev": "webpack-dev-server --hot --inline --progress --colors --config webpack.config.js --output-public-path=http://localhost:8080/dist",
-        "prepublish": "npm run clean && npm run lint && npm run build"
+        "webpack-prod": "export NODE_ENV=production; webpack -p",
+        "prepublish": "npm run clean && npm run build"
     },
     "author": "Nacho Martin <nacho@limenius.com> (http://github.com/nacmartin)",
     "license": "MIT",
@@ -22,9 +23,13 @@
     "homepage": "https://limenius.github.io/liform-react/",
     "dependencies": {
         "bootstrap-sass": "^3.3.7",
+        "highlight-loader": "^0.7.2",
+        "highlight.js": "^9.9.0",
+        "html-loader": "^0.4.4",
         "http-client": "^2.2.0",
         "liform-react": "^0.4.2",
         "lodash.forin": "^4.0.1",
+        "markdown-loader": "^0.1.7",
         "marked": "^0.3.6",
         "mkdirp": "^0.5.1",
         "react": "^15.4.2",
@@ -54,7 +59,7 @@
         "sass-loader": "^4.1.1",
         "style-loader": "^0.13.1",
         "url-loader": "^0.5.7",
-        "webpack": "^1.12.9",
+        "webpack": "^1.14.0",
         "webpack-merge": "^2.4.0"
     },
     "npmName": "liform-react-form-website-generator",
