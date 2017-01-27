@@ -3,6 +3,16 @@ import React from 'react'
 import Home from './Components/Home'
 import Examples from './Components/Examples'
 
+const NavLink = ({ label, to, activeOnlyWhenExact }) => (
+    <Link activeOnlyWhenExact={activeOnlyWhenExact} to={to} >
+        { ({ isActive, href, onClick }) =>
+                <li className={isActive ? 'active': ''}>
+                    <a onClick={onClick} href={href} >{label}</a>
+                </li>
+        }
+    </Link>
+)
+
 const App = () => {
     return (
         <HashRouter>
@@ -20,9 +30,8 @@ const App = () => {
                     </div>
                     <div id="navbar" className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">
-                            <li><Link to="/">Main</Link></li>
-                            <li><Link to="/examples">Examples</Link></li>
-                            <li><Link to="/topics">Topics</Link></li>
+                            <NavLink to="/" label="Main" activeOnlyWhenExact={true}/>
+                            <NavLink to="/examples" label="Examples" activeOnlyWhenExact={false}/>
                         </ul>
                     </div>
                 </div>
