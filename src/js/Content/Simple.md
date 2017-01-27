@@ -10,18 +10,13 @@ import Liform from 'liform-react'
 const reducer = combineReducers({ form: formReducer })
 const store = createStore(reducer)
 const schema = {
-    "type":"object",
-    "properties":{
-        "title":{
-            "type":"string",
-            "title":"Some text",
-            "description":"This is a help message",
-        },
-        "description":{
-            "type":"string",
-            "format":"textarea",
-            "title":"Description",
-            "default":"A description...",
+        'type':'object',
+        'properties': {
+            'title': { 'type':'string' },
+            'description': { 'type':'string' },
+            'someCheckbox': { 'type':'boolean' },
+            'someCountry': { 'enum':['One','Two'], 'type':"string" },
+            'color': { 'type':'color' }
         }
     }
 }

@@ -11,7 +11,7 @@
         "build": "webpack",
         "clean": "rimraf dist",
         "lint": "eslint src",
-        "webpack-dev": "webpack-dev-server --hot --inline --progress --colors --config webpack.config.js --output-public-path=http://localhost:8080/dist",
+        "webpack-dev": "webpack-dev-server --hot --inline --progress --colors --config webpack.config.js --port=9080 --output-public-path=http://localhost:9080/dist",
         "webpack-prod": "export NODE_ENV=production; webpack -p",
         "prepublish": "npm run clean && npm run build"
     },
