@@ -11,7 +11,7 @@ const Demo = () => {
     const schema = {
         'type':'object',
         'properties': {
-            'title': { 'type':'string', 'title': 'Title' },
+            'title': { 'type':'string', 'format': 'textarea', 'title': 'Title' },
             'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
             'color': { 'type':'string', 'format': 'color', 'title': 'In which color' },
             'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }

@@ -36,7 +36,7 @@ const MyStringWidget = (props) => {
 const Demo = () => {
     const reducer = combineReducers({ form: formReducer })
     const store = createStore(reducer)
-    const myTheme = {...DefaultTheme, string: MyStringWidget}
+    const myTheme = { ...DefaultTheme, string: MyStringWidget }
     const schema = {
         'type':'object',
         'properties': {
