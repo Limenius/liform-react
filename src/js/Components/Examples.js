@@ -1,25 +1,22 @@
 import React from 'react'
-import { Match, Link } from 'react-router'
+import { Match } from 'react-router'
 import Simple from './Simple'
-
-const PillLink = ({ label, to, activeOnlyWhenExact }) => (
-    <Link activeOnlyWhenExact={activeOnlyWhenExact} to={to} >
-        { ({ isActive, href, onClick }) =>
-                <li role="presentation" className={isActive && 'active'}>
-                    <a onClick={onClick} href={href} >{label}</a>
-                </li>
-        }
-    </Link>
-)
+import InitialValues from './InitialValues'
+import CreateTheme from './CreateTheme'
+import PillLink from './PillLink'
 
 const Examples = ({ pathname }) => (
   <div>
     <h2>Examples</h2>
     <ul className="nav nav-pills">
-        <PillLink to={`${pathname}/simple`} label="Simple Form"Form />
+        <PillLink to={`${pathname}/simple`} label="Simple Form" />
+        <PillLink to={`${pathname}/initial-values`} label="Initial Values" />
+        <PillLink to={`${pathname}/create-theme`} label="Create (or modify) a theme" />
     </ul>
 
     <Match pattern={`${pathname}/simple`} component={Simple}/>
+    <Match pattern={`${pathname}/initial-values`} component={InitialValues}/>
+    <Match pattern={`${pathname}/create-theme`} component={CreateTheme}/>
     <Match pattern={pathname} exactly render={() => (
       <h3>Select one of the examples</h3>
     )}/>

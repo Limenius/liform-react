@@ -12,10 +12,10 @@ const store = createStore(reducer)
 const schema = {
         'type':'object',
         'properties': {
-            'Title': { 'type':'string' },
-            'Type': { 'enum':['One','Two'], 'type':"string" },
-            'Color': { 'type':'color' },
-            'Checkbox': { 'type':'boolean' },
+            'title': { 'type':'string', 'title': 'Title' },
+            'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
+            'color': { 'type':'string', 'format': 'color', 'title': 'In which color' },
+            'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
         }
     }
 }

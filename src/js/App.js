@@ -2,6 +2,7 @@ import { HashRouter, Match, Link } from 'react-router'
 import React from 'react'
 import Home from './Components/Home'
 import Examples from './Components/Examples'
+import Options from './Components/Options'
 
 const NavLink = ({ label, to, activeOnlyWhenExact }) => (
     <Link activeOnlyWhenExact={activeOnlyWhenExact} to={to} >
@@ -31,6 +32,7 @@ const App = () => {
                     <div id="navbar" className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">
                             <NavLink to="/" label="Main" activeOnlyWhenExact={true}/>
+                            <NavLink to="/options" label="Json Schema Options" activeOnlyWhenExact={false}/>
                             <NavLink to="/examples" label="Examples" activeOnlyWhenExact={false}/>
                         </ul>
                     </div>
@@ -42,6 +44,7 @@ const App = () => {
             <div className="container">
                 <Match exactly pattern="/" component={Home} />
                 <Match pattern="/examples" component={Examples} />
+                <Match pattern="/options" component={Options} />
             </div>
             </div>
         </HashRouter>
