@@ -2,8 +2,20 @@ import React from 'react'
 import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { Provider } from 'react-redux'
-import Liform from 'liform-react'
+import Liform, { renderField, DefaultTheme } from 'liform-react'
 import Markdown from './Markdown'
+
+const MyBaseForm = props => {
+    const { schema, handleSubmit, theme, error, submitting } = props
+    return (
+        <form onSubmit={handleSubmit}>
+            {renderField(schema, schema.title, theme || DefaultTheme)}
+            <div>
+                {error && <strong>{error}</strong>}
+            </div>
+            <button className="btn btn-primary" type="submit" disabled={submitting}>Submit o!</button>
+        </form>)
+}
 
 const Demo = () => {
     const reducer = combineReducers({ form: formReducer })
@@ -19,7 +31,7 @@ const Demo = () => {
     }
     return (
         <Provider store={store}>
-            <Liform schema={schema} onSubmit={(v) => {console.log(v)}}/>
+            <Liform schema={schema} onSubmit={(v) => {console.log(v)}} baseForm={MyBaseForm}/>
         </Provider>
     )
 }

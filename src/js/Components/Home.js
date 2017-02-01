@@ -2,7 +2,7 @@ import React from 'react'
 
 const Main = () => {
     return (
-        <div>
+        <div className="home">
             <p>
                 <strong>Liform</strong> is an extensible form generator for React (and ReactNative) from <a href="http://json-schema.org/">JSON schema</a>. It uses the fantastic <a href="http://redux-form.com/">Redux Form</a> library, so you can manage your state in a sane way with Redux.
             </p>

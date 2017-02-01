@@ -10,7 +10,7 @@ import { Field } from 'redux-form'
 const RenderInput = field => {
     return (
         <div>
-            <label>{field.label}</label>
+            <label style={{ color: field.labelColor }}>{field.label}</label>
             <input {...field.input} type="text"/>
             {field.meta.touched && field.meta.error && <span>{field.meta.error}</span>}
             {field.description && <span>{field.description}</span>}
@@ -28,6 +28,7 @@ const MyStringWidget = (props) => {
             id={'field-'+props.fieldName}
             placeholder={props.schema.default}
             description={props.schema.description}
+            labelColor={props.schema.labelColor}
             type={props.type}
         />
     )
@@ -40,7 +41,7 @@ const Demo = () => {
     const schema = {
         'type':'object',
         'properties': {
-            'title': { 'type':'string', 'title': 'Title' },
+            'title': { 'type':'string', 'title': 'Title', 'labelColor' : '#aa0000' },
             'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
             'color': { 'type':'string', 'format': 'color', 'title': 'In which color' },
             'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
@@ -59,7 +60,7 @@ const Simple = () => (
     <h2>Create (or modify) a theme</h2>
     <h3>Form</h3>
     <Demo/>
-    <h3>Code</h3>
+    <h3>Explanation</h3>
     <Markdown page={require('../Content/CreateTheme.md')}/>
   </div>
 )
