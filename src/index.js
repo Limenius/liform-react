@@ -37,4 +37,4 @@ Liform.propTypes = {
 
 export default Liform
 
-export { renderFields, renderField, processSubmitErrors }
+export { renderFields, renderField, processSubmitErrors, DefaultTheme }

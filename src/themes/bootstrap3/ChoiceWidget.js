@@ -10,7 +10,7 @@ const renderSelect = field => {
     ])
     const options = field.schema.enum
 
-    const optionNames = (field.schema.liform && field.schema.liform.enum_titles) || options
+    const optionNames = field.schema.liform.enum_titles || options
 
     const selectOptions = _.zipObject(options, optionNames)
     return (
