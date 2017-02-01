@@ -2,20 +2,9 @@ import React from 'react'
 import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { Provider } from 'react-redux'
-import Liform, { renderField, DefaultTheme } from 'liform-react'
+import Liform from 'liform-react'
 import Markdown from './Markdown'
 
-const MyBaseForm = props => {
-    const { schema, handleSubmit, theme, error, submitting } = props
-    return (
-        <form onSubmit={handleSubmit}>
-            {renderField(schema, schema.title, theme || DefaultTheme)}
-            <div>
-                {error && <strong>{error}</strong>}
-            </div>
-            <button className="btn btn-primary" type="submit" disabled={submitting}>Submit o!</button>
-        </form>)
-}
 
 const Demo = () => {
     const reducer = combineReducers({ form: formReducer })
@@ -23,7 +12,7 @@ const Demo = () => {
     const schema = {
         'type':'object',
         'properties': {
-            'title': { 'type':'string', 'format': 'textarea', 'title': 'Title' },
+            'title': { 'type':'string', 'title': 'Title' },
             'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
             'color': { 'type':'string', 'format': 'color', 'title': 'In which color' },
             'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
@@ -31,7 +20,7 @@ const Demo = () => {
     }
     return (
         <Provider store={store}>
-            <Liform schema={schema} onSubmit={(v) => {console.log(v)}} baseForm={MyBaseForm}/>
+            <Liform schema={schema} onSubmit={(v) => {console.log(v)}}/>
         </Provider>
     )
 }
