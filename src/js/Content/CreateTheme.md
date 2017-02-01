@@ -31,6 +31,8 @@ So you can simply write a Widget that will be used whenever a field of a given t
 Suppose that we want to override the widget for `string` with a simple `input` tag, with no Bootstrap markup. We have to define a field using `redux-form`. Check out the documentation of `redux-form` for more details on what is a `Field` or a `Field Array` if you are not familiarized with it.
 
 ```
+import { Field } from 'redux-form'
+
 const RenderInput = field => {
     return (
         <div>
