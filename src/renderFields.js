@@ -11,7 +11,19 @@ export const isRequired = (schema, fieldName) => {
 const renderFields =
     (schema, theme, prefix = null) =>
     {
-        return _.map(schema.properties, (field, name) =>  renderField(field, name, theme, prefix, isRequired(schema, name)))
+        let propertyNames = Object.keys(schema.properties)
+        propertyNames.sort((a, b) => {
+            if (!a.properyOrder) {
+                return 1
+            }
+            if (!b.properyOrder) {
+                return -1
+            }
+            return a.propertyOrder - b.propertyOrder
+        })
+        return _.map(propertyNames, (name) => {
+            return renderField(schema.properties[name], name, theme, prefix, isRequired(schema, name))
+        })
     }
 
 export default renderFields
