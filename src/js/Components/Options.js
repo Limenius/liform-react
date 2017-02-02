@@ -64,7 +64,7 @@ const Options = () => (
     }
 }`
         }/>
-    { /*
+    { /**/}
     <h3>propertyOrder</h3>
     <Markdown page={require('../Content/Options/PropertyOrder.md')}/>
     <Demo schema={
@@ -74,7 +74,8 @@ const Options = () => (
         "title": { "type":"string", "format":"textarea", "propertyOrder":1 }
     }
 }`
-        }/>*/}
+    }/>
+{ /**/}
   </div>
 )
 
