@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 const getPatternValidation =
     (spec, fieldName) => {
         if (spec.pattern) {
@@ -63,7 +61,8 @@ const buildValidators =
         let validators = []
 
         let rule
-        _.forEach(schema.properties, (spec, fieldName) => {
+        for (let fieldName in schema.properties) {
+            const spec = schema.properties[fieldName]
             validationBuilders.forEach((possibleRule) => {
                 rule = possibleRule(spec, fieldName)
                 rule && validators.push(rule)
@@ -74,8 +73,7 @@ const buildValidators =
                 rule = getRequired(schema.required, fieldName)
                 rule && validators.push(rule)
             }
-
-        })
+        }
 
         return validators
     }
@@ -86,9 +84,9 @@ const buildSyncValidation =
         let validators = buildValidators(schema)
         return values => {
             const errors = {}
-            _.forEach(validators, (validator) => {
+            for (let validator of validators) {
                 validator(values, errors)
-            })
+            }
             return errors
         }
     }
