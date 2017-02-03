@@ -1,15 +1,14 @@
 import React from 'react'
 
-
-const guessWidget = (fieldSchema) => {
-    if (fieldSchema.hasOwnProperty('enum')) {
-        return 'choice'
+export const isRequired = (schema, fieldName) => {
+    if (!schema.required) {
+        return false
     }
-    return fieldSchema.format || fieldSchema.type || 'object'
+    return (schema.required.indexOf(fieldName) != 1)
 }
 
-const renderField = (fieldSchema, fieldName, theme, prefix = '', required = false) => {
-    const widget = guessWidget(fieldSchema)
+const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
+    const widget = fieldSchema.format || fieldSchema.type || 'object'
     if (!theme[widget]) {
         throw new Error('liform: ' + widget + ' is not defined in the theme')
     }
@@ -18,7 +17,7 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '', required = fals
         key: fieldName,
         fieldName: prefix ? prefix + fieldName : fieldName,
         label: fieldSchema.showLabel === false ? '' : fieldSchema.title || fieldName,
-        required: required,
+        required: isRequired(fieldSchema, fieldName),
         schema: fieldSchema,
         theme: theme,
     })
