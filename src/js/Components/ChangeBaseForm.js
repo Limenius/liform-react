@@ -14,7 +14,7 @@ const MyBaseForm = props => {
                 {error && <hr/>}
             </div>
             {renderField(schema, schema.title, theme || DefaultTheme)}
-            <button className="btn btn-primary" type="submit" disabled={submitting}>Submit-o!</button>
+            <button className="btn btn-primary" type="submit" disabled={submitting}>Submit</button>
         </form>)
 }
 
@@ -24,9 +24,9 @@ const Demo = () => {
     const schema = {
         'type':'object',
         'properties': {
-            'title': { 'type':'string', 'format': 'textarea', 'title': 'Title' },
+            'title': { 'type':'string', 'widget': 'textarea', 'title': 'Title' },
             'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
-            'color': { 'type':'string', 'format': 'color', 'title': 'In which color' },
+            'color': { 'type':'string', 'widget': 'color', 'title': 'In which color' },
             'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
         }
     }

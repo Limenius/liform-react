@@ -1,4 +1,4 @@
-Liform comes with a theme written for Bootstrap 3. However, you can of course write your own theme or modify another theme by providing widgets for the types or formats you are interested.
+Liform comes with a theme written for Bootstrap 3. However, you can of course write your own theme or modify another theme by providing widgets.
 
 There is no need to write a *full theme*. It is possible that you don't need a widget for `color`, because your data simply doesn't deal with colors. In that case, you can simply left it undefined in your theme.
 
@@ -24,7 +24,7 @@ export default {
 }
 ```
 
-So you can simply write a Widget that will be used whenever a field of a given type or format is required.
+So you can simply write a Widget that will be used whenever a field of a given type or widget is required.
 
 ### Writing a widget
 
@@ -119,7 +119,7 @@ const schema = {
     'properties': {
         'title': { 'type':'string', 'title': 'Title', 'labelColor' : '#aa0000' },
         'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
-        'color': { 'type':'string', 'format': 'color', 'title': 'In which color' },
+        'color': { 'type':'string', 'widget': 'color', 'title': 'In which color' },
         'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
     }
 }

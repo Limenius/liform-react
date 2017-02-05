@@ -14,7 +14,7 @@ const Demo = () => {
         'properties': {
             'title': { 'type':'string', 'title': 'Title' },
             'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
-            'color': { 'type':'string', 'format': 'color', 'title': 'In which color' },
+            'color': { 'type':'string', 'widget': 'color', 'title': 'In which color' },
             'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
         }
     }
