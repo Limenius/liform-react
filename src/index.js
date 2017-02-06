@@ -21,7 +21,7 @@ const BaseForm = props => {
 const Liform = (props) => {
     props.schema.showLabel = false
     const FinalForm = reduxForm({
-        form: props.schema.title || 'form',
+        form: props.formKey || props.schema.title || 'form',
         validate: props.syncValidation || buildSyncValidation(props.schema),
         initialValues: props.initialValues,
     })(props.baseForm || BaseForm)
