@@ -7,8 +7,16 @@ export const isRequired = (schema, fieldName) => {
     return (schema.required.indexOf(fieldName) != 1)
 }
 
+const guessWidget = (fieldSchema) => {
+    if (fieldSchema.hasOwnProperty('enum')) {
+        return 'choice'
+    }
+    return fieldSchema.widget || fieldSchema.type || 'object'
+}
+
 const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
-    const widget = fieldSchema.widget || fieldSchema.type || 'object'
+    const widget = guessWidget(fieldSchema)
+
     if (!theme[widget]) {
         throw new Error('liform: ' + widget + ' is not defined in the theme')
     }
