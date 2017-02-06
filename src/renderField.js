@@ -8,7 +8,7 @@ export const isRequired = (schema, fieldName) => {
 }
 
 const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
-    const widget = fieldSchema.format || fieldSchema.type || 'object'
+    const widget = fieldSchema.widget || fieldSchema.type || 'object'
     if (!theme[widget]) {
         throw new Error('liform: ' + widget + ' is not defined in the theme')
     }
