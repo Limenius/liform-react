@@ -12,6 +12,9 @@ import SearchWidget from './SearchWidget'
 import UrlWidget from './UrlWidget'
 import ColorWidget from './ColorWidget'
 import ChoiceWidget from './ChoiceWidget'
+import DateWidget from './DateWidget'
+import TimeWidget from './TimeWidget'
+import DateTimeWidget from './DateTimeWidget'
 
 export default {
     object: ObjectWidget,
@@ -29,4 +32,7 @@ export default {
     url: UrlWidget,
     color: ColorWidget,
     choice: ChoiceWidget,
+    date: DateWidget,
+    datetime: DateTimeWidget,
+    time: TimeWidget,
 }
