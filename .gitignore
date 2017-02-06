@@ -5,3 +5,5 @@ lib
 es
 .DS_Store
 yarn.lock
+.nyc_output/
+coverage/
