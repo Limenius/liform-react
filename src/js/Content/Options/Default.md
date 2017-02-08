@@ -1,1 +1,1 @@
-The option `default` will used as a placeholder.
+The option `default` will be used as a placeholder.
