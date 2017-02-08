@@ -28,7 +28,7 @@
         "highlight.js": "^9.9.0",
         "html-loader": "^0.4.4",
         "http-client": "^2.2.0",
-        "liform-react": "^0.4.4",
+        "liform-react": "^0.5.2",
         "lodash.forin": "^4.0.1",
         "markdown-loader": "^0.1.7",
         "marked": "^0.3.6",

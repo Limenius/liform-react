@@ -4,7 +4,7 @@ import Simple from './Simple'
 import InitialValues from './InitialValues'
 import CreateTheme from './CreateTheme'
 import ChangeBaseForm from './ChangeBaseForm.js'
-import Validation from './ChangeBaseForm.js'
+import Validation from './Validation.js'
 import CustomFieldValidation from './CustomFieldValidation.js'
 import PillLink from './PillLink'
 
