@@ -32,6 +32,13 @@ const TextareaWidget = props =>  {
     )
 }
 
-TextareaWidget.propTypes = { schema: React.PropTypes.object.isRequired }
+TextareaWidget.propTypes = {
+    schema: React.PropTypes.object.isRequired,
+    fieldName: React.PropTypes.string,
+    label: React.PropTypes.string,
+    theme: React.PropTypes.object,
+    multiple: React.PropTypes.bool,
+    required: React.PropTypes.bool,
+}
 
 export default TextareaWidget

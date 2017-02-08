@@ -9,7 +9,7 @@ const renderInput = field => {
     ])
     return (
         <div className={className}>
-            <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
+            <label className="control-label" htmlFor={field.id}>{field.label}</label>
             <input {...field.input} type={field.type} className="form-control" placeholder={field.placeholder} />
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             {field.description && <span className="help-block">{field.description}</span>}
@@ -35,7 +35,10 @@ const BaseInputWidget = props =>  {
 
 BaseInputWidget.propTypes = {
     schema: React.PropTypes.object.isRequired,
-    type: React.PropTypes.string.isRequired
+    type: React.PropTypes.string.isRequired,
+    required: React.PropTypes.bool,
+    fieldName: React.PropTypes.string,
+    label: React.PropTypes.string,
 }
 
 export default BaseInputWidget

@@ -31,8 +31,12 @@ const Liform = (props) => {
 }
 
 Liform.propTypes = {
-    schema: React.PropTypes.object,
+    schema: PropTypes.object,
     onSubmit: PropTypes.func,
+    initialValues: PropTypes.object,
+    syncValidation: PropTypes.func,
+    formKey: PropTypes.string,
+    baseForm: PropTypes.func,
 }
 
 export default Liform

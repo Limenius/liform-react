@@ -55,6 +55,11 @@ const ArrayWidget = props =>  {
     }
 }
 
-ArrayWidget.propTypes = { schema: React.PropTypes.object.isRequired }
+ArrayWidget.propTypes = {
+    schema: React.PropTypes.object.isRequired,
+    fieldName: React.PropTypes.string,
+    label: React.PropTypes.string,
+    theme: React.PropTypes.object,
+}
 
 export default ArrayWidget

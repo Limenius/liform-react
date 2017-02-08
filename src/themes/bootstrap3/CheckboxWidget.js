@@ -35,6 +35,11 @@ const CheckboxWidget = props =>  {
     )
 }
 
-CheckboxWidget.propTypes = { schema: React.PropTypes.object.isRequired }
+CheckboxWidget.propTypes = {
+    schema: React.PropTypes.object.isRequired,
+    fieldName: React.PropTypes.string,
+    label: React.PropTypes.string,
+    theme: React.PropTypes.object,
+}
 
 export default CheckboxWidget
