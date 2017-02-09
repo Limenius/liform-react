@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import Ajv from 'ajv'
 
 
@@ -36,3 +35,5 @@ const buildSyncValidation = schema => {
 }
 
 export default buildSyncValidation
+
+export { setError }
