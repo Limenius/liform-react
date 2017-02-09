@@ -1,27 +1,27 @@
-import expect, {createSpy} from 'expect';
-import processSubmitErrors from '../processSubmitErrors';
-import { SubmissionError } from 'redux-form';
+import expect from 'expect'
+import processSubmitErrors from '../processSubmitErrors'
+import { SubmissionError } from 'redux-form'
 
 describe('processSubmitErrors', () => {
     const response = {
-        "code":null,
-        "message":"Validation Failed",
-        "errors":
+        'code' : null,
+        'message' : 'Validation Failed',
+        'errors':
+        {
+            'children':
             {
-                "children":
-                    {
-                        "name": {
-                                "errors": ["This value should not be equal to \"Mary\"."]
-                            },
-                        "color":[]
-                    }
+                'name': {
+                    'errors': [ 'This value should not be equal to \'Mary\'.' ]
+                },
+                'color' : []
             }
-    };
+        }
+    }
 
     it('raises exception if there is an error', () => {
         expect(function () {
-            processSubmitErrors(response);
-        }).toThrow(SubmissionError);
-    });
+            processSubmitErrors(response)
+        }).toThrow(SubmissionError)
+    })
 
-});
+})
