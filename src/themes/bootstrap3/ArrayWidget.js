@@ -1,7 +1,6 @@
 import React from 'react'
 import renderField from '../../renderField'
-import { FieldArray, formValueSelector } from 'redux-form'
-import { connect } from 'react-redux'
+import { FieldArray } from 'redux-form'
 import _ from 'lodash'
 import ChoiceWidget from './ChoiceWidget'
 
@@ -28,7 +27,7 @@ const renderInput = field => {
     return (
         <div className="arrayType form-group">
             <legend className="control-label" >{field.label}</legend>
-            { renderArrayFields(field.values.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx)) }
+            { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx)) }
             <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push({})}>Add</button>
             <div className="clearfix"/>
         </div>
@@ -49,21 +48,12 @@ const CollectionWidget = props =>  {
     )
 }
 
-
 const ArrayWidget = props =>  {
     // Arrays are tricky because they can be multiselects or collections
     if (props.schema.items.hasOwnProperty('enum') && props.schema.hasOwnProperty('uniqueItems') && props.schema.uniqueItems) {
         return ChoiceWidget({ ...props, schema: props.schema.items, multiple: true })
     } else {
-        const selector = formValueSelector('form')
-        const ConnectedCollectionWidget = connect(
-            state => {
-                return {
-                    values: selector(state, props.fieldName),
-                }
-            }
-        )(CollectionWidget);
-        return <ConnectedCollectionWidget {...props}/>
+        return CollectionWidget(props)
     }
 }
 
