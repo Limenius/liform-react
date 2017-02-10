@@ -1,5 +1,4 @@
 import React from 'react'
-import Markdown from './Markdown'
 import Liform from 'liform-react'
 import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
@@ -47,9 +46,25 @@ const Main = () => {
 
             <Demo schema={
 `{
-            "properties": {
-                "title": { "type":"string", "minLength": 2 }
-            }
+  "properties": {
+    "name": {
+      "title":"Task name",
+      "type":"string",
+      "minLength": 2
+    },
+    "description": {
+      "title":"Description",
+      "type":"string",
+      "widget":"textarea"
+    },
+    "dueTo": {
+      "title":"Due to",
+      "type":"string",
+      "widget":"datetime",
+      "format":"date-time"
+    }
+  },
+  "required":["name"]
 }`
             }/>
 
