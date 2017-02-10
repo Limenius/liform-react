@@ -83,6 +83,16 @@ const Options = () => (
 }`
         } layout={SimplestLayout}/>
     <h3>Validation</h3>
+    <div className="panel panel-default">
+    <div className="panel-heading">
+    <div className="panel-title">
+        Note
+    </div>
+    </div>
+    <div className="panel-body">
+        <Markdown page={require('../Content/Options/Validation.md')}/>
+    </div>
+    </div>
     <h4>required</h4>
     <Markdown page={require('../Content/Options/Required.md')}/>
     <Demo schema={
@@ -112,6 +122,8 @@ const Options = () => (
     }
 }`
     }/>
+    <h4>Want more?</h4>
+    <Markdown page={require('../Content/Options/Validation.md')}/>
   </div>
 )
 
