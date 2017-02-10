@@ -111,21 +111,23 @@ const MyStringWidget = (props) => {
     )
 }
 
-const reducer = combineReducers({ form: formReducer })
-const store = createStore(reducer)
-const myTheme = { ...DefaultTheme, string: MyStringWidget }
-const schema = {
-    'type':'object',
-    'properties': {
-        'title': { 'type':'string', 'title': 'Title', 'labelColor' : '#aa0000' },
-        'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
-        'color': { 'type':'string', 'widget': 'color', 'title': 'In which color' },
-        'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
+const CreateTheme = () => {
+    const reducer = combineReducers({ form: formReducer })
+    const store = createStore(reducer)
+    const myTheme = { ...DefaultTheme, string: MyStringWidget }
+    const schema = {
+        'type':'object',
+        'properties': {
+            'title': { 'type':'string', 'title': 'Title', 'labelColor' : '#aa0000' },
+            'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
+            'color': { 'type':'string', 'widget': 'color', 'title': 'In which color' },
+            'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
+        }
     }
+    return (
+        <Provider store={store}>
+            <Liform schema={schema} theme={myTheme} onSubmit={(v) => {console.log(v)}}/>
+        </Provider>
+    )
 }
-return (
-    <Provider store={store}>
-        <Liform schema={schema} theme={myTheme} onSubmit={(v) => {console.log(v)}}/>
-    </Provider>
-)
 ```

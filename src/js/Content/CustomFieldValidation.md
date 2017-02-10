@@ -92,19 +92,21 @@ const MyPasswordRepeatedWidget = (props) => {
     )
 }
 
-const reducer = combineReducers({ form: formReducer })
-const store = createStore(reducer)
-const myTheme = { ...DefaultTheme, password: MyPasswordWidget, repeatedpassword: MyPasswordRepeatedWidget }
-const schema = {
-    'type':'object',
-    'properties': {
-        'password': { 'type':'string', 'title': 'Password', 'widget': 'password' },
-        'password_again': { 'type':'string', 'title': 'Repeat Password', 'widget': 'repeatedpassword' },
+const CustomValidation = () => {
+    const reducer = combineReducers({ form: formReducer })
+    const store = createStore(reducer)
+    const myTheme = { ...DefaultTheme, password: MyPasswordWidget, repeatedpassword: MyPasswordRepeatedWidget }
+    const schema = {
+        'type':'object',
+        'properties': {
+            'password': { 'type':'string', 'title': 'Password', 'widget': 'password' },
+            'password_again': { 'type':'string', 'title': 'Repeat Password', 'widget': 'repeatedpassword' },
+        }
     }
+    return (
+        <Provider store={store}>
+            <Liform schema={schema} theme={myTheme} onSubmit={(v) => {console.log(v)}}/>
+        </Provider>
+    )
 }
-return (
-    <Provider store={store}>
-        <Liform schema={schema} theme={myTheme} onSubmit={(v) => {console.log(v)}}/>
-    </Provider>
-)
 ```

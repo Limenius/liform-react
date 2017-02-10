@@ -7,6 +7,7 @@ import ChangeBaseForm from './ChangeBaseForm.js'
 import Validation from './Validation.js'
 import CustomFieldValidation from './CustomFieldValidation.js'
 import PillLink from './PillLink'
+import Arrays from './Arrays'
 
 const Examples = ({ pathname }) => (
   <div>
@@ -17,6 +18,7 @@ const Examples = ({ pathname }) => (
         <PillLink to={`${pathname}/change-base-form`} label="Change Layout" />
         <PillLink to={`${pathname}/validation`} label="Validation" />
         <PillLink to={`${pathname}/custom-field-validation`} label="Custom Field Validation" />
+        <PillLink to={`${pathname}/arrays`} label="Arrays" />
     </ul>
 
     <Match pattern={pathname} exactly component={Simple} />
@@ -25,6 +27,7 @@ const Examples = ({ pathname }) => (
     <Match pattern={`${pathname}/change-base-form`} component={ChangeBaseForm}/>
     <Match pattern={`${pathname}/validation`} component={Validation}/>
     <Match pattern={`${pathname}/custom-field-validation`} component={CustomFieldValidation}/>
+    <Match pattern={`${pathname}/arrays`} component={Arrays}/>
   </div>
 )
 
