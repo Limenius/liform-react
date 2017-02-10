@@ -25,8 +25,6 @@ const renderArrayFields = (count, schema, theme, fieldName, remove) => {
 }
 
 const renderInput = field => {
-    console.log('in input')
-    console.log(field)
     return (
         <div className="arrayType form-group">
             <legend className="control-label" >{field.label}</legend>
@@ -42,6 +40,7 @@ const CollectionWidget = props =>  {
         <FieldArray
             component={renderInput}
             label={props.label}
+            name={props.fieldName}
             fieldName={props.fieldName}
             schema={props.schema}
             values={props.values}
@@ -52,7 +51,6 @@ const CollectionWidget = props =>  {
 
 
 const ArrayWidget = props =>  {
-    console.log(props)
     // Arrays are tricky because they can be multiselects or collections
     if (props.schema.items.hasOwnProperty('enum') && props.schema.hasOwnProperty('uniqueItems') && props.schema.uniqueItems) {
         return ChoiceWidget({ ...props, schema: props.schema.items, multiple: true })
