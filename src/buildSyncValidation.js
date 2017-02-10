@@ -16,8 +16,9 @@ const setError = (errors, error) => {
     return errors
 }
 
+
 const buildSyncValidation = schema => {
-    const ajv = new Ajv({ errorDataPath: 'property' })
+    const ajv = new Ajv({ errorDataPath: 'property', allErrors: true })
     return values => {
         let errors = {}
         const valid = ajv.validate(schema, values)
