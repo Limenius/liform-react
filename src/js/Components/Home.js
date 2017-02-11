@@ -41,7 +41,7 @@ const Main = () => {
                 It is extensible, so you can write your own themes or validators. There is a default theme provided based on Bootstrap.
             </p>
             <p>
-                Do you want to know more? A good starting point would be to have a look to the <Link to="/examples/simple">First Example</Link>
+                Do you want to know more? A good starting point would be to have a look to the <Link to="/examples">First Example</Link>
             </p>
             <div className="social">
             <iframe src="https://ghbtns.com/github-btn.html?user=Limenius&repo=liform-react&type=star&size=large" frameBorder="0" scrolling="0" width="100px" height="30px"></iframe>
