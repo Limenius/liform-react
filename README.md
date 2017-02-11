@@ -3,6 +3,8 @@ liform-react
 
 Library for generating React forms from [JSON schema](http://json-schema.org/) using the fantastic [redux-form](https://github.com/erikras/redux-form).
 
+**https://limenius.github.io/liform-react/**
+
 # Installation
 
 ```
