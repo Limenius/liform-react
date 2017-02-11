@@ -27,7 +27,7 @@ const App = () => {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">Liform</a>
+                        <a className="navbar-brand" href="#">liform-react</a>
                     </div>
                     <div id="navbar" className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">
