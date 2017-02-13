@@ -30,7 +30,7 @@ const MyBaseForm = props => {
                 {error && <hr/>}
             </div>
             {renderField(schema, schema.title, theme || DefaultTheme)}
-            <button className="btn btn-primary" type="submit" disabled={submitting}>Submit-o!</button>
+            <button className="btn btn-primary" type="submit" disabled={submitting}><span className="glyphicon glyphicon-chevron-right"></span></button>
         </form>)
 }
 
