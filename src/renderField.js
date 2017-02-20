@@ -8,10 +8,13 @@ export const isRequired = (schema, fieldName) => {
 }
 
 const guessWidget = (fieldSchema) => {
-    if (fieldSchema.hasOwnProperty('enum')) {
+    if (fieldSchema.widget) {
+        return fieldSchema.widget;
+    }
+    else if (fieldSchema.hasOwnProperty('enum')) {
         return 'choice'
     }
-    return fieldSchema.widget || fieldSchema.type || 'object'
+    return fieldSchema.type || 'object'
 }
 
 const renderField = (fieldSchema, fieldName, theme, prefix = '') => {
