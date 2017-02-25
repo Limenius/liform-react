@@ -1,6 +1,4 @@
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractCSS = new ExtractTextPlugin('stylesheets/[name].css')
 const merge = require('webpack-merge')
 
 const devBuild = process.env.NODE_ENV !== 'production'
