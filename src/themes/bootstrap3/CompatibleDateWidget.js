@@ -5,6 +5,9 @@ import { Field } from 'redux-form'
 // produces an array [start..end-1]
 const range = (start, end) => Array.from({ length: (end - start) }, (v, k) => k + start )
 
+// produces an array [start..end-1] padded with zeros, (two digits)
+const rangeZeroPad = (start, end) => Array.from({ length: (end - start) }, (v, k) => ('0' + (k + start)).slice(-2))
+
 const extractYear = (value) => {
     return extractDateToken(value, 0)
 }
@@ -23,39 +26,36 @@ const extractDateToken = (value, index) => {
     if (tokens.length != 3) {
         return ''
     }
-    return parseInt(tokens[index], 10)
+    return tokens[index]
+}
+
+const DateSelector = props => {
+    return (
+        <select value={props.extractField(props.input.value)} onBlur={props.onBlur} onChange={props.onChange} className="form-control" id={'props-'+props.name} required={props.required} >
+            { !props.required && <option key={''} value={''}>{props.emptyOption}</option> }
+            { props.range.map((idx) => {
+                return <option key={idx} value={idx}>{idx}</option>
+            })}
+        </select>
+    )
+
 }
 
 const YearSelector = props => {
     return (
-        <select value={extractYear(props.input.value)} onBlur={props.onBlur} onChange={props.onChange} className="form-control" id={'props-'+props.name} required={props.required} >
-            { !props.required && <option key={''} value={''}>year</option> }
-            { range(props.startYear, props.endYear).map((year) => {
-                return <option key={year} value={year}>{year}</option>
-            })}
-        </select>
+        <DateSelector extractField={extractYear} range={range(props.startYear, props.endYear)} emptyOption="year" {...props}/>
     )
 }
 
 const MonthSelector = props => {
     return (
-        <select value={extractMonth(props.input.value)} onBlur={props.onBlur} onChange={props.onChange} className="form-control" id={'props-'+props.name} required={props.required} >
-            { !props.required && <option key={''} value={''}>month</option> }
-            { range(1, 13).map((month) => {
-                return <option key={month} value={month}>{month}</option>
-            })}
-        </select>
+        <DateSelector extractField={extractMonth} range={rangeZeroPad(1, 13)} emptyOption="month" {...props}/>
     )
 }
 
 const DaySelector = props => {
     return (
-        <select value={extractDay(props.input.value)} onBlur={props.onBlur} onChange={props.onChange} className="form-control" id={'props-'+props.name} required={props.required} >
-            { !props.required && <option key={''} value={''}>day</option> }
-            { range(1, 32).map((day) => {
-                return <option key={day} value={day}>{day}</option>
-            })}
-        </select>
+        <DateSelector extractField={extractDay} range={rangeZeroPad(1, 32)} emptyOption="day" {...props}/>
     )
 }
 
@@ -66,6 +66,9 @@ class CompatibleDate extends React.Component {
             year: null,
             month: null,
             day: null,
+            hour: null,
+            minute: null,
+            second: null,
         }
         this.onBlur = this.onBlur.bind(this)
     }
@@ -106,6 +109,9 @@ class CompatibleDate extends React.Component {
                     </li>
                     <li>
                         <DaySelector {...field} onBlur={this.onBlur} onChange={this.onChangeField.bind(this, 'day')}/>
+                    </li>
+                    <li>
+                        {/*<HourSelector {...field} onBlur={this.onBlur} onChange={this.onChangeField.bind(this, 'hour')}/>*/}
                     </li>
                 </ul>
                 {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}

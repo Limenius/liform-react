@@ -9,8 +9,7 @@ describe('CompatibleDateWidget', () => {
         expect(extractDateToken('lala-land')).toBe('')
     })
     it('can extract month', () => {
-        expect(extractDateToken('1967-04-03', 1)).toBe(4)
-        expect(extractDateToken('1967-04-03', 1)).toBeA('number')
+        expect(extractDateToken('1967-04-03', 1)).toBe('04')
     })
 
 })
