@@ -64,7 +64,7 @@ const Main = () => {
     "dueTo": {
       "title":"Due to",
       "type":"string",
-      "widget":"datetime",
+      "widget":"compatible-datetime",
       "format":"date-time"
     }
   },

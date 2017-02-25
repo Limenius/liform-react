@@ -38,6 +38,16 @@ const AllWidgets = () => {
                 'type': 'string',
                 'widget': 'datetime'
             },
+            'compatible-date': {
+                'type': 'string',
+                'widget': 'compatible-date',
+                'format': 'date'
+            },
+            'compatible-datetime': {
+                'type': 'string',
+                'widget': 'compatible-datetime',
+                'format': 'date-time'
+            },
             'email': {
                 'type': 'string',
                 'widget': 'email',
