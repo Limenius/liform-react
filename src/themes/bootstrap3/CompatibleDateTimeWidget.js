@@ -11,27 +11,38 @@ const range = (start, end) => Array.from({ length: (end - start) }, (v, k) => k 
 const rangeZeroPad = (start, end) => Array.from({ length: (end - start) }, (v, k) => ('0' + (k + start)).slice(-2))
 
 const extractYear = (value) => {
-    return extractDateToken(value, 0)
+    return extractDateTimeToken(value, 0)
 }
 const extractMonth = (value) => {
-    return extractDateToken(value, 1)
+    return extractDateTimeToken(value, 1)
 }
 const extractDay = (value) => {
-    return extractDateToken(value, 2)
+    return extractDateTimeToken(value, 2)
+}
+const extractHour = (value) => {
+    return extractDateTimeToken(value, 3)
+}
+const extractMinute = (value) => {
+    return extractDateTimeToken(value, 4)
+}
+const extractSecond = (value) => {
+    return extractDateTimeToken(value, 5)
 }
 
-const extractDateToken = (value, index) => {
+const extractDateTimeToken = (value, index) => {
     if (!value) {
         return ''
     }
-    const tokens = value.split(/-/)
-    if (tokens.length != 3) {
+    // Remove timezone Z
+    value = value.substring(0, value.length - 1)
+    const tokens = value.split(/[-T:]/)
+    if (tokens.length != 6) {
         return ''
     }
     return tokens[index]
 }
 
-class CompatibleDate extends React.Component {
+class CompatibleDateTime extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
@@ -53,17 +64,25 @@ class CompatibleDate extends React.Component {
         return (year + '-' + month + '-' + day)
     }
 
+    // Produces a RFC 3339 datetime from the state
+    buildRfc3339DateTime() {
+        const date = this.buildRfc3339Date()
+        const hour = this.state.hour || ''
+        const minute = this.state.minute || ''
+        const second = this.state.second || ''
+        return (date + 'T' + hour + ':' + minute + ':' + second + 'Z')
+    }
 
     onChangeField(field, e) {
         const value = e.target.value
         let changeset = {}
         changeset[field] = value
         this.setState(changeset, () => {
-            this.props.input.onChange(this.buildRfc3339Date())
+            this.props.input.onChange(this.buildRfc3339DateTime())
         })
     }
     onBlur() {
-        this.props.input.onBlur(this.buildRfc3339Date())
+        this.props.input.onBlur(this.buildRfc3339DateTime())
     }
     render() {
         const field = this.props
@@ -84,6 +103,15 @@ class CompatibleDate extends React.Component {
                     <li>
                         <DateSelector extractField={extractDay} range={rangeZeroPad(1, 32)} emptyOption="day" onBlur={this.onBlur} onChange={this.onChangeField.bind(this, 'day')} {...field}/>
                     </li>
+                    <li>
+                        <DateSelector extractField={extractHour} range={rangeZeroPad(1, 25)} emptyOption="hour" onBlur={this.onBlur} onChange={this.onChangeField.bind(this, 'hour')} {...field}/>
+                    </li>
+                    <li>
+                        <DateSelector extractField={extractMinute} range={rangeZeroPad(1, 61)} emptyOption="minute" onBlur={this.onBlur} onChange={this.onChangeField.bind(this, 'minute')} {...field}/>
+                    </li>
+                    <li>
+                        <DateSelector extractField={extractSecond} range={rangeZeroPad(1, 61)} emptyOption="second" onBlur={this.onBlur} onChange={this.onChangeField.bind(this, 'second')} {...field}/>
+                    </li>
                 </ul>
                 {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
                 {field.description && <span className="help-block">{field.description}</span>}
@@ -91,10 +119,10 @@ class CompatibleDate extends React.Component {
         )
     }
 }
-const CompatibleDateWidget = (props) => {
+const CompatibleDateTimeWidget = (props) => {
     return (
         <Field
-            component={CompatibleDate}
+            component={CompatibleDateTime}
             label={props.label}
             name={props.fieldName}
             required={props.required}
@@ -108,7 +136,5 @@ const CompatibleDateWidget = (props) => {
     )
 }
 
-export default CompatibleDateWidget
+export default CompatibleDateTimeWidget
 
-// Only for testing purposes
-export { extractDateToken }

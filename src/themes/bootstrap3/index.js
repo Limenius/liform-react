@@ -15,6 +15,8 @@ import ChoiceWidget from './ChoiceWidget'
 import DateWidget from './DateWidget'
 import TimeWidget from './TimeWidget'
 import DateTimeWidget from './DateTimeWidget'
+import CompatibleDateWidget from './CompatibleDateWidget'
+import CompatibleDateTimeWidget from './CompatibleDateTimeWidget'
 
 export default {
     object: ObjectWidget,
@@ -35,4 +37,6 @@ export default {
     date: DateWidget,
     datetime: DateTimeWidget,
     time: TimeWidget,
+    'compatible-date': CompatibleDateWidget,
+    'compatible-datetime': CompatibleDateTimeWidget,
 }
