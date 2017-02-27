@@ -17,6 +17,7 @@ import TimeWidget from './TimeWidget'
 import DateTimeWidget from './DateTimeWidget'
 import CompatibleDateWidget from './CompatibleDateWidget'
 import CompatibleDateTimeWidget from './CompatibleDateTimeWidget'
+import FileWidget from './FileWidget'
 
 export default {
     object: ObjectWidget,
@@ -39,4 +40,5 @@ export default {
     time: TimeWidget,
     'compatible-date': CompatibleDateWidget,
     'compatible-datetime': CompatibleDateTimeWidget,
+    file : FileWidget,
 }
