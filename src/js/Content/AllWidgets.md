@@ -53,6 +53,10 @@ const AllWidgets = () => {
                 'widget': 'email',
                 'format': 'email'
             },
+            'file': {
+                'type': 'string',
+                'widget': 'file'
+            },
             'money': {
                 'type': 'string',
                 'widget': 'money'
