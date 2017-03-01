@@ -5,7 +5,7 @@ const Widget = props =>  {
     return (
         <div>
         {props.label && <legend>{props.label}</legend>}
-        {renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.')}
+        {renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.', props.context)}
         </div>
     )
 }
@@ -15,6 +15,7 @@ Widget.propTypes = {
     fieldName: React.PropTypes.string,
     label: React.PropTypes.string,
     theme: React.PropTypes.object,
+    context: React.PropTypes.object,
 }
 
 export default Widget

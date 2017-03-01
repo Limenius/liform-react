@@ -5,12 +5,13 @@ import renderFields from './renderFields'
 import renderField from './renderField'
 import processSubmitErrors from './processSubmitErrors'
 import buildSyncValidation from './buildSyncValidation'
+import { setError } from './buildSyncValidation'
 
 const BaseForm = props => {
-    const { schema, handleSubmit, theme, error, submitting } = props
+    const { schema, handleSubmit, theme, error, submitting, context } = props
     return (
         <form onSubmit={handleSubmit}>
-            {renderField(schema, null, theme || DefaultTheme)}
+            {renderField(schema, null, theme || DefaultTheme, '', context)}
             <div>
                 {error && <strong>{error}</strong>}
             </div>
@@ -24,6 +25,7 @@ const Liform = (props) => {
         form: props.formKey || props.schema.title || 'form',
         validate: props.syncValidation || buildSyncValidation(props.schema),
         initialValues: props.initialValues,
+        context: props.context || {},
     })(props.baseForm || BaseForm)
     return (
         <FinalForm renderFields={renderField.bind(this)} {...props}/>
@@ -37,8 +39,9 @@ Liform.propTypes = {
     syncValidation: PropTypes.func,
     formKey: PropTypes.string,
     baseForm: PropTypes.func,
+    context: PropTypes.object,
 }
 
 export default Liform
 
-export { renderFields, renderField, processSubmitErrors, DefaultTheme }
+export { renderFields, renderField, processSubmitErrors, DefaultTheme, setError }

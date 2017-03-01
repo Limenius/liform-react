@@ -4,7 +4,7 @@ import { FieldArray } from 'redux-form'
 import _ from 'lodash'
 import ChoiceWidget from './ChoiceWidget'
 
-const renderArrayFields = (count, schema, theme, fieldName, remove) => {
+const renderArrayFields = (count, schema, theme, fieldName, remove, context) => {
     const prefix = fieldName + '.'
     if (count) {
         return _.times(count, (idx) => {
@@ -14,7 +14,7 @@ const renderArrayFields = (count, schema, theme, fieldName, remove) => {
                     e.preventDefault()
                     remove(idx)
                 }}><span className="glyphicon glyphicon-trash"></span></button>
-                {renderField({ ...schema, showLabel : false }, idx.toString(), theme, prefix)}
+                {renderField({ ...schema, showLabel : false }, idx.toString(), theme, prefix, context)}
             </div>
             )
         })
@@ -27,7 +27,7 @@ const renderInput = field => {
     return (
         <div className="arrayType form-group">
             <legend className="control-label" >{field.label}</legend>
-            { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx)) }
+            { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx)), field.context }
             <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push({})}>Add</button>
             <div className="clearfix"/>
         </div>
@@ -44,6 +44,7 @@ const CollectionWidget = props =>  {
             schema={props.schema}
             values={props.values}
             theme={props.theme}
+            context={props.context}
         />
     )
 }
