@@ -27,7 +27,7 @@ const renderInput = field => {
     return (
         <div className="arrayType form-group">
             <legend className="control-label" >{field.label}</legend>
-            { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx)), field.context }
+            { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx), field.context) }
             <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push({})}>Add</button>
             <div className="clearfix"/>
         </div>
@@ -63,6 +63,7 @@ ArrayWidget.propTypes = {
     fieldName: React.PropTypes.string,
     label: React.PropTypes.string,
     theme: React.PropTypes.object,
+    context: React.PropTypes.object,
 }
 
 export default ArrayWidget
