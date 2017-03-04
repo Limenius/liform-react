@@ -138,3 +138,5 @@ const CompatibleDateTimeWidget = (props) => {
 
 export default CompatibleDateTimeWidget
 
+// Only for testing purposes
+export { extractDateTimeToken }

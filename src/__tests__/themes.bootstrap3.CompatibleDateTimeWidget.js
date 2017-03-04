@@ -1,19 +1,19 @@
 import expect from 'expect'
-import { extractDateToken } from '../themes/bootstrap3/CompatibleDateWidget.js'
+import { extractDateTimeToken } from '../themes/bootstrap3/CompatibleDateTimeWidget.js'
 import React from 'react'
 import Liform from '../'
 import { FormFrame } from './test-utils'
 import { shallow, mount, render } from 'enzyme'
 
-describe('CompatibleDateWidget', () => {
+describe('CompatibleDateTimeWidget', () => {
     it('on null extracted value is empty', () => {
-        expect(extractDateToken(null)).toBe('')
+        expect(extractDateTimeToken(null)).toBe('')
     })
     it('on invalid format extracted value is empty', () => {
-        expect(extractDateToken('lala-land')).toBe('')
+        expect(extractDateTimeToken('lala-land')).toBe('')
     })
     it('can extract month', () => {
-        expect(extractDateToken('1967-04-03', 1)).toBe('04')
+        expect(extractDateTimeToken('1967-04-03T23:04:16', 1)).toBe('04')
     })
 
     it('should render a form', () => {
@@ -22,7 +22,7 @@ describe('CompatibleDateWidget', () => {
             properties: {
                 'date' : {
                     type: 'string',
-                    widget: 'compatible-date',
+                    widget: 'compatible-datetime',
                 }
             }
         }
@@ -35,7 +35,7 @@ describe('CompatibleDateWidget', () => {
         )
         const wrapper = render(Component)
         expect(wrapper.find('form').length).toEqual(1);
-        expect(wrapper.find('select').length).toEqual(3);
+        expect(wrapper.find('select').length).toEqual(6);
 
     })
 
