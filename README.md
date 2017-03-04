@@ -1,6 +1,8 @@
 liform-react
 ============
 
+![tests](https://api.travis-ci.org/Limenius/liform-react.svg?branch=master)
+
 Library for generating React forms from [JSON schema](http://json-schema.org/) using the fantastic [redux-form](https://github.com/erikras/redux-form).
 
 **https://limenius.github.io/liform-react/**
