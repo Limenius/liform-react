@@ -62,9 +62,11 @@ class CompatibleDate extends React.Component {
             this.props.input.onChange(this.buildRfc3339Date())
         })
     }
+
     onBlur() {
         this.props.input.onBlur(this.buildRfc3339Date())
     }
+
     render() {
         const field = this.props
         const className = classNames([

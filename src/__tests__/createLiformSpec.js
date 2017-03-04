@@ -6,10 +6,8 @@ import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { shallow, mount, render } from 'enzyme'
+import { FormFrame } from './test-utils'
 
-const makeStore = (initial) => createStore(
-    combineReducers({ form: formReducer })
-)
 
 
 describe('createLiform', () => {
@@ -34,16 +32,25 @@ describe('createLiform', () => {
 
     it('should render a form', () => {
 
-        const store = makeStore({})
         const Component = (
-            <Provider store={store}>
+            <FormFrame>
                 <Liform schema={schema} />
-            </Provider>
+            </FormFrame>
         )
         const wrapper = render(Component)
         //console.log(render( Component).html());
         expect(wrapper.find('form').length).toEqual(1);
 
     })
+
+    //it('can pass a context', () => {
+    //    const store = makeStore({})
+    //    const Component = (
+    //        <Provider store={store}>
+    //            <Liform schema={schema} context={{}}/>
+    //        </Provider>
+    //    )
+    //    const wrapper = render(Component)
+    //})
 
 })
