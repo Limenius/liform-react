@@ -36,13 +36,16 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
     "cross-env": "^3.1.4",
+    "enzyme": "^2.7.1",
     "eslint": "^3.5.0",
     "eslint-config-rackt": "^1.1.1",
     "eslint-plugin-react": "^6.9.0",
     "expect": "^1.20.2",
+    "jsdom": "^9.11.0",
     "mocha": "^3.0.2",
-    "react": "15.3.1",
-    "react-addons-test-utils": "15.3.1",
+    "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-form": "^6.0.2",
@@ -52,7 +55,6 @@
   "dependencies": {
     "ajv": "^4.11.3",
     "classnames": "^2.2.5",
-    "jsdom": "^9.11.0",
     "lodash": "^4.10.0",
     "redux-form": "^6.0.2"
   }
