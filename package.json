@@ -51,6 +51,7 @@
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-form": "^6.0.2",
+    "sinon": "^1.17.7",
     "webpack": "^1.12.15",
     "webpack-dev-server": "^1.16.1"
   },
