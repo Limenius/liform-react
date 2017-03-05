@@ -3,7 +3,7 @@ import BaseInputWidget from './BaseInputWidget'
 
 const NumberWidget = (props) => {
     return (
-        <BaseInputWidget type="number" {...props} />
+        <BaseInputWidget type="number" {...props} normalizer={parseFloat} />
     )
 }
 

@@ -29,6 +29,7 @@ const BaseInputWidget = props =>  {
             placeholder={props.schema.default}
             description={props.schema.description}
             type={props.type}
+            normalize={props.normalizer}
         />
     )
 }
@@ -39,6 +40,7 @@ BaseInputWidget.propTypes = {
     required: React.PropTypes.bool,
     fieldName: React.PropTypes.string,
     label: React.PropTypes.string,
+    normalizer: React.PropTypes.func,
 }
 
 export default BaseInputWidget
