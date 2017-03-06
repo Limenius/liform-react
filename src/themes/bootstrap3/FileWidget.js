@@ -21,7 +21,7 @@ const File = field => {
     return (
         <div className={className}>
             <label className="control-label" htmlFor={field.id}>{field.label}</label>
-            <input name={field.name} onBlur={field.onBlur} onChange={processFile.bind(this, field.input.onChange)} className="form-control" type="file"/>
+            <input name={field.name} onBlur={field.onBlur} onChange={processFile.bind(this, field.input.onChange)} required={field.required} className="form-control" type="file"/>
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             {field.description && <span>{field.description}</span>}
         </div>

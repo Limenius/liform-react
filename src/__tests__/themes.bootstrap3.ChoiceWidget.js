@@ -58,7 +58,7 @@ describe('ChoiceWidget', () => {
         const wrapper = render(Component)
         expect(wrapper.find('form').length).toEqual(1);
         expect(wrapper.find('select').length).toEqual(1);
-        expect(wrapper.find('option').length).toEqual(3);
+        expect(wrapper.find('option').length).toEqual(2);
 
     })
 })

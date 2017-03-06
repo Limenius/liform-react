@@ -16,8 +16,8 @@ const renderSelect = field => {
     return (
         <div className={className}>
             <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
-            <select {...field.input} className="form-control" id={'field-'+field.name} required={field.required} placeholder={field.placeholder} multiple={field.multiple}>
-                { !field.required && !field.multiple && <option key={''} value={''}></option> }
+            <select {...field.input} className="form-control" id={'field-'+field.name} required={field.required} multiple={field.multiple}>
+                { !field.required && !field.multiple && <option key={''} value={''}>{field.placeholder}</option> }
                 { _.map(selectOptions, (name, value) => {
                     return <option key={value} value={value}>{name}</option>
                 })}

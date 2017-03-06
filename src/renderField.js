@@ -1,12 +1,5 @@
 import React from 'react'
 
-export const isRequired = (schema, fieldName) => {
-    if (!schema.required) {
-        return false
-    }
-    return (schema.required.indexOf(fieldName) != 1)
-}
-
 const guessWidget = (fieldSchema) => {
     if (fieldSchema.widget) {
         return fieldSchema.widget
@@ -17,7 +10,7 @@ const guessWidget = (fieldSchema) => {
     return fieldSchema.type || 'object'
 }
 
-const renderField = (fieldSchema, fieldName, theme, prefix = '', context = {}) => {
+const renderField = (fieldSchema, fieldName, theme, prefix = '', context = {}, required = false) => {
     const widget = guessWidget(fieldSchema)
 
     if (!theme[widget]) {
@@ -28,7 +21,7 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '', context = {}) =
         key: fieldName,
         fieldName: prefix ? prefix + fieldName : fieldName,
         label: fieldSchema.showLabel === false ? '' : fieldSchema.title || fieldName,
-        required: isRequired(fieldSchema, fieldName),
+        required: required,
         schema: fieldSchema,
         theme,
         context,

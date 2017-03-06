@@ -11,7 +11,7 @@ const renderInput = field => {
         <div className={className}>
             <div className="checkbox">
                 <label>
-                    <input {...field.input} type="checkbox" id={'field-'+field.name} /> { field.label }
+                    <input {...field.input} type="checkbox" required={field.required} id={'field-'+field.name} /> { field.label }
                 </label>
             </div>
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
