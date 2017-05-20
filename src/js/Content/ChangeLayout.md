@@ -8,7 +8,7 @@ const BaseForm = props => {
     const { schema, handleSubmit, theme, error, submitting } = props
     return (
         <form onSubmit={handleSubmit}>
-            {renderField(schema, schema.title, theme || DefaultTheme)}
+            {renderField(schema, null, theme || DefaultTheme)}
             <div>
                 {error && <strong>{error}</strong>}
             </div>

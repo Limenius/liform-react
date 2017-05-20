@@ -13,7 +13,7 @@ const MyBaseForm = props => {
                 {error && <strong>{error}</strong>}
                 {error && <hr/>}
             </div>
-            {renderField(schema, schema.title, theme || DefaultTheme)}
+            {renderField(schema, null, theme || DefaultTheme)}
             <button className="btn btn-primary" type="submit" disabled={submitting}><span className="glyphicon glyphicon-chevron-right"></span></button>
         </form>)
 }
@@ -30,6 +30,7 @@ const Demo = () => {
             'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
         }
     }
+
     return (
         <Provider store={store}>
             <Liform schema={schema} onSubmit={(v) => {console.log(v)}} baseForm={MyBaseForm}/>
