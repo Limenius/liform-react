@@ -8,6 +8,7 @@ import Validation from './Validation.js'
 import CustomFieldValidation from './CustomFieldValidation.js'
 import PillLink from './PillLink'
 import Arrays from './Arrays'
+import Refs from './References'
 import AllWidgets from './AllWidgets'
 
 const Examples = ({ match }) => (
@@ -20,6 +21,7 @@ const Examples = ({ match }) => (
         <PillLink to={`${match.url}/validation`} label="Validation" />
         <PillLink to={`${match.url}/custom-field-validation`} label="Custom Field Validation" />
         <PillLink to={`${match.url}/arrays`} label="Arrays" />
+        <PillLink to={`${match.url}/refs`} label="Refs" />
         <PillLink to={`${match.url}/all-widgets`} label="All the widgets" />
     </ul>
 
@@ -30,6 +32,7 @@ const Examples = ({ match }) => (
     <Route path={`${match.url}/validation`} component={Validation}/>
     <Route path={`${match.url}/custom-field-validation`} component={CustomFieldValidation}/>
     <Route path={`${match.url}/arrays`} component={Arrays}/>
+    <Route path={`${match.url}/refs`} component={Refs}/>
     <Route path={`${match.url}/all-widgets`} component={AllWidgets}/>
   </div>
 )
