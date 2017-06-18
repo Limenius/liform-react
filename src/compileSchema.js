@@ -1,8 +1,8 @@
 function isObject(thing) {
-  return typeof thing === "object" && thing !== null && !Array.isArray(thing);
+    return typeof thing === 'object' && thing !== null && !Array.isArray(thing)
 }
 
-function compileSchema (schema, root) {
+function compileSchema(schema, root) {
     if (!root) {
         root = schema
     }
