@@ -14,7 +14,7 @@ const NavLink = ({ label, to, activeOnlyWhenExact }) => (
 
 const App = () => {
     return (
-        <HashRouter basename="/liform-react/">
+        <HashRouter basename="/liform-react">
             <div>
                 <nav className="navbar navbar-inverse navbar-fixed-top">
                     <div className="container">
