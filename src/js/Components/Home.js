@@ -3,7 +3,7 @@ import Liform from 'liform-react'
 import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { Provider } from 'react-redux'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const Demo = ({ schema, layout }) => {
     const reducer = combineReducers({ form: formReducer })

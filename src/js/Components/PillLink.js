@@ -1,14 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Route, Link } from 'react-router-dom'
 
 const PillLink = ({ label, to, activeOnlyWhenExact }) => (
-    <Link activeOnlyWhenExact={activeOnlyWhenExact} to={to} >
-        { ({ isActive, href, onClick }) =>
-                <li role="presentation" className={isActive && 'active'}>
-                    <a onClick={onClick} href={href} >{label}</a>
-                </li>
-        }
-    </Link>
+    <Route exact={activeOnlyWhenExact} children={({ match }) => (
+        <li role="presentation" className={match ? 'active' : ''}>
+            <Link to={to}>{label}</Link>
+        </li>
+    )}/>
 )
 
 export default PillLink
