@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Field } from 'redux-form'
 
@@ -35,12 +36,12 @@ const BaseInputWidget = props =>  {
 }
 
 BaseInputWidget.propTypes = {
-    schema: React.PropTypes.object.isRequired,
-    type: React.PropTypes.string.isRequired,
-    required: React.PropTypes.bool,
-    fieldName: React.PropTypes.string,
-    label: React.PropTypes.string,
-    normalizer: React.PropTypes.func,
+    schema: PropTypes.object.isRequired,
+    type: PropTypes.string.isRequired,
+    required: PropTypes.bool,
+    fieldName: PropTypes.string,
+    label: PropTypes.string,
+    normalizer: PropTypes.func,
 }
 
 export default BaseInputWidget

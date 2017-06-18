@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Field } from 'redux-form'
 
@@ -36,10 +37,10 @@ const CheckboxWidget = props =>  {
 }
 
 CheckboxWidget.propTypes = {
-    schema: React.PropTypes.object.isRequired,
-    fieldName: React.PropTypes.string,
-    label: React.PropTypes.string,
-    theme: React.PropTypes.object,
+    schema: PropTypes.object.isRequired,
+    fieldName: PropTypes.string,
+    label: PropTypes.string,
+    theme: PropTypes.object,
 }
 
 export default CheckboxWidget

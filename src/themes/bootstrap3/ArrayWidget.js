@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import renderField from '../../renderField'
 import { FieldArray } from 'redux-form'
 import _ from 'lodash'
@@ -59,11 +60,11 @@ const ArrayWidget = props =>  {
 }
 
 ArrayWidget.propTypes = {
-    schema: React.PropTypes.object.isRequired,
-    fieldName: React.PropTypes.string,
-    label: React.PropTypes.string,
-    theme: React.PropTypes.object,
-    context: React.PropTypes.object,
+    schema: PropTypes.object.isRequired,
+    fieldName: PropTypes.string,
+    label: PropTypes.string,
+    theme: PropTypes.object,
+    context: PropTypes.object,
 }
 
 export default ArrayWidget

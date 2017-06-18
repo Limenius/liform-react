@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Field } from 'redux-form'
 import _ from 'lodash'
@@ -46,12 +47,12 @@ const ChoiceWidget = props => {
 }
 
 ChoiceWidget.propTypes = {
-    schema: React.PropTypes.object.isRequired,
-    fieldName: React.PropTypes.string,
-    label: React.PropTypes.string,
-    theme: React.PropTypes.object,
-    multiple: React.PropTypes.bool,
-    required: React.PropTypes.bool,
+    schema: PropTypes.object.isRequired,
+    fieldName: PropTypes.string,
+    label: PropTypes.string,
+    theme: PropTypes.object,
+    multiple: PropTypes.bool,
+    required: PropTypes.bool,
 }
 
 export default ChoiceWidget

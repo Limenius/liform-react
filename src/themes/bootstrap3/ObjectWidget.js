@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import renderFields from '../../renderFields'
 
 const Widget = props =>  {
@@ -11,11 +12,11 @@ const Widget = props =>  {
 }
 
 Widget.propTypes = {
-    schema: React.PropTypes.object.isRequired,
-    fieldName: React.PropTypes.string,
-    label: React.PropTypes.string,
-    theme: React.PropTypes.object,
-    context: React.PropTypes.object,
+    schema: PropTypes.object.isRequired,
+    fieldName: PropTypes.string,
+    label: PropTypes.string,
+    theme: PropTypes.object,
+    context: PropTypes.object,
 }
 
 export default Widget

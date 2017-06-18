@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BaseInputWidget from './BaseInputWidget'
 
 const ColorWidget = (props) => {
@@ -8,11 +9,11 @@ const ColorWidget = (props) => {
 }
 
 BaseInputWidget.propTypes = {
-    schema: React.PropTypes.object.isRequired,
-    type: React.PropTypes.string.isRequired,
-    required: React.PropTypes.bool,
-    fieldName: React.PropTypes.string,
-    label: React.PropTypes.string,
+    schema: PropTypes.object.isRequired,
+    type: PropTypes.string.isRequired,
+    required: PropTypes.bool,
+    fieldName: PropTypes.string,
+    label: PropTypes.string,
 }
 
 export default ColorWidget

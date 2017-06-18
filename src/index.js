@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import DefaultTheme from './themes/bootstrap3'
 import { reduxForm } from 'redux-form'
 import renderFields from './renderFields'
