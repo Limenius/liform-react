@@ -7,6 +7,7 @@ import renderField from './renderField'
 import processSubmitErrors from './processSubmitErrors'
 import buildSyncValidation from './buildSyncValidation'
 import { setError } from './buildSyncValidation'
+import compileSchema from './compileSchema'
 
 const BaseForm = props => {
     const { schema, handleSubmit, theme, error, submitting, context } = props
@@ -22,14 +23,15 @@ const BaseForm = props => {
 
 const Liform = (props) => {
     props.schema.showLabel = false
+    const schema = compileSchema(props.schema)
     const FinalForm = reduxForm({
         form: props.formKey || props.schema.title || 'form',
-        validate: props.syncValidation || buildSyncValidation(props.schema),
+        validate: props.syncValidation || buildSyncValidation(schema),
         initialValues: props.initialValues,
         context: props.context || {},
     })(props.baseForm || BaseForm)
     return (
-        <FinalForm renderFields={renderField.bind(this)} {...props}/>
+        <FinalForm renderFields={renderField.bind(this)} {...props} schema={schema} />
     )
 }
 
