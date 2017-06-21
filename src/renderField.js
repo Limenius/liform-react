@@ -7,10 +7,17 @@ const guessWidget = (fieldSchema) => {
     else if (fieldSchema.hasOwnProperty('enum')) {
         return 'choice'
     }
+    else if(fieldSchema.hasOwnProperty('allOf')) {
+        return 'allOf'
+    }
+    else if(fieldSchema.hasOwnProperty('oneOf')) {
+        return 'oneOf'
+    }
     return fieldSchema.type || 'object'
 }
 
 const renderField = (fieldSchema, fieldName, theme, prefix = '', context = {}, required = false) => {
+    
     const widget = guessWidget(fieldSchema)
 
     if (!theme[widget]) {

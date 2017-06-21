@@ -58,6 +58,7 @@
   "dependencies": {
     "ajv": "^4.11.3",
     "classnames": "^2.2.5",
+    "deepmerge": "^1.4.4",
     "lodash": "^4.10.0",
     "prop-types": "^15.5.10",
     "redux-form": "^6.0.2"

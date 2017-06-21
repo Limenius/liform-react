@@ -18,6 +18,8 @@ import DateTimeWidget from './DateTimeWidget'
 import CompatibleDateWidget from './CompatibleDateWidget'
 import CompatibleDateTimeWidget from './CompatibleDateTimeWidget'
 import FileWidget from './FileWidget'
+import OneOfChoiceWidget from './oneOfChoiceWidget'
+import allOfWidget from './allOfWidget'
 
 export default {
     object: ObjectWidget,
@@ -41,4 +43,6 @@ export default {
     'compatible-date': CompatibleDateWidget,
     'compatible-datetime': CompatibleDateTimeWidget,
     file : FileWidget,
+    oneOf: OneOfChoiceWidget,
+    allOf: allOfWidget,
 }

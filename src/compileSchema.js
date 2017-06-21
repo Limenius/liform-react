@@ -13,7 +13,7 @@ function compileSchema(schema, root) {
         for (let i in schema) {
             if (schema.hasOwnProperty(i)) {
                 if (i === '$ref') {
-                    newSchema = resolveRef(schema[i], root)
+                    newSchema = compileSchema(resolveRef(schema[i], root), root)
                 } else {
                     newSchema[i] = compileSchema(schema[i], root)
                 }
@@ -39,6 +39,7 @@ function resolveRef(uri, schema) {
     const tip = tokens.reduce((obj, token) => (
         obj[token]
     ), schema)
+
     return tip
 }
 

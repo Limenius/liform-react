@@ -12,6 +12,7 @@ import SearchWidget from './SearchWidget'
 import UrlWidget from './UrlWidget'
 import ColorWidget from './ColorWidget'
 import ChoiceWidget from './ChoiceWidget'
+import OneOfChoiceWidget from './oneOfChoiceWidget'
 import DateWidget from './DateWidget'
 import TimeWidget from './TimeWidget'
 import DateTimeWidget from './DateTimeWidget'
@@ -36,5 +37,6 @@ export default {
     date: DateWidget,
     datetime: DateTimeWidget,
     time: TimeWidget,
+    OneOfChoiceWidget: OneOfChoiceWidget,
     'compatible-date': CompatibleDateWidget,
 }

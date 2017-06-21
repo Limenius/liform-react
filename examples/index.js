@@ -10,14 +10,27 @@ const reducer = combineReducers({
   form: formReducer
 })
 
-var schema = {
-    "title":"my form",
-    "properties":
-        {
-            "name": { "type":"string","title":"Model", "default": "Ziummmm"},
-            "description": { "type":"string", "title": "Description", "format": "textarea" }
-        },
-        "required":["name"]};
+var schema ={
+  "definitions": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "street_address": { "type": "string" },
+        "city":           { "type": "string" },
+        "state":          { "type": "string" }
+      },
+      "required": ["street_address", "city", "state"]
+    }
+  },
+
+  "allOf": [
+    { "$ref": "#/definitions/address" },
+    { "properties": {
+        "type": { "enum": [ "residential", "business" ] }
+      }
+    }
+  ]
+};
 
 const store = (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(reducer)
 
