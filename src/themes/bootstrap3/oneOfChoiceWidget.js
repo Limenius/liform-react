@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Field } from 'redux-form'
+import { Field, change } from 'redux-form'
+import { connect } from 'react-redux'
 import renderField from '../../renderField'
 import _ from 'lodash'
 
@@ -14,7 +15,7 @@ class OneOfChoiceWidget extends Component {
         this.renderOption = this.renderOption.bind(this)
         this.selectItem = this.selectItem.bind(this)
     }
-    
+
     render() {
         const field = this.props
         const className = classNames([
@@ -50,6 +51,11 @@ class OneOfChoiceWidget extends Component {
     }
 
     selectItem(e) {
+        console.log(this.props)
+        const {schema, context, dispatch} = this.props
+        for (let property in schema.oneOf[this.state.choice].properties) {
+            dispatch(change(context.formName, property, null))
+        }
         this.setState({choice: e.target.value})
     }
     showItem(item, idx, theme, name, context) {
@@ -67,4 +73,4 @@ OneOfChoiceWidget.propTypes = {
     required: PropTypes.bool,
 }
 
-export default OneOfChoiceWidget
+export default connect()(OneOfChoiceWidget)

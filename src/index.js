@@ -24,11 +24,12 @@ const BaseForm = props => {
 const Liform = (props) => {
     props.schema.showLabel = false
     const schema = compileSchema(props.schema)
+    const formName = props.formKey || props.schema.title || 'form'
     const FinalForm = reduxForm({
         form: props.formKey || props.schema.title || 'form',
         validate: props.syncValidation || buildSyncValidation(schema),
         initialValues: props.initialValues,
-        context: props.context || {},
+        context: {...props.context, formName},
     })(props.baseForm || BaseForm)
     return (
         <FinalForm renderFields={renderField.bind(this)} {...props} schema={schema} />
