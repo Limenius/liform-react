@@ -10,9 +10,8 @@ const renderSelect = field => {
         { 'has-error' : field.meta.touched && field.meta.error }
     ])
     const options = field.schema.enum
+    const optionNames = field.schema.enum_titles || options
 
-    const enum_titles = field.schema.enum_titles || field.schema.options? field.schema.options.enum_titles: {}
-    const optionNames = enum_titles || options
 
     const selectOptions = _.zipObject(options, optionNames)
     return (
