@@ -5,19 +5,20 @@ import { Field } from 'redux-form'
 import renderField from '../../renderField'
 import _ from 'lodash'
 
-class renderSelect extends Component {
+class OneOfChoiceWidget extends Component {
     constructor(props) {
         super(props)
         this.state =  {
-            choice: ''
+            choice: 0
         }
+        this.renderOption = this.renderOption.bind(this)
+        this.selectItem = this.selectItem.bind(this)
     }
     
     render() {
         const field = this.props
         const className = classNames([
             'form-group',
-            { 'has-error' : field.meta.touched && field.meta.error }
         ])
         const schema = field.schema
         const options = schema.oneOf
@@ -27,45 +28,35 @@ class renderSelect extends Component {
         return (
             <div className={className}>
                 <label className="control-label" htmlFor={'field-'+field.fieldName}>{schema.title}</label>
-                <select className="form-control" onClick={(e)=> this.showItem(options[e.target.value], e.target.value, theme, field.fieldName, context)} id={'field-'+field.fieldName} required={field.required} multiple={false}>
-                    { !field.required && !field.multiple && <option key={''} value={''}>{field.placeholder}</option> }
-                    { _.map(options, item => {
-                        return <option key={options.indexOf(item)}  value={options.indexOf(item)}>{item.title}</option>
+                <select className="form-control" onChange={this.selectItem.bind(this)} id={'field-'+field.fieldName} required={field.required} multiple={false}>
+                    { _.map(options, (item, idx) => {
+                        return <option key={options.indexOf(item)}  value={idx}>{item.title || idx}</option>
                     })}
                 </select>
                 <div className="container">
                     {
-                        this.state.choice
+                        this.renderOption()
                     }
                 </div>
-                { field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span> }
                 { field.description && <span className="help-block">{field.description}</span> }
             </div>
         )
     }
+
+    renderOption() {
+        const field = this.props
+        const schema = field.schema.oneOf[this.state.choice]
+        return renderField(schema, field.name, field.theme, field.name, field.context)
+    }
+
+    selectItem(e) {
+        this.setState({choice: e.target.value})
+    }
     showItem(item, idx, theme, name, context) {
-        this.setState({ choice: renderField({ ...item, showLabel : true }, idx.toString(), theme, name+'.', context) })
     }
 }
 
 
-const OneOfChoiceWidget = props => {
-    return (
-        <Field
-            component={renderSelect}
-            label={props.label}
-            name={props.fieldName}
-            required={props.required}
-            id={'field-'+props.fieldName}
-            placeholder={props.schema.default}
-            description={props.schema.description}
-            schema={props.schema}
-            theme={props.theme}
-            context={props.context}
-            fieldName={props.fieldName}
-        />
-    )
-}
 
 OneOfChoiceWidget.propTypes = {
     schema: PropTypes.object.isRequired,
