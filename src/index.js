@@ -29,7 +29,7 @@ const Liform = (props) => {
         form: props.formKey || props.schema.title || 'form',
         validate: props.syncValidation || buildSyncValidation(schema),
         initialValues: props.initialValues,
-        context: {...props.context, formName},
+        context: { ...props.context, formName },
     })(props.baseForm || BaseForm)
     return (
         <FinalForm renderFields={renderField.bind(this)} {...props} schema={schema} />

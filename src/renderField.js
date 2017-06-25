@@ -16,7 +16,7 @@ const guessWidget = (fieldSchema) => {
 
 const renderField = (fieldSchema, fieldName, theme, prefix = '', context = {}, required = false) => {
     if(fieldSchema.hasOwnProperty('allOf')) {
-        fieldSchema = {...fieldSchema, ...deepmerge.all(fieldSchema.allOf)}
+        fieldSchema = { ...fieldSchema, ...deepmerge.all(fieldSchema.allOf) }
         delete fieldSchema.allOf
     }
 
