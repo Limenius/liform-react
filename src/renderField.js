@@ -19,21 +19,24 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '', context = {}, r
         fieldSchema = { ...fieldSchema, ...deepmerge.all(fieldSchema.allOf) }
         delete fieldSchema.allOf
     }
-
+    
     const widget = guessWidget(fieldSchema)
 
     if (!theme[widget]) {
         throw new Error('liform: ' + widget + ' is not defined in the theme')
     }
 
+    const newFieldName = prefix ? prefix + fieldName : fieldName
+
     return React.createElement(theme[widget], {
         key: fieldName,
-        fieldName: prefix ? prefix + fieldName : fieldName,
+        fieldName: widget == 'oneOf'? fieldName: newFieldName,
         label: fieldSchema.showLabel === false ? '' : fieldSchema.title || fieldName,
         required: required,
         schema: fieldSchema,
         theme,
         context,
+        prefix
     })
 }
 
