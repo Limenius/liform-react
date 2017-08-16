@@ -12,8 +12,8 @@ const renderInput = field => {
         <div className={className}>
             <label className="control-label" htmlFor={'field-'+field.name}>{field.label}</label>
             <div className="input-group">
-            <span className="input-group-addon">€ </span>
-            <input {...field.input} type="number" className="form-control" id={'field-'+field.name} required={field.required} placeholder={field.placeholder}/>
+                <span className="input-group-addon">€ </span>
+                <input {...field.input} type="number" className="form-control" id={'field-'+field.name} required={field.required} placeholder={field.placeholder}/>
             </div>
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             {field.description && <span className="help-block">{field.description}</span>}
