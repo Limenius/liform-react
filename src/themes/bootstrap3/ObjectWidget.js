@@ -4,9 +4,13 @@ import renderFields from '../../renderFields'
 
 const Widget = props =>  {
     return (
+        props.label ?
+        <div className="panel panel-default">
+            {props.label && <div className="panel-heading" style={{fontSize:12, fontWeight: "bold"}}>{props.label}</div>}
+            <div className="panel-body">{renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.', props.context)}</div>
+        </div> :
         <div>
-        {props.label && <legend>{props.label}</legend>}
-        {renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.', props.context)}
+            {renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.', props.context)}
         </div>
     )
 }

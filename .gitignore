@@ -7,3 +7,4 @@ es
 yarn.lock
 .nyc_output/
 coverage/
+*.iml

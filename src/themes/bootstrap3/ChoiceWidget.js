@@ -9,9 +9,8 @@ const renderSelect = field => {
         'form-group',
         { 'has-error' : field.meta.touched && field.meta.error }
     ])
-    const options = field.schema.enum
-    const optionNames = field.schema.enum_titles || options
-
+    const options = field.schema.source.map(item => item.value)
+    const optionNames = field.schema.source.map(item => item.title)
 
     const selectOptions = _.zipObject(options, optionNames)
     return (
