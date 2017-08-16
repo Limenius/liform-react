@@ -27,7 +27,7 @@ const Liform = (props) => {
     const formName = props.formKey || props.schema.title || 'form'
     const FinalForm = reduxForm({
         form: props.formKey || props.schema.title || 'form',
-        validate: props.syncValidation || buildSyncValidation(schema),
+        validate: props.syncValidation || buildSyncValidation(schema, props.ajv),
         initialValues: props.initialValues,
         context: { ...props.context, formName },
     })(props.baseForm || BaseForm)
@@ -44,6 +44,7 @@ Liform.propTypes = {
     formKey: PropTypes.string,
     baseForm: PropTypes.func,
     context: PropTypes.object,
+    ajv: PropTypes.object,
 }
 
 export default Liform
