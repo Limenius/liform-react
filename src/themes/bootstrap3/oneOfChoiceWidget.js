@@ -32,7 +32,7 @@ class OneOfChoiceWidget extends Component {
                         return <option key={options.indexOf(item)}  value={idx}>{item.title || idx}</option>
                     })}
                 </select>
-                <div className="container">
+                <div>
                     {
                         this.renderOption()
                     }
