@@ -28,9 +28,17 @@ const setError = (errors, error) => {
                 }
                 return errors[p][i]
             }
-            console.log({res, errors, error})
+
             if (index === dataPathParts.length -1) {
-                errors[part] = error.message
+                if(typeof errors == 'string') {
+                    let err = errors
+                    errors = []
+                    errors._error = err
+                    errors[part] = error.message
+                }
+                else{
+                    errors[part] = error.message
+                }
             }
             if (!errors[part]) {
                 errors[part] = {}
