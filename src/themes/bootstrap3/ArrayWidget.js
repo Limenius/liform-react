@@ -45,6 +45,10 @@ const renderArrayFields = (count, schema, theme, fieldName, remove, context, swa
 const renderInput = field => {
     const className = classNames([
         'arrayType',
+<<<<<<< HEAD
+=======
+        'form-group',
+>>>>>>> propertyOrder
         { 'has-error' : field.meta.touched && field.meta.error }
     ])
 

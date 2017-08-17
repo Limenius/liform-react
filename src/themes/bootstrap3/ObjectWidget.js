@@ -5,6 +5,7 @@ import renderFields from '../../renderFields'
 const Widget = props =>  {
     return (
         <div className="objectType">
+
             {props.label && <legend>{props.label}</legend>}
             {renderFields(props.schema, props.theme, props.fieldName && props.fieldName + '.', props.context)}
         </div>
