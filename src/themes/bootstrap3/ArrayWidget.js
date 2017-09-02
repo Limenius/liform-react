@@ -15,13 +15,13 @@ const renderArrayFields = (count, schema, theme, fieldName, remove, context, swa
                     
                     {(idx!=count-1 && count>1)?
                         <button className="btn btn-primary" onClick={(e)=>{
-                            e.preventDefault();
+                            e.preventDefault()
                             swap(idx, idx+1)
                         }}><span className="glyphicon glyphicon-arrow-down"></span></button>:''
                     }
                     {(idx!=0 && count>1)?
                         <button className="btn btn-primary" onClick={(e)=>{
-                            e.preventDefault();
+                            e.preventDefault()
                             swap(idx, idx-1)
                         }}><span className="glyphicon glyphicon-arrow-up"></span></button>:''
                     }
