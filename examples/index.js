@@ -15,9 +15,9 @@ var schema ={
     "address": {
       "type": "object",
       "properties": {
-        "street_address": { "type": "string" },
-        "city":           { "type": "string" },
-        "state":          { "type": "string" }
+        "street_address": { "type": "string", "format": "color" },
+        "city":           { "type": "string", "format": "textarea" },
+        "state":          { "type": "string", "format": "hostname" }
       },
       "required": ["street_address", "city", "state"]
     }
