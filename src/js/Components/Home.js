@@ -17,9 +17,9 @@ const Demo = ({ schema, layout }) => {
             </div>
             <div className="col-md-6">
                 <Provider store={store}>
-                    <Liform schema={JSON.parse(schema)} 
+                    <Liform schema={JSON.parse(schema)}
                         onSubmit={(v) => {
-                            console.log(v)
+                            alert(JSON.stringify(v))
                             return
                         }} baseForm={layout}
 
