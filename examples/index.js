@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { Provider } from 'react-redux';
-import Liform from 'liform-react';
+import Liform from '../src/';
 
 const reducer = combineReducers({
   form: formReducer
@@ -42,7 +42,12 @@ const dest = document.getElementById('form-holder')
 
 ReactDOM.render(
     <Provider store={store}>
+        <div style={{
+            width: '500px',
+            margin: '0 auto',
+        }}>
         <Liform schema={schema} onSubmit={showResults}/>
+    </div>
     </Provider>,
     dest
 )
