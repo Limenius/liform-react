@@ -132,7 +132,7 @@ const Demo = () => {
 
 const Arrays = () => (
     <div>
-        <h2>Arrays</h2>
+        <h2>All the widgets</h2>
         <h3>Form</h3>
         <Demo/>
         <h3>Code</h3>
