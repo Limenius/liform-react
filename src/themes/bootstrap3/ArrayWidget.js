@@ -4,36 +4,37 @@ import renderField from '../../renderField'
 import { FieldArray } from 'redux-form'
 import _ from 'lodash'
 import ChoiceWidget from './ChoiceWidget'
+import classNames from 'classnames'
 
 const renderArrayFields = (count, schema, theme, fieldName, remove, context, swap) => {
     const prefix = fieldName + '.'
     if (count) {
         return _.times(count, (idx) => {
             return (
-            <div key={idx}>
-                <div className="btn-group pull-right ">
+                <div key={idx}>
+                    <div className="btn-group pull-right ">
                     
-                    {(idx!=count-1 && count>1)?
-                        <button className="btn btn-primary" onClick={(e)=>{
-                            e.preventDefault()
-                            swap(idx, idx+1)
-                        }}><span className="glyphicon glyphicon-arrow-down"></span></button>:''
-                    }
-                    {(idx!=0 && count>1)?
-                        <button className="btn btn-primary" onClick={(e)=>{
-                            e.preventDefault()
-                            swap(idx, idx-1)
-                        }}><span className="glyphicon glyphicon-arrow-up"></span></button>:''
-                    }
+                        {(idx!=count-1 && count>1)?
+                            <button className="btn btn-primary" onClick={(e)=>{
+                                e.preventDefault()
+                                swap(idx, idx+1)
+                            }}><span className="glyphicon glyphicon-arrow-down"></span></button>:''
+                        }
+                        {(idx!=0 && count>1)?
+                            <button className="btn btn-primary" onClick={(e)=>{
+                                e.preventDefault()
+                                swap(idx, idx-1)
+                            }}><span className="glyphicon glyphicon-arrow-up"></span></button>:''
+                        }
 
-                    <button className="btn btn-danger" onClick={(e) => {
-                        e.preventDefault()
-                        remove(idx)
-                    }}><span className="glyphicon glyphicon-trash"></span></button>
+                        <button className="btn btn-danger" onClick={(e) => {
+                            e.preventDefault()
+                            remove(idx)
+                        }}><span className="glyphicon glyphicon-trash"></span></button>
 
+                    </div>
+                    {renderField({ ...schema, showLabel : false }, idx.toString(), theme, prefix, context)}
                 </div>
-                {renderField({ ...schema, showLabel : false }, idx.toString(), theme, prefix, context)}
-            </div>
             )
         })
     } else {
@@ -42,9 +43,16 @@ const renderArrayFields = (count, schema, theme, fieldName, remove, context, swa
 }
 
 const renderInput = field => {
+    const className = classNames([
+        'arrayType',
+        'form-group',
+        { 'has-error' : field.meta.touched && field.meta.error }
+    ])
+
     return (
-        <div className="arrayType form-group">
+        <div className={className}>
             <legend className="control-label" >{field.label}</legend>
+            {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx), field.context, (a, b) => {field.fields.swap(a,b)}) }
             <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push({})}>Add</button>
             <div className="clearfix"/>
