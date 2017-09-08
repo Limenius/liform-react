@@ -32,7 +32,7 @@ class OneOfChoiceWidget extends Component {
                         return <option key={options.indexOf(item)}  value={idx}>{item.title || idx}</option>
                     })}
                 </select>
-                <div className="container">
+                <div>
                     {
                         this.renderOption()
                     }
@@ -45,7 +45,7 @@ class OneOfChoiceWidget extends Component {
     renderOption() {
         const field = this.props
         const schema = field.schema.oneOf[this.state.choice]
-        return renderField(schema, field.name, field.theme, field.name, field.context)
+        return renderField(schema, field.fieldName, field.theme, field.prefix, field.context)
     }
 
     selectItem(e) {
