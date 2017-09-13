@@ -34,7 +34,7 @@ var schema = {
     "properties":
         {
             "name": { "type":"string","title":"Model", "default": "Ziummmm"},
-            "description": { "type":"string", "title": "Description", "format": "textarea" }
+            "description": { "type":"string", "title": "Description", "widget": "textarea" }
         },
         "required":["name"]};
 
