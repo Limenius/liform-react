@@ -1,10 +1,32 @@
 import React from 'react'
 import { createStore, combineReducers } from 'redux'
-import { reducer as formReducer, SubmissionError } from 'redux-form'
+import { reducer as formReducer } from 'redux-form'
 import { Provider } from 'react-redux'
 import Liform from 'liform-react'
 import Markdown from './Markdown'
 
+import { SubmissionError } from 'redux-form'
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+function submit(values) {
+    return sleep(1000).then(() => {
+        // simulate server latency
+        if (!['john', 'paul', 'george', 'ringo'].includes(values.username)) {
+            throw new SubmissionError({
+                username: 'User does not exist',
+                _error: 'Login failed!'
+            })
+        } else if (values.password !== 'redux-form') {
+            throw new SubmissionError({
+                password: 'Wrong password',
+                _error: 'Login failed!'
+            })
+        } else {
+            window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
+        }
+    })
+}
 
 const Demo = () => {
     const reducer = combineReducers({ form: formReducer })
@@ -18,22 +40,10 @@ const Demo = () => {
         }
     }
 
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
     return (
         <Provider store={store}>
-            <Liform schema={schema} onSubmit={(values) => {
-                return sleep(1000) // simulate server latency
-                    .then(() => {
-                        if (![ 'john', 'paul', 'george', 'ringo' ].includes(values.username)) {
-                            throw new SubmissionError({ username: 'User does not exist', _error: 'Login failed!' })
-                        } else if (values.password !== 'redux-form') {
-                            throw new SubmissionError({ password: 'Wrong password', _error: 'Login failed!' })
-                        } else {
-                            window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
-                        }
-                    })
-            }}/>
+            <Liform schema={schema} onSubmit={submit} />
         </Provider>
     )
 }
@@ -50,3 +60,5 @@ const Validation = () => (
 )
 
 export default Validation
+
+export {submit}
