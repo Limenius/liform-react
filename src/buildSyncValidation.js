@@ -1,6 +1,5 @@
 import Ajv from 'ajv'
 import merge from 'deepmerge'
-import deep from 'deep-get-set'
 import _ from 'lodash'
 
 const setError = (error, schema) => {
