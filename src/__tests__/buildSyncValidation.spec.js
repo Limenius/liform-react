@@ -4,11 +4,6 @@ import Ajv from 'ajv'
 
 describe('sync validation', () => {
 
-    it('Converts between ajv format and object', () => {
-        const errors = setError({}, { dataPath: '.one.two', message: 'I\'m an error' })
-        expect(errors).toBeA('object').toIncludeKey('one')
-
-    })
     it('Works with basic objects', () => {
         let schema = {
             properties: {
