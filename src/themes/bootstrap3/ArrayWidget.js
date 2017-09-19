@@ -44,15 +44,15 @@ const renderArrayFields = (count, schema, theme, fieldName, remove, context, swa
 const renderInput = field => {
     const className = classNames([
         'arrayType',
-        { 'has-error' : field.meta.touched && field.meta.error }
+        { 'has-error' : field.meta.submitFailed && field.meta.error }
     ])
 
     return (
         <div className={className}>
             <legend className="control-label" >{field.label}</legend>
-            {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
+            {field.meta.submitFailed && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx), field.context, (a, b) => {field.fields.swap(a,b)}) }
-            <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push(null)}>Add</button>
+            <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push()}>Add</button>
             <div className="clearfix"/>
         </div>
     )
