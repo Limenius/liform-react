@@ -13,22 +13,19 @@ const reducer = combineReducers({
 // Contributors: This is a sandbox to play with liform-react without installing the package
 var schema ={
   "properties": {
+    "name" : {
+      type: "string",
+      "minLength": 3,
+    },
     "columns": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "type": "object",
-        "properties" : {
-          "hola": {
-            "type": "string",
-          },
-          "not": {
-            "type": "number",
-          }
-        }
+        "type": "string"
       }
     },
-  }
+  },
+  "required":["name", "columns"]
 };
 
 const store = (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(reducer)
@@ -45,7 +42,7 @@ ReactDOM.render(
             width: '500px',
             margin: '0 auto',
         }}>
-        <Liform schema={schema} onSubmit={showResults}/>
+        <Liform schema={schema} onSubmit={showResults} />
     </div>
     </Provider>,
     dest
