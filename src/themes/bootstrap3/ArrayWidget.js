@@ -13,7 +13,6 @@ const renderArrayFields = (count, schema, theme, fieldName, remove, context, swa
             return (
                 <div key={idx}>
                     <div className="btn-group pull-right ">
-                    
                         {(idx!=count-1 && count>1)?
                             <button className="btn btn-primary" onClick={(e)=>{
                                 e.preventDefault()
@@ -53,7 +52,7 @@ const renderInput = field => {
             <legend className="control-label" >{field.label}</legend>
             {field.meta.touched && field.meta.error && <span className="help-block">{field.meta.error}</span>}
             { renderArrayFields(field.fields.length, field.schema.items, field.theme, field.fieldName, (idx) => field.fields.remove(idx), field.context, (a, b) => {field.fields.swap(a,b)}) }
-            <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push({})}>Add</button>
+            <button type="button" className="pull-right btn btn-primary" onClick={() => field.fields.push(null)}>Add</button>
             <div className="clearfix"/>
         </div>
     )

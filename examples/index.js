@@ -10,26 +10,25 @@ const reducer = combineReducers({
   form: formReducer
 })
 
+// Contributors: This is a sandbox to play with liform-react without installing the package
 var schema ={
-  "definitions": {
-    "address": {
-      "type": "object",
-      "properties": {
-        "street_address": { "type": "string" },
-        "city":           { "type": "string" },
-        "state":          { "type": "string" }
-      },
-      "required": ["street_address", "city", "state"]
-    }
-  },
-
-  "allOf": [
-    { "$ref": "#/definitions/address" },
-    { "properties": {
-        "type": { "enum": [ "residential", "business" ] }
+  "properties": {
+    "columns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties" : {
+          "hola": {
+            "type": "string",
+          },
+          "not": {
+            "type": "number",
+          }
+        }
       }
-    }
-  ]
+    },
+  }
 };
 
 const store = (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(reducer)
