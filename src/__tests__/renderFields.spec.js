@@ -34,4 +34,32 @@ describe('renderFields', () => {
         expect(elems[0].props).toIncludeKey('label')
 
     })
+    it('respects order of elements', () => {
+        const schemaOrder = {
+            title: 'A schema',
+            properties: {
+                'familyName' : {
+                    type: 'string',
+                    title: 'A surname',
+                    propertyOrder: 2,
+                },
+                'name' : {
+                    type: 'string',
+                    title: 'A name',
+                    propertyOrder: 1,
+                },
+                'another' : {
+                    type: 'string',
+                    title: 'Another',
+                    propertyOrder: 3,
+                },
+            }
+        }
+        const elems = renderFields(schemaOrder, DefaultTheme)
+        expect(elems[0].props.label).toBe('A name')
+        expect(elems[1].props.label).toBe('A surname')
+        expect(elems[2].props.label).toBe('Another')
+
+
+    })
 })
