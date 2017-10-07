@@ -1,0 +1,11 @@
+{
+  "name": "liform-example",
+  "version": "1.0.0",
+  "description": "Playground",
+  "main": "index.js",
+  "author": "Nacho Martin",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-loader": "^7.1.2"
+  }
+}

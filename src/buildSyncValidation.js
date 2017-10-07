@@ -1,89 +1,57 @@
 import Ajv from 'ajv'
+import merge from 'deepmerge'
+import _ from 'lodash'
 
+const setError = (error, schema) => {
+    const dataPathParts = error.dataPath.split('/').slice(1)
+    let dataPath = error.dataPath.slice(1).replace(/\//g,'.')
 
-const setError = (errors, error) => {
-    if(error.dataPath.charAt(0) == '.') {
-        const dataPathParts = error.dataPath.split('.').slice(1)
-        //  regular expression to  get the object path and index from the ajv error data path
-        const re = /(^\w+)\[([0-9]+)\]/gm
-    
-        dataPathParts.reduce((errors, part, index) => {
-            let res = re.exec(part)
-            
-            if(res && res.length>0) {
-                let p = res[1]
-                let i = res[2]
-                if(!errors[p]) {
-                    errors[p] = []
-                }
-                if(typeof errors[p]=='string') {
-                    let err = errors[p]
-                    errors[p] = []
-                    errors[p]._error = err
-                }
-                if (index === dataPathParts.length -1) {
-                    errors[p][i] = error.message
-                }else{
-                    errors[p][i] = errors[p][i] || {}
-                }
-                return errors[p][i]
-            }
+    const type = findTypeInSchema(schema, dataPathParts)
 
-            if (index === dataPathParts.length -1) {
-                if(typeof errors == 'string') {
-                    let err = errors
-                    errors = []
-                    errors._error = err
-                    errors[part] = error.message
-                }
-                else{
-                    errors[part] = error.message
-                }
-            }
-            if (!errors[part]) {
-                errors[part] = {}
-            }
-            return errors[part]
-        }, errors)
-    }else{
-        const dataPathParts = error.dataPath.split('/').slice(1)
-        dataPathParts.reduce((errors, part, index) => {
-            if (index === dataPathParts.length -1) {
-                if(typeof errors == 'string') {
-                    let err = errors
-                    errors = []
-                    errors._error = err
-                    errors[part] = error.message
-                }
-                else{
-                    errors[part] = error.message
-                }
-                
-            }
-            if (!errors[part]) {
-                errors[part] = {}
-            }
-            return errors[part]
-        }, errors)
+    let errorToSet
+    if (type === 'array') {
+        errorToSet = { _error: error.message }
+    } else {
+        errorToSet = error.message
     }
+
+    let errors = {}
+    _.set(errors, dataPath, errorToSet)
     return errors
+
 }
 
+const findTypeInSchema = (schema, dataPath) => {
+    if (dataPath.length == 0) {
+        return schema.type
+    } else {
+        if (schema.type === 'array') {
+            return findTypeInSchema(schema.items, dataPath.slice(1))
+        } else {
+            return findTypeInSchema(schema.properties[dataPath[0]], dataPath.slice(1))
+        }
+    }
+}
 
-const buildSyncValidation = (schema, 
-    ajv = new Ajv({ errorDataPath: 'property', allErrors: true }) ) => {
+const buildSyncValidation = (schema, ajvParam = null ) => {
+    let ajv = ajvParam
+    if (ajv === null) {
+        ajv = new Ajv({ errorDataPath: 'property', allErrors: true, jsonPointers: true })
+    }
     return values => {
-        let errors = {}
         const valid = ajv.validate(schema, values)
         if (valid) {
             return {}
         }
         const ajvErrors = ajv.errors
 
-        ajvErrors.forEach((error) => {
-            setError(errors, error)
+        let errors = ajvErrors.map((error) => {
+            return setError(error, schema)
         })
-        return errors
+        // We need at least two elements
+        errors.push({})
+        errors.push({})
+        return merge.all(errors)
     }
 
 }
