@@ -8,7 +8,6 @@ export const isRequired = (schema, fieldName) => {
     return (schema.required.indexOf(fieldName) != -1)
 }
 
-
 const renderFields = (schema, theme, prefix = null, context = {}) => {
     let props = []
     for(let i in schema.properties) {
