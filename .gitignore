@@ -8,3 +8,4 @@ yarn.lock
 .nyc_output/
 coverage/
 examples/bundle*
+package-lock.json
