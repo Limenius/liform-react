@@ -58,3 +58,7 @@ And, provided that you have a `<div id="form-holder">`, you should see something
 
 ![](https://raw.githubusercontent.com/Limenius/liform-react/master/docs/images/example-liform-react.png)
 
+# Material UI
+
+There is a promising work on a theme for Material UI done by [samuelbriole](https://github.com/samuelbriole/react-liform-material-ui-theme)
+
