@@ -7,25 +7,18 @@ import { Provider } from 'react-redux';
 import Liform from '../src/';
 
 const reducer = combineReducers({
-  form: formReducer
+    form: formReducer
 })
 
 // Contributors: This is a sandbox to play with liform-react without installing the package
-var schema ={
-  "properties": {
-    "name" : {
-      type: "string",
-      "minLength": 3,
+var schema = {
+    'title':'my form',
+    'properties':
+    {
+        'name': { 'type':'string','title':'Model', 'default': 'Ziummmm'},
+        'description': { 'type':'string', 'title': 'Description', 'widget': 'textarea' }
     },
-    "columns": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "type": "string"
-      }
-    },
-  },
-  "required":["name", "columns"]
+    'required':[ 'name' ]
 };
 
 const store = (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(reducer)

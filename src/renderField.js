@@ -1,7 +1,7 @@
 import React from 'react'
 import deepmerge from 'deepmerge'
 
-const guessWidget = (fieldSchema) => {
+const guessWidget = (fieldSchema, theme) => {
     if (fieldSchema.widget) {
         return fieldSchema.widget
     }
@@ -10,6 +10,8 @@ const guessWidget = (fieldSchema) => {
     }
     else if(fieldSchema.hasOwnProperty('oneOf')) {
         return 'oneOf'
+    }else if(theme[fieldSchema.format]) {
+        return fieldSchema.format
     }
     return fieldSchema.type || 'object'
 }
@@ -19,8 +21,8 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '', context = {}, r
         fieldSchema = { ...fieldSchema, ...deepmerge.all(fieldSchema.allOf) }
         delete fieldSchema.allOf
     }
-    
-    const widget = guessWidget(fieldSchema)
+
+    const widget = guessWidget(fieldSchema, theme)
 
     if (!theme[widget]) {
         throw new Error('liform: ' + widget + ' is not defined in the theme')
