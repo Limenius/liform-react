@@ -12,15 +12,48 @@ const reducer = combineReducers({
 
 // Contributors: This is a sandbox to play with liform-react without installing the package
 var schema = {
-    'title':'my form',
-    'properties':
-    {
-        'name': { 'type':'string','title':'Model', 'default': 'Ziummmm'},
-        'description': { 'type':'string', 'title': 'Description', 'widget': 'textarea' }
-    },
-    'required':[ 'name' ]
-};
-
+            properties: {
+                columns: {
+                    type: "array",
+                    minItems: 1,
+                    items: {
+                        oneOf: [
+                            {
+                                properties: {
+                                   name: {
+                                       title: "name",
+                                       type: "string"
+                                   }, 
+                                   email: {
+                                       "type": "string",
+                                       title: "Email",
+                                       format: 'email'
+                                   }
+                                },
+                                title: "namer",
+                                required: ["email", "name"]                                
+                            },
+                            {
+                                properties: {
+                                    pass: {
+                                        title: "pass",
+                                        type: "string",
+                                        format: "password"
+                                    }, 
+                                    phone: {
+                                        "type": "string",
+                                        title: "Phone"
+                                    }, 
+                                },
+                                title: "Authentication",
+                                required: ["pass", "phone"]
+                            }
+                        ]
+                    }
+                },
+            },
+            required:["columns"]
+        }
 const store = (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(reducer)
 
 const showResults = values => {
