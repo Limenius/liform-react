@@ -13,13 +13,13 @@ const renderArrayFields = (count, schema, theme, fieldName, remove, context, swa
             return (
                 <div key={idx}>
                     <div className="btn-group pull-right ">
-                        {(idx!=count-1 && count>1)?
+                        {(idx!==count-1 && count>1)?
                             <button className="btn btn-primary" onClick={(e)=>{
                                 e.preventDefault()
                                 swap(idx, idx+1)
                             }}><span className="glyphicon glyphicon-arrow-down"></span></button>:''
                         }
-                        {(idx!=0 && count>1)?
+                        {(idx!==0 && count>1)?
                             <button className="btn btn-primary" onClick={(e)=>{
                                 e.preventDefault()
                                 swap(idx, idx-1)

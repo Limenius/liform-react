@@ -16,6 +16,7 @@ const convertToReduxFormErrors = (obj) => {
                     } 
                 } 
             }
+            return null
         }  
     )
     return objectWithoutChildrenAndFalseErrors

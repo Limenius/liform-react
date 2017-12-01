@@ -36,7 +36,7 @@ const extractDateTimeToken = (value, index) => {
     // Remove timezone Z
     value = value.substring(0, value.length - 1)
     const tokens = value.split(/[-T:]/)
-    if (tokens.length != 6) {
+    if (tokens.length !== 6) {
         return ''
     }
     return tokens[index]

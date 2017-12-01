@@ -32,7 +32,7 @@ const renderField = (fieldSchema, fieldName, theme, prefix = '', context = {}, r
 
     return React.createElement(theme[widget], {
         key: fieldName,
-        fieldName: widget == 'oneOf'? fieldName: newFieldName,
+        fieldName: widget === 'oneOf'? fieldName: newFieldName,
         label: fieldSchema.showLabel === false ? '' : fieldSchema.title || fieldName,
         required: required,
         schema: fieldSchema,

@@ -4,8 +4,8 @@ import _ from 'lodash'
 
 const setError = (error, schema) => {
     // convert property accessor (.xxx[].xxx) notation to jsonPointers notation 
-    if(error.dataPath.charAt(0) == '.') {
-        error.dataPath = error.dataPath.replace(/[.\[]/gi, '/')
+    if(error.dataPath.charAt(0) === '.') {
+        error.dataPath = error.dataPath.replace(/[.[]/gi, '/')
         error.dataPath = error.dataPath.replace(/[\]]/gi, '')        
     }
     const dataPathParts = error.dataPath.split('/').slice(1)
@@ -29,19 +29,19 @@ const findTypeInSchema = (schema, dataPath) => {
     if(!schema) {
         return 
     }
-    else if (dataPath.length == 0 && schema.hasOwnProperty('type')) {
+    else if (dataPath.length === 0 && schema.hasOwnProperty('type')) {
         return schema.type
     } else {
         if (schema.type === 'array') {
             return findTypeInSchema(schema.items, dataPath.slice(1))
         }else if(schema.hasOwnProperty('allOf')) {
-            if(dataPath.length == 0)
+            if(dataPath.length === 0)
                 return 'allOf'
             schema = { ...schema, ...merge.all(schema.allOf) }
             delete schema.allOf
             return findTypeInSchema(schema, dataPath)
         }else if(schema.hasOwnProperty('oneOf')) {
-            if(dataPath.length == 0)
+            if(dataPath.length === 0)
                 return 'oneOf'
             schema.oneOf.forEach( item => {
                 let type = findTypeInSchema(item, dataPath)

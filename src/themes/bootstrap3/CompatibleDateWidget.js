@@ -25,7 +25,7 @@ const extractDateToken = (value, index) => {
         return ''
     }
     const tokens = value.split(/-/)
-    if (tokens.length != 3) {
+    if (tokens.length !== 3) {
         return ''
     }
     return tokens[index]
