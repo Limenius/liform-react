@@ -4,9 +4,8 @@ before_install:
   - npm install -g npm@latest
 
 node_js:
+  - "8"
   - "6"
-  - "5"
-  - "stable"
 
 script:
   - npm run lint
