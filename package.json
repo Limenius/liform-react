@@ -4,14 +4,11 @@
   "description": "Generate forms from json-schema to use with React (and redux-form)",
   "main": "./lib/index.js",
   "scripts": {
-    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "build": "npm run build:lib",
     "build:lib": "babel src --out-dir lib",
-    "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/liform.js",
-    "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/liform.min.js",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel-register --recursive 'src/**/__tests__/*' --require src/__tests__/setup.js",
-    "test:cov": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm test",
-    "dev": "webpack-dev-server --content-base examples --config examples/webpack.config.js --inline --hot"
+    "test:cov": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text npm test"
   },
   "keywords": [
     "react",
@@ -43,6 +40,7 @@
     "eslint-plugin-react": "^6.9.0",
     "expect": "^1.20.2",
     "jsdom": "^9.11.0",
+    "json-loader": "^0.5.7",
     "mocha": "^3.0.2",
     "nyc": "^10.1.2",
     "react": "^15.6.1",
@@ -53,7 +51,8 @@
     "redux-form": "^6.0.2",
     "sinon": "^1.17.7",
     "webpack": "^1.12.15",
-    "webpack-dev-server": "^1.16.1"
+    "webpack-dev-server": "^1.16.1",
+    "webpack-hot-middleware": "^2.21.0"
   },
   "dependencies": {
     "ajv": "^5.2.2",

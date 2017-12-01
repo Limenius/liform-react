@@ -5,7 +5,6 @@ import { reducer as formReducer } from 'redux-form'
 import { Provider } from 'react-redux'
 import Liform from '../../../../src/'
 
-
 const Demo = () => {
     const reducer = combineReducers({ form: formReducer })
     const store = createStore(reducer)
@@ -29,4 +28,3 @@ ReactDOM.render(
     <Demo/>,
     document.getElementById('placeholder')
 )
-

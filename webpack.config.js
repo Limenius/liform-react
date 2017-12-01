@@ -1,64 +1,35 @@
-'use strict'
-var webpack = require('webpack')
-
-var env = process.env.NODE_ENV
-
-var reactExternal = {
-  root: 'React',
-  commonjs2: 'react',
-  commonjs: 'react',
-  amd: 'react'
-}
-
-var reduxExternal = {
-  root: 'Redux',
-  commonjs2: 'redux',
-  commonjs: 'redux',
-  amd: 'redux'
-}
-
-var reactReduxExternal = {
-  root: 'ReactRedux',
-  commonjs2: 'react-redux',
-  commonjs: 'react-redux',
-  amd: 'react-redux'
-}
+var path = require("path");
 
 var config = {
-  externals: {
-    'react': reactExternal,
-    'redux': reduxExternal,
-    'react-redux': reactReduxExternal
+  entry: {
+    simple: "./docs/pages/examples/simple/index",
+    "all-widgets": "./docs/pages/examples/all-widgets/index",
+    "arrays": "./docs/pages/examples/arrays/index",
+    "change-layout": "./docs/pages/examples/change-layout/index",
+    "combining-schemas": "./docs/pages/examples/combining-schemas/index",
+    "custom-field-validation": "./docs/pages/examples/custom-field-validation/index",
+    "custom-themes": "./docs/pages/examples/custom-themes/index",
+    "initial-values": "./docs/pages/examples/initial-values/index",
+    "nested": "./docs/pages/examples/nested/index",
+    "refs": "./docs/pages/examples/refs/index",
+  },
+  output: {
+    filename: "[name]/bundle.js",
+    path: path.resolve(__dirname, "./docs/pages/examples/")
   },
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
+      {
+        test: /\.jsx?/,
+        loaders: [ 'babel-loader' ],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.json?/,
+        loaders: [ 'json-loader' ],
+      },
     ]
-  },
-  output: {
-    library: 'ReduxForm',
-    libraryTarget: 'umd'
-  },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env)
-    })
-  ]
-}
+  }
+};
 
-if (env === 'production') {
-  config.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        pure_getters: true,
-        unsafe: true,
-        unsafe_comps: true,
-        warnings: false
-      }
-    })
-  )
-  config.plugins.push(new webpack.optimize.DedupePlugin())
-}
-
-module.exports = config
+module.exports = config;
