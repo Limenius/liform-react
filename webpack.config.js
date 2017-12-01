@@ -10,8 +10,8 @@ var config = {
     "custom-field-validation": "./docs/pages/examples/custom-field-validation/index",
     "custom-themes": "./docs/pages/examples/custom-themes/index",
     "initial-values": "./docs/pages/examples/initial-values/index",
-    "nested": "./docs/pages/examples/nested/index",
     "refs": "./docs/pages/examples/refs/index",
+    "validation": "./docs/pages/examples/validation/index",
   },
   output: {
     filename: "[name]/bundle.js",
