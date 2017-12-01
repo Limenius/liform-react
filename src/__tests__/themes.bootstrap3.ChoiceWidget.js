@@ -1,64 +1,54 @@
-import expect from 'expect'
-import React from 'react'
-import Liform from '../'
-import { FormFrame } from './test-utils'
-import { shallow, mount, render } from 'enzyme'
+import expect from "expect";
+import React from "react";
+import Liform from "../";
+import { FormFrame } from "./test-utils";
+import { shallow, mount, render } from "enzyme";
 
-describe('ChoiceWidget', () => {
-    it('should render a form with a select', () => {
-        const schema = {
-            title: 'A schema',
-            properties: {
-                'choice': {
-                    'type': 'string',
-                    'enum': [
-                        'foo',
-                        'bar'
-                    ]
-                },
-            }
+describe("ChoiceWidget", () => {
+  it("should render a form with a select", () => {
+    const schema = {
+      title: "A schema",
+      properties: {
+        choice: {
+          type: "string",
+          enum: ["foo", "bar"]
         }
+      }
+    };
 
+    const Component = (
+      <FormFrame>
+        <Liform schema={schema} />
+      </FormFrame>
+    );
 
-        const Component = (
-            <FormFrame>
-                <Liform schema={schema} />
-            </FormFrame>
-        )
+    const wrapper = render(Component);
+    expect(wrapper.find("form").length).toEqual(1);
+    expect(wrapper.find("select").length).toEqual(1);
+    expect(wrapper.find("option").length).toEqual(3);
+  });
 
-        const wrapper = render(Component)
-        expect(wrapper.find('form').length).toEqual(1);
-        expect(wrapper.find('select').length).toEqual(1);
-        expect(wrapper.find('option').length).toEqual(3);
-
-    })
-
-    it('required renders no extra field', () => {
-        const schema = {
-            title: 'A schema',
-            properties: {
-                'choice': {
-                    'type': 'string',
-                    'enum': [
-                        'foo',
-                        'bar'
-                    ]
-                },
-            },
-            'required':['choice']
+  it("required renders no extra field", () => {
+    const schema = {
+      title: "A schema",
+      properties: {
+        choice: {
+          type: "string",
+          enum: ["foo", "bar"]
         }
+      },
+      required: ["choice"]
+    };
 
+    const Component = (
+      <FormFrame>
+        <Liform schema={schema} />
+      </FormFrame>
+    );
 
-        const Component = (
-            <FormFrame>
-                <Liform schema={schema} />
-            </FormFrame>
-        )
-
-        const wrapper = render(Component)
-        expect(wrapper.find('form').length).toEqual(1);
-        expect(wrapper.find('select').length).toEqual(1);
-        expect(wrapper.find('option').length).toEqual(2);
-
-    })
-})
+    const wrapper = render(Component);
+    expect(wrapper.find("form").length).toEqual(1);
+    expect(wrapper.find("select").length).toEqual(1);
+    expect(wrapper.find("option").length).toEqual(2);
+  });
+});

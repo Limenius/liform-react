@@ -1,11 +1,8 @@
-import React from 'react'
-import BaseInputWidget from './BaseInputWidget'
+import React from "react";
+import BaseInputWidget from "./BaseInputWidget";
 
-const PasswordWidget = (props) => {
-    return (
-        <BaseInputWidget type="password" {...props} />
-    )
+const PasswordWidget = props => {
+  return <BaseInputWidget type="password" {...props} />;
+};
 
-}
-
-export default PasswordWidget
+export default PasswordWidget;
