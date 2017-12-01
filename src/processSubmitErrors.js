@@ -26,7 +26,6 @@ const processSubmitErrors = (errors) => {
         errors = convertToReduxFormErrors(errors.errors)
         throw new SubmissionError(errors)  
     }
-    return {} // dont know why original processSubmitErrors return empty object, keep this to prevent any BC break
 }
 
 export default processSubmitErrors
