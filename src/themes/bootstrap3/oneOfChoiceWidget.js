@@ -49,7 +49,7 @@ class OneOfChoiceWidget extends Component {
         const widget = this;
         oneOf.forEach(function(item){
             if(ls.get(item.title)==null){
-                fetch(item.ref).then(response => response.json())
+                fetch(item.ref, { credentials: 'same-origin' }).then(response => response.json())
                     .then(schema => {
                         ls.set(item.title, schema)
                         widget.setItemCached(item.title, true)
