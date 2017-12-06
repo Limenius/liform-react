@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { Provider } from 'react-redux'
-import Liform from '../../../../src/'
+import Liform, { renderField, DefaultTheme } from '../../../../src/'
 
 const MyBaseForm = props => {
     const { schema, handleSubmit, theme, error, submitting } = props
