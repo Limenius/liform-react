@@ -34,7 +34,6 @@ describe("CompatibleDateTimeWidget", () => {
     );
     const wrapper = render(Component);
 
-    expect(wrapper.find("form").length).toEqual(1);
     expect(wrapper.find("select").length).toEqual(6);
   });
 });

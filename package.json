@@ -69,6 +69,11 @@
       "src/**/*.{js}"
     ],
     "testRegex": "src/__tests__/.*spec\\.jsx?$",
+    "collectCoverageFrom": [
+      "src/**/*.{js}",
+      "!**/node_modules/**",
+      "!src/__tests__/**"
+    ],
     "setupFiles": [
       "./src/__tests__/setup.js"
     ]
