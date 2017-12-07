@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { change } from "redux-form";
 import { connect } from "react-redux";
 import renderField from "../../renderField";
-import _ from "lodash";
+import { map as _map} from "lodash";
 
 class OneOfChoiceWidget extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class OneOfChoiceWidget extends Component {
           required={field.required}
           multiple={false}
         >
-          {_.map(options, (item, idx) => {
+          {_map(options, (item, idx) => {
             return (
               <option key={options.indexOf(item)} value={idx}>
                 {item.title || idx}

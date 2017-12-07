@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Field } from "redux-form";
-import _ from "lodash";
+import { zipObject as _zipObject, map as _map } from "lodash";
 
 const renderSelect = field => {
   const className = classNames([
@@ -12,7 +12,7 @@ const renderSelect = field => {
   const options = field.schema.enum;
   const optionNames = field.schema.enum_titles || options;
 
-  const selectOptions = _.zipObject(options, optionNames);
+  const selectOptions = _zipObject(options, optionNames);
   return (
     <div className={className}>
       <label className="control-label" htmlFor={"field-" + field.name}>
@@ -31,7 +31,7 @@ const renderSelect = field => {
               {field.placeholder}
             </option>
           )}
-        {_.map(selectOptions, (name, value) => {
+        {_map(selectOptions, (name, value) => {
           return (
             <option key={value} value={value}>
               {name}

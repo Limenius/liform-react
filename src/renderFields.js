@@ -1,4 +1,3 @@
-import _ from "lodash";
 import renderField from "./renderField";
 
 export const isRequired = (schema, fieldName) => {
@@ -22,7 +21,7 @@ const renderFields = (schema, theme, prefix = null, context = {}) => {
       return 0;
     }
   });
-  return _.map(props, item => {
+  return props.map(item => {
     const name = item.prop;
     const field = schema.properties[name];
     return renderField(

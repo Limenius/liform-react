@@ -1,5 +1,5 @@
 import { SubmissionError } from "redux-form";
-import _ from "lodash"; // added for empty check
+import { isEmpty as _isEmpty } from "lodash"; // added for empty check
 
 const convertToReduxFormErrors = obj => {
   let objectWithoutChildrenAndFalseErrors = {};
@@ -18,7 +18,7 @@ const convertToReduxFormErrors = obj => {
       } else {
         if (
           obj[name].hasOwnProperty("errors") &&
-          !_.isEmpty(obj[name]["errors"])
+          !_isEmpty(obj[name]["errors"])
         ) {
           // using lodash for empty error check, dont add them if empty
           objectWithoutChildrenAndFalseErrors[name] = obj[name]["errors"];

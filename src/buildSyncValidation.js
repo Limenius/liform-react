@@ -1,6 +1,6 @@
 import Ajv from "ajv";
 import merge from "deepmerge";
-import _ from "lodash";
+import { set as _set } from "lodash";
 
 const setError = (error, schema) => {
   // convert property accessor (.xxx[].xxx) notation to jsonPointers notation
@@ -20,7 +20,7 @@ const setError = (error, schema) => {
   }
 
   let errors = {};
-  _.set(errors, dataPath, errorToSet);
+  _set(errors, dataPath, errorToSet);
   return errors;
 };
 

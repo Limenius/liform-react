@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import renderField from "../../renderField";
 import { FieldArray } from "redux-form";
-import _ from "lodash";
+import { times as _times} from "lodash";
 import ChoiceWidget from "./ChoiceWidget";
 import classNames from "classnames";
 
@@ -17,7 +17,7 @@ const renderArrayFields = (
 ) => {
   const prefix = fieldName + ".";
   if (count) {
-    return _.times(count, idx => {
+    return _times(count, idx => {
       return (
         <div key={idx}>
           <div className="btn-group pull-right ">
