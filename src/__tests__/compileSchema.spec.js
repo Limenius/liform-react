@@ -18,7 +18,7 @@ describe("createLiform", () => {
 
   it("should resolve $refs", () => {
     const schemaCompiled = compileSchema(schema);
-    expect(schemaCompiled.properties.name.type).toExist();
+    expect(schemaCompiled.properties.name).toHaveProperty("type");
     expect(schemaCompiled.properties.name.type).toEqual("string");
   });
 });

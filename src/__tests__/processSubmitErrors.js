@@ -28,6 +28,6 @@ describe("processSubmitErrors", () => {
     };
     expect(function() {
       processSubmitErrors(response);
-    }).toNotThrow(SubmissionError);
+    }).not.toThrow(SubmissionError);
   });
 });

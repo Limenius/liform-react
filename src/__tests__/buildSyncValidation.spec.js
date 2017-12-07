@@ -17,8 +17,7 @@ describe("sync validation", () => {
     let values = {};
     let errors = buildSyncValidation(schema)(values);
     expect(errors)
-      .toBeA("object")
-      .toIncludeKey("name");
+      .toHaveProperty("name");
   });
   it("Errors on arrays are in _error key of the array", () => {
     let schema = {
@@ -37,11 +36,9 @@ describe("sync validation", () => {
     let values = {};
     let errors = buildSyncValidation(schema)(values);
     expect(errors)
-      .toBeA("object")
-      .toIncludeKey("columns");
+      .toHaveProperty("columns");
     expect(errors.columns)
-      .toBeA("object")
-      .toIncludeKey("_error");
+      .toHaveProperty("_error");
   });
   it("Works with array elements", () => {
     let schema = {
@@ -61,11 +58,9 @@ describe("sync validation", () => {
     let values = { columns: ["a"] };
     let errors = buildSyncValidation(schema)(values);
     expect(errors)
-      .toBeA("object")
-      .toIncludeKey("columns");
+      .toHaveProperty("columns");
     expect(errors.columns)
-      .toBeA("object")
-      .toIncludeKey("0");
+      .toHaveProperty("0");
   });
   it("Works with several errors", () => {
     let schema = {
@@ -89,13 +84,10 @@ describe("sync validation", () => {
     let values = { columns: ["a"], name: "aa" };
     let errors = buildSyncValidation(schema)(values);
     expect(errors)
-      .toBeA("object")
-      .toIncludeKey("columns");
+      .toHaveProperty("columns");
     expect(errors)
-      .toBeA("object")
-      .toIncludeKey("name");
+      .toHaveProperty("name");
     expect(errors.columns)
-      .toBeA("object")
-      .toIncludeKey("0");
+      .toHaveProperty("0");
   });
 });

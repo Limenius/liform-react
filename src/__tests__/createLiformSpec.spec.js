@@ -1,14 +1,16 @@
 import expect from "expect";
 import React from "react";
-import TestUtils from "react-addons-test-utils";
+import TestUtils from "react-dom/test-utils";
 import Liform, { DefaultTheme } from "../";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 import { shallow, mount, render } from "enzyme";
+
 import { FormFrame } from "./test-utils";
 import { Field } from "redux-form";
-import sinon from "sinon";
+
+
 
 describe("createLiform", () => {
   const schema = {
@@ -36,8 +38,7 @@ describe("createLiform", () => {
       </FormFrame>
     );
     const wrapper = render(Component);
-    //console.log(render( Component).html());
-    expect(wrapper.find("form").length).toEqual(1);
+    expect(wrapper.find("input").length).toEqual(1);
   });
 
   it("can pass a context", () => {
@@ -57,7 +58,7 @@ describe("createLiform", () => {
     };
     const myTheme = { ...DefaultTheme, string: CustomWidget };
 
-    let fun = sinon.spy();
+    const fun = jest.fn();
 
     const Component = (
       <FormFrame>
@@ -65,7 +66,7 @@ describe("createLiform", () => {
       </FormFrame>
     );
     const wrapper = render(Component);
-    sinon.assert.calledOnce(fun);
-    expect(wrapper.find("form").length).toEqual(1);
+    expect(fun).toHaveBeenCalled();
+    expect(wrapper.find("input").length).toEqual(1);
   });
 });

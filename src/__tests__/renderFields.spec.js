@@ -30,7 +30,7 @@ describe("renderFields", () => {
 
   it("creates element with a label", () => {
     const elems = renderFields(schema, DefaultTheme);
-    expect(elems[0].props).toIncludeKey("label");
+    expect(elems[0].props).toHaveProperty("label");
   });
   it("respects order of elements", () => {
     const schemaOrder = {
