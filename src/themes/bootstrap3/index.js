@@ -12,6 +12,7 @@ import SearchWidget from "./SearchWidget";
 import UrlWidget from "./UrlWidget";
 import ColorWidget from "./ColorWidget";
 import ChoiceWidget from "./ChoiceWidget";
+import ChoiceMultipleExpandedWidget from "./ChoiceMultipleExpandedWidget";
 import DateWidget from "./DateWidget";
 import TimeWidget from "./TimeWidget";
 import DateTimeWidget from "./DateTimeWidget";
@@ -36,6 +37,7 @@ export default {
   url: UrlWidget,
   color: ColorWidget,
   choice: ChoiceWidget,
+  "choice-multiple-expanded": ChoiceMultipleExpandedWidget,
   date: DateWidget,
   datetime: DateTimeWidget,
   time: TimeWidget,
