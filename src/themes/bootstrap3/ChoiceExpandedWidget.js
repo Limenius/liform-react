@@ -8,24 +8,13 @@ const zipObject = (props, values) =>
     {}
   );
 
-const changeValue = (checked, item, onChange, currentValue = []) => {
-  if (checked) {
-    if (currentValue.indexOf(checked) === -1) {
-      return onChange([...currentValue, item]);
-    }
-  } else {
-    return onChange(currentValue.filter(items => it === item));
-  }
-  return onChange(currentValue);
-};
-
 const renderChoice = field => {
   const className = classNames([
     "form-group",
     { "has-error": field.meta.touched && field.meta.error }
   ]);
-  const options = field.schema.items.enum;
-  const optionNames = field.schema.items.enum_titles || options;
+  const options = field.schema.enum;
+  const optionNames = field.schema.enum_titles || options;
 
   const selectOptions = zipObject(options, optionNames);
   return (
@@ -34,20 +23,14 @@ const renderChoice = field => {
         {field.label}
       </label>
       {Object.entries(selectOptions).map(([value, name]) => (
-        <div className="checkbox" key={value}>
+        <div className="radio" key={value}>
           <label>
             <input
-              type="checkbox"
+              type="radio"
+              name={field.input.name}
               value={value}
-              checked={field.input.value.indexOf(value) !== -1}
-              onChange={e =>
-                changeValue(
-                  e.target.checked,
-                  value,
-                  field.input.onChange,
-                  field.input.value
-                )
-              }
+              checked={field.input.value === value}
+              onChange={e => field.input.onChange(value)}
             />
             {name}
           </label>
@@ -65,7 +48,7 @@ const renderChoice = field => {
   );
 };
 
-const ChoiceMultipleExpandedWidget = props => {
+const ChoiceExpandedWidget = props => {
   return (
     <Field
       component={renderChoice}
@@ -81,4 +64,4 @@ const ChoiceMultipleExpandedWidget = props => {
   );
 };
 
-export default ChoiceMultipleExpandedWidget;
+export default ChoiceExpandedWidget;
