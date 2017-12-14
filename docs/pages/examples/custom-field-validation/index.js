@@ -4,7 +4,7 @@ import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer, Field } from 'redux-form'
 import { Provider } from 'react-redux'
 import Liform, { DefaultTheme } from '../../../../src/'
-import classNames from "classNames"
+import classNames from "classnames"
 
 const RenderPassword = field => {
     const className = classNames([
