@@ -8,10 +8,19 @@ import processSubmitErrors from "./processSubmitErrors";
 import buildSyncValidation from "./buildSyncValidation";
 import { setError } from "./buildSyncValidation";
 import compileSchema from "./compileSchema";
+import styled from 'styled-components'
+const Div = styled.div`
+  margin: 40px;
+  border: 5px outset pink;
+  &:hover {
+   background-color: yellow;
+ }
+`;
 
 const BaseForm = props => {
   const { schema, handleSubmit, theme, error, submitting, context } = props;
   return (
+    <Div>
     <form onSubmit={handleSubmit}>
       {renderField(schema, null, theme || DefaultTheme, "", context)}
       <div>{error && <strong>{error}</strong>}</div>
@@ -19,6 +28,7 @@ const BaseForm = props => {
         Submit
       </button>
     </form>
+    </Div>
   );
 };
 
