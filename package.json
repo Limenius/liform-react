@@ -5,6 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "build": "npm run build:lib",
+    "dev": "webpack-dev-server --content-base / --open --colors --progress",
     "build:lib": "babel src --out-dir lib",
     "lint": "eslint src",
     "test": "jest",

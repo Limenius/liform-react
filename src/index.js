@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DefaultTheme from "./themes/bootstrap3";
 import { reduxForm } from "redux-form";
@@ -17,19 +17,104 @@ const Div = styled.div`
  }
 `;
 
-const BaseForm = props => {
-  const { schema, handleSubmit, theme, error, submitting, context } = props;
-  return (
-    <Div>
-    <form onSubmit={handleSubmit}>
-      {renderField(schema, null, theme || DefaultTheme, "", context)}
+const Button = props => {
+  const {tabClick, tabNum} = props
+  return(
+    <button id={tabNum} onClick={tabClick}>A Button</button>
+  )
+}
+
+// const Tabs = props => {
+//   const {schema} = props;
+//   let tabs=[];
+//     for (let i = 0; i < schema.tabs; i++) {
+//       tabs.push(<Button key={i}/>)
+//       console.log(tabs)
+//     }
+    
+//   return(<Tabs>{tabs}</Tabs>)
+// }
+
+
+
+class BaseForm extends  Component {
+  constructor(props){
+    super(props)
+    // this.state = {
+    //   tab: 0
+    // }
+    this.tabClick = this.tabClick.bind(this)
+    
+  }
+
+  state= {
+    tab:0
+  }
+
+  
+
+  tabClick = (e) => {
+    this.setState({tab: e.target.id}, () => {
+      console.log(this.state.tab)
+    })
+  } 
+
+
+
+  
+
+  render() {
+    const { schema, handleSubmit, theme, error, submitting, context } = this.props;
+
+
+
+    
+
+  if (schema.tabs) {
+    let tabs=[];
+    for (let i = 0; i < schema.tabs; i++) {
+      tabs.push(<Button key={i} tabNum={i} tabClick={this.tabClick}/>)
+      
+    }
+   
+    
+    return(
+      <Div>
+        <h1>Hello!</h1>
+        <div>{tabs}</div>
+      </Div>)
+  } else {
+    return(
+      <Div>
+     <form onSubmit={handleSubmit}>
+     {renderField(schema, null, theme || DefaultTheme, "", context)}
       <div>{error && <strong>{error}</strong>}</div>
-      <button className="btn btn-primary" type="submit" disabled={submitting}>
-        Submit
-      </button>
+      <button className="btn btn-primary" type="submit" disabled={submitting} onClick={this.buttonClick}>
+       Submit
+       </button>
     </form>
-    </Div>
-  );
+     </Div>
+    )
+  }
+  // return (
+  //   {
+  //     if (schema.tabs){
+  //       <Div><h1>Hello World!</h1></Div>
+  //     }  else {
+  //       <Div>
+  //   <form onSubmit={handleSubmit}>
+  //     {renderField(schema, null, theme || DefaultTheme, "", context)}
+  //     <div>{error && <strong>{error}</strong>}</div>
+  //     <button className="btn btn-primary" type="submit" disabled={submitting}>
+  //       Submit
+  //     </button>
+  //   </form>
+  //   </Div>
+  //     }
+  //   }
+    
+  // );
+}
 };
 
 const Liform = props => {

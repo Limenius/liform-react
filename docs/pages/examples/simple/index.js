@@ -9,7 +9,7 @@ const Demo = () => {
     const reducer = combineReducers({ form: formReducer })
     const store = createStore(reducer)
     const schema = {
-        'numberOfTabs': 3,
+        'tabs': 3,
         'type':'object',
         'properties': {
             'title': { 'type':'string', 'title': 'Title', "tab": 1 },
