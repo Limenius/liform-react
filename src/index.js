@@ -9,114 +9,138 @@ import buildSyncValidation from "./buildSyncValidation";
 import { setError } from "./buildSyncValidation";
 import compileSchema from "./compileSchema";
 
-
+//Creates the 'tabs'.  Sets the id, onClick function, and tabName
 const Button = props => {
-  const {tabClick, tabNum, tabName} = props
-  return(
-    <button id={tabNum} onClick={tabClick}>{tabName}</button>
-  )
-}
+  const { tabClick, tabNum, tabName } = props;
+  return (
+    <button id={tabNum} onClick={tabClick}>
+      {tabName}
+    </button>
+  );
+};
 
-
-class BaseForm extends  Component {
-  constructor(props){
-    super(props)
+//Changed BaseForm from a stateless functional component to a stateful class component
+class BaseForm extends Component {
+  constructor(props) {
+    super(props);
     // this.state = {
     //   tab: 0
     // }
-    this.tabClick = this.tabClick.bind(this)
-    
+    this.tabClick = this.tabClick.bind(this);
   }
 
-  state= {
-    tab:0
-  }
+  //The state 'tab' determines which form is being displayed.
+  state = {
+    tab: 0
+  };
 
-
-  tabClick = (e) => {
-    this.setState({tab: parseInt(e.target.id)}, () => {
-      console.log(this.state.tab)
-    })
-  } 
-
+  //Function that changes the tab state to display the tab that was clicked on
+  tabClick = e => {
+    this.setState({ tab: parseInt(e.target.id) });
+  };
 
   render() {
-    const { schema, handleSubmit, theme, error, submitting, context } = this.props;
+    const {
+      schema,
+      handleSubmit,
+      theme,
+      error,
+      submitting,
+      context
+    } = this.props;
 
-
-    function Schema () {
-      this.type = 'object'
-      this.properties = {}
+    //Constructor function to create Schemas for each tab.
+    function Schema() {
+      this.type = "object";
+      this.properties = {};
     }
-    
 
-  if (schema.tabs) {
-    let tabs=[];
-    let forms=[];
-    for (let i = 0; i < schema.tabs; i++) {
-      tabs.push(<Button tabName={schema.tabNames[i]} key={i} tabNum={i} tabClick={this.tabClick}/>)
-      
-      forms.push(new Schema())
+    //If the schema has tabs, the following code will execute.
+    if (schema.tabs) {
+      //array to hold the tab buttons
+      let tabs = [];
+      //array to hold the form schemas
+      let forms = [];
+
+      //Loop to create the tabs and schemas
+      for (let i = 0; i < schema.tabs; i++) {
+        tabs.push(
+          <Button
+            tabName={schema.tabNames[i]}
+            key={i}
+            tabNum={i}
+            tabClick={this.tabClick}
+          />
+        );
+
+        forms.push(new Schema());
+      }
+
+      //Breaks schema.properties into an array of arrays that contain key and value pairs
+      let propsKeysAndVals = Object.entries(schema.properties);
+
+      //Loop for adding descendants to properties
+      for (let i = 0; i < propsKeysAndVals.length; i++) {
+        //The index for the corresponding Schema in the forms array
+        let formsIndex = propsKeysAndVals[i][1].tab - 1;
+        //Setting variables to hold the key value pairs
+        let key = propsKeysAndVals[i][0];
+        let vals = propsKeysAndVals[i][1];
+        //Sets the new key and value pair on properties
+        forms[formsIndex].properties[key] = vals;
+      }
+
+      //Map the formsArray to create each form
+      let formsArray = forms.map(schema => {
+        return (
+          <form onSubmit={handleSubmit}>
+            {renderField(schema, null, theme || DefaultTheme, "", context)}
+            <div>{error && <strong>{error}</strong>}</div>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={submitting}
+              onClick={this.buttonClick}
+            >
+              Submit
+            </button>
+          </form>
+        );
+      });
+
+      //Function to conditionally render the appopriate form based on the tab state.
+      let form = tabs => {
+        for (let i = 0; i < tabs; i++) {
+          if (this.state.tab === i) {
+            return formsArray[i];
+          }
+        }
+      };
+
+      return (
+        <div>
+          <div>{tabs}</div>
+          <div>{form(schema.tabs)}</div>
+        </div>
+      );
+    } else {
+      return (
+        <form onSubmit={handleSubmit}>
+          {renderField(schema, null, theme || DefaultTheme, "", context)}
+          <div>{error && <strong>{error}</strong>}</div>
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={submitting}
+            onClick={this.buttonClick}
+          >
+            Submit
+          </button>
+        </form>
+      );
     }
-    console.log(forms)
-    console.log(forms[1])
-
-    let propsKeysAndVals = Object.entries(schema.properties)
-    console.log(propsKeysAndVals)
-    for (let i=0; i < propsKeysAndVals.length; i++) {
-      console.log("inside for: propsKeysandVals")
-      console.log(propsKeysAndVals[i][1].tab)
-      let formIndex = propsKeysAndVals[i][1].tab - 1;
-      console.log(formIndex)
-      let key = propsKeysAndVals[i][0] 
-      let vals = propsKeysAndVals[i][1]
-      //forms[formIndex].push(propsKeysAndVals[i])
-      forms[formIndex].properties[key] = vals
-    }
-    console.log(forms)
-    let formsArray = forms.map( schema => {
-      return(
-     <form onSubmit={handleSubmit}>
-     {renderField(schema, null, theme || DefaultTheme, "", context)}
-      <div>{error && <strong>{error}</strong>}</div>
-      <button className="btn btn-primary" type="submit" disabled={submitting} onClick={this.buttonClick}>
-       Submit
-       </button>
-    </form>
-     )
-    })
-   
-   let form = (tabs) => {
-     for (let i = 0; i < tabs; i++ ) {
-       if (this.state.tab === i) {
-         return formsArray[i]
-       }
-     }
-
-   } 
-    
-    return(
-      <div>
-        <div>{tabs}</div>
-        <div>{form(schema.tabs)}</div>
-        
-      </div>)
-  } else {
-    return(
-     
-     <form onSubmit={handleSubmit}>
-     {renderField(schema, null, theme || DefaultTheme, "", context)}
-      <div>{error && <strong>{error}</strong>}</div>
-      <button className="btn btn-primary" type="submit" disabled={submitting} onClick={this.buttonClick}>
-       Submit
-       </button>
-    </form>
-     
-    )
   }
-
 }
-};
 
 const Liform = props => {
   props.schema.showLabel = false;
