@@ -51,10 +51,9 @@ class BaseForm extends  Component {
     tab:0
   }
 
-  
 
   tabClick = (e) => {
-    this.setState({tab: e.target.id}, () => {
+    this.setState({tab: parseInt(e.target.id)}, () => {
       console.log(this.state.tab)
     })
   } 
@@ -67,21 +66,63 @@ class BaseForm extends  Component {
     const { schema, handleSubmit, theme, error, submitting, context } = this.props;
 
 
-
+    function Schema () {
+      this.type = 'object'
+      this.properties = {}
+    }
     
 
   if (schema.tabs) {
     let tabs=[];
+    let forms=[];
     for (let i = 0; i < schema.tabs; i++) {
       tabs.push(<Button key={i} tabNum={i} tabClick={this.tabClick}/>)
       
+      forms.push(new Schema())
     }
+    console.log(forms)
+    console.log(forms[1])
+
+    let propsKeysAndVals = Object.entries(schema.properties)
+    console.log(propsKeysAndVals)
+    for (let i=0; i < propsKeysAndVals.length; i++) {
+      console.log("inside for: propsKeysandVals")
+      console.log(propsKeysAndVals[i][1].tab)
+      let formIndex = propsKeysAndVals[i][1].tab - 1;
+      console.log(formIndex)
+      let key = propsKeysAndVals[i][0] 
+      let vals = propsKeysAndVals[i][1]
+      //forms[formIndex].push(propsKeysAndVals[i])
+      forms[formIndex].properties[key] = vals
+    }
+    console.log(forms)
+    let formsArray = forms.map( schema => {
+      return(<Div>
+     <form onSubmit={handleSubmit}>
+     {renderField(schema, null, theme || DefaultTheme, "", context)}
+      <div>{error && <strong>{error}</strong>}</div>
+      <button className="btn btn-primary" type="submit" disabled={submitting} onClick={this.buttonClick}>
+       Submit
+       </button>
+    </form>
+     </Div>)
+    })
    
+   let form = (tabs) => {
+     for (let i = 0; i < tabs; i++ ) {
+       if (this.state.tab === i) {
+         return formsArray[i]
+       }
+     }
+
+   } 
     
     return(
       <Div>
         <h1>Hello!</h1>
         <div>{tabs}</div>
+        <div>{form(schema.tabs)}</div>
+        
       </Div>)
   } else {
     return(

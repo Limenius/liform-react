@@ -15,7 +15,7 @@ const Demo = () => {
             'title': { 'type':'string', 'title': 'Title', "tab": 1 },
             'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type', "tab": 2 },
             'color': { 'type':'string', 'widget': 'color', 'title': 'In which color', "tab": 3 },
-            'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
+            'checkbox': { 'type':'boolean', 'title': 'I agree with your terms', "tab": 1 }
         }
     }
     return (
