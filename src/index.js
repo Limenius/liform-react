@@ -8,33 +8,14 @@ import processSubmitErrors from "./processSubmitErrors";
 import buildSyncValidation from "./buildSyncValidation";
 import { setError } from "./buildSyncValidation";
 import compileSchema from "./compileSchema";
-import styled from 'styled-components'
-const Div = styled.div`
-  margin: 40px;
-  border: 5px outset pink;
-  &:hover {
-   background-color: yellow;
- }
-`;
+
 
 const Button = props => {
-  const {tabClick, tabNum} = props
+  const {tabClick, tabNum, tabName} = props
   return(
-    <button id={tabNum} onClick={tabClick}>A Button</button>
+    <button id={tabNum} onClick={tabClick}>{tabName}</button>
   )
 }
-
-// const Tabs = props => {
-//   const {schema} = props;
-//   let tabs=[];
-//     for (let i = 0; i < schema.tabs; i++) {
-//       tabs.push(<Button key={i}/>)
-//       console.log(tabs)
-//     }
-    
-//   return(<Tabs>{tabs}</Tabs>)
-// }
-
 
 
 class BaseForm extends  Component {
@@ -59,9 +40,6 @@ class BaseForm extends  Component {
   } 
 
 
-
-  
-
   render() {
     const { schema, handleSubmit, theme, error, submitting, context } = this.props;
 
@@ -76,7 +54,7 @@ class BaseForm extends  Component {
     let tabs=[];
     let forms=[];
     for (let i = 0; i < schema.tabs; i++) {
-      tabs.push(<Button key={i} tabNum={i} tabClick={this.tabClick}/>)
+      tabs.push(<Button tabName={schema.tabNames[i]} key={i} tabNum={i} tabClick={this.tabClick}/>)
       
       forms.push(new Schema())
     }
@@ -97,7 +75,7 @@ class BaseForm extends  Component {
     }
     console.log(forms)
     let formsArray = forms.map( schema => {
-      return(<Div>
+      return(
      <form onSubmit={handleSubmit}>
      {renderField(schema, null, theme || DefaultTheme, "", context)}
       <div>{error && <strong>{error}</strong>}</div>
@@ -105,7 +83,7 @@ class BaseForm extends  Component {
        Submit
        </button>
     </form>
-     </Div>)
+     )
     })
    
    let form = (tabs) => {
@@ -118,15 +96,14 @@ class BaseForm extends  Component {
    } 
     
     return(
-      <Div>
-        <h1>Hello!</h1>
+      <div>
         <div>{tabs}</div>
         <div>{form(schema.tabs)}</div>
         
-      </Div>)
+      </div>)
   } else {
     return(
-      <Div>
+     
      <form onSubmit={handleSubmit}>
      {renderField(schema, null, theme || DefaultTheme, "", context)}
       <div>{error && <strong>{error}</strong>}</div>
@@ -134,27 +111,10 @@ class BaseForm extends  Component {
        Submit
        </button>
     </form>
-     </Div>
+     
     )
   }
-  // return (
-  //   {
-  //     if (schema.tabs){
-  //       <Div><h1>Hello World!</h1></Div>
-  //     }  else {
-  //       <Div>
-  //   <form onSubmit={handleSubmit}>
-  //     {renderField(schema, null, theme || DefaultTheme, "", context)}
-  //     <div>{error && <strong>{error}</strong>}</div>
-  //     <button className="btn btn-primary" type="submit" disabled={submitting}>
-  //       Submit
-  //     </button>
-  //   </form>
-  //   </Div>
-  //     }
-  //   }
-    
-  // );
+
 }
 };
 

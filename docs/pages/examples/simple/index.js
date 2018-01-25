@@ -10,6 +10,7 @@ const Demo = () => {
     const store = createStore(reducer)
     const schema = {
         'tabs': 3,
+        'tabNames': ["Title", "Type", "Color"],
         'type':'object',
         'properties': {
             'title': { 'type':'string', 'title': 'Title', "tab": 1 },
