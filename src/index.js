@@ -126,8 +126,8 @@ class BaseForm extends Component {
 
       return (
         <div>
-          <h1>{schema.tabNames[header(schema.tabs)]}</h1>
           <div>{tabs}</div>
+          <h1>{schema.tabNames[header(schema.tabs)]}</h1>
           <div>{form(schema.tabs)}</div>
         </div>
       );
