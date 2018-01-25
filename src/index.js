@@ -23,9 +23,7 @@ const Button = props => {
 class BaseForm extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   tab: 0
-    // }
+
     this.tabClick = this.tabClick.bind(this);
   }
 
