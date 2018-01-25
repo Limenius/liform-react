@@ -115,8 +115,18 @@ class BaseForm extends Component {
         }
       };
 
+      //Function to conditionally render the appopriate header based on the tab state.
+      let header = tabs => {
+        for (let i = 0; i < tabs; i++) {
+          if (this.state.tab === i) {
+            return i;
+          }
+        }
+      };
+
       return (
         <div>
+          <h1>{schema.tabNames[header(schema.tabs)]}</h1>
           <div>{tabs}</div>
           <div>{form(schema.tabs)}</div>
         </div>
