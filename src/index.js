@@ -32,9 +32,9 @@ class BaseForm extends Component {
     tab: 0
   };
 
-  //Function that changes the tab state to display the tab that was clicked on
-  tabClick = e => {
-    this.setState({ tab: parseInt(e.target.id) });
+  //Function that grabs the id of the tab that was clicke dand changes the tab state
+  tabClick = ele => {
+    this.setState({ tab: parseInt(ele.target.id) });
   };
 
   render() {
@@ -61,7 +61,7 @@ class BaseForm extends Component {
       let forms = [];
 
       //Loop to create the tabs and schemas
-      for (let i = 0; i < schema.tabs; i++) {
+      for (let i = 0, j = schema.tabs; i < j; i+=1) {
         tabs.push(
           <Button
             tabName={schema.tabNames[i]}
@@ -78,7 +78,7 @@ class BaseForm extends Component {
       let propsKeysAndVals = Object.entries(schema.properties);
 
       //Loop for adding descendants to properties
-      for (let i = 0; i < propsKeysAndVals.length; i++) {
+      for (let i = 0, j = propsKeysAndVals.length; i < j; i+=1) {
         //The index for the corresponding Schema in the forms array
         let formsIndex = propsKeysAndVals[i][1].tab - 1;
         //Setting variables to hold the key value pairs
@@ -108,7 +108,7 @@ class BaseForm extends Component {
 
       //Function to conditionally render the appopriate form based on the tab state.
       let form = tabs => {
-        for (let i = 0; i < tabs; i++) {
+        for (let i = 0, j = tabs; i < j; i+=1) {
           if (this.state.tab === i) {
             return formsArray[i];
           }
@@ -117,7 +117,7 @@ class BaseForm extends Component {
 
       //Function to conditionally render the appopriate header based on the tab state.
       let header = tabs => {
-        for (let i = 0; i < tabs; i++) {
+        for (let i = 0, j = tabs; i < j; i++) {
           if (this.state.tab === i) {
             return i;
           }
@@ -149,6 +149,15 @@ class BaseForm extends Component {
     }
   }
 }
+
+// PropTypes to  check tabs and tabNames are the correct data type.
+BaseForm.propTypes = {
+  schema: PropTypes.shape({
+    tabs: PropTypes.number,
+    tabNames: PropTypes.arrayOf(PropTypes.string),
+  })
+}
+
 
 const Liform = props => {
   props.schema.showLabel = false;
