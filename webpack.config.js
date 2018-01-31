@@ -11,6 +11,7 @@ var config = {
     "custom-themes": "./docs/pages/examples/custom-themes/index",
     "initial-values": "./docs/pages/examples/initial-values/index",
     "refs": "./docs/pages/examples/refs/index",
+    "tabs": "./docs/pages/examples/tabs/index",
     "validation": "./docs/pages/examples/validation/index",
   },
   output: {

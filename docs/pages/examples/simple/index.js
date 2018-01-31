@@ -9,12 +9,14 @@ const Demo = () => {
     const reducer = combineReducers({ form: formReducer })
     const store = createStore(reducer)
     const schema = {
+        'tabs': 3,
+        'tabNames': ["Title", "Type", "Color"],
         'type':'object',
         'properties': {
-            'title': { 'type':'string', 'title': 'Title' },
-            'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type' },
-            'color': { 'type':'string', 'widget': 'color', 'title': 'In which color' },
-            'checkbox': { 'type':'boolean', 'title': 'I agree with your terms' }
+            'title': { 'type':'string', 'title': 'Title', "tab": 1 },
+            'type': { 'enum':[ 'One','Two' ], 'type':'string', 'title': 'Select a type', "tab": 2 },
+            'color': { 'type':'string', 'widget': 'color', 'title': 'In which color', "tab": 3 },
+            'checkbox': { 'type':'boolean', 'title': 'I agree with your terms', "tab": 1 }
         }
     }
     return (
