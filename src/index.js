@@ -9,7 +9,7 @@ import buildSyncValidation from "./buildSyncValidation";
 import { setError } from "./buildSyncValidation";
 import compileSchema from "./compileSchema";
 
-//Creates the 'tabs'.  Sets the id, onClick function, and tabName
+// Creates the 'tabs'.  Sets the id, onClick function, and tabName
 const Button = props => {
   const { tabClick, tabNum, tabName } = props;
   return (
@@ -19,7 +19,7 @@ const Button = props => {
   );
 };
 
-//Changed BaseForm from a stateless functional component to a stateful class component
+// Changed BaseForm from a stateless functional component to a stateful class component
 class BaseForm extends Component {
   constructor(props) {
     super(props);
@@ -27,12 +27,12 @@ class BaseForm extends Component {
     this.tabClick = this.tabClick.bind(this);
   }
 
-  //The state 'tab' determines which form is being displayed.
+  // The state 'tab' determines which form is being displayed.
   state = {
     tab: 0
   };
 
-  //Function that grabs the id of the tab that was clicke dand changes the tab state
+  // Function that grabs the id of the tab that was clicke dand changes the tab state
   tabClick = ele => {
     this.setState({ tab: parseInt(ele.target.id) });
   };
@@ -47,20 +47,20 @@ class BaseForm extends Component {
       context
     } = this.props;
 
-    //Constructor function to create Schemas for each tab.
+    // Constructor function to create Schemas for each tab.
     function Schema() {
       this.type = "object";
       this.properties = {};
     }
 
-    //If the schema has tabs, the following code will execute.
+    // If the schema has tabs, the following code will execute.
     if (schema.tabs) {
-      //array to hold the tab buttons
+      // array to hold the tab buttons
       let tabs = [];
-      //array to hold the form schemas
+      // array to hold the form schemas
       let forms = [];
 
-      //Loop to create the tabs and schemas
+      // Loop to create the tabs and schemas
       for (let i = 0, j = schema.tabs; i < j; i+=1) {
         tabs.push(
           <Button
@@ -74,21 +74,21 @@ class BaseForm extends Component {
         forms.push(new Schema());
       }
 
-      //Breaks schema.properties into an array of arrays that contain key and value pairs
+      // Breaks schema.properties into an array of arrays that contain key and value pairs
       let propsKeysAndVals = Object.entries(schema.properties);
 
-      //Loop for adding descendants to properties
+      // Loop for adding descendants to properties
       for (let i = 0, j = propsKeysAndVals.length; i < j; i+=1) {
-        //The index for the corresponding Schema in the forms array
+        // The index for the corresponding Schema in the forms array
         let formsIndex = propsKeysAndVals[i][1].tab - 1;
-        //Setting variables to hold the key value pairs
+        // Setting variables to hold the key value pairs
         let key = propsKeysAndVals[i][0];
         let vals = propsKeysAndVals[i][1];
-        //Sets the new key and value pair on properties
+        // Sets the new key and value pair on properties
         forms[formsIndex].properties[key] = vals;
       }
 
-      //Map the formsArray to create each form
+      // Map the forms array  to create formsArray, an array that holds each form.
       let formsArray = forms.map(schema => {
         return (
           <form onSubmit={handleSubmit}>
@@ -106,7 +106,7 @@ class BaseForm extends Component {
         );
       });
 
-      //Function to conditionally render the appopriate form based on the tab state.
+      // Function to conditionally render the appopriate form based on the tab state.
       let form = tabs => {
         for (let i = 0, j = tabs; i < j; i+=1) {
           if (this.state.tab === i) {
@@ -115,7 +115,7 @@ class BaseForm extends Component {
         }
       };
 
-      //Function to conditionally render the appopriate header based on the tab state.
+      // Function to conditionally render the appopriate header based on the tab state.
       let header = tabs => {
         for (let i = 0, j = tabs; i < j; i++) {
           if (this.state.tab === i) {
