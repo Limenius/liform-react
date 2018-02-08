@@ -1,3 +1,4 @@
+/* eslint-disable prettier */
 import React from "react";
 import PropTypes from "prop-types";
 import DefaultTheme from "./themes/bootstrap3";
@@ -10,13 +11,26 @@ import { setError } from "./buildSyncValidation";
 import compileSchema from "./compileSchema";
 
 const BaseForm = props => {
-  const { schema, handleSubmit, theme, error, submitting, context } = props;
+  const {
+    schema,
+    handleSubmit,
+    theme,
+    error,
+    submitting,
+    context,
+    submitClass,
+    submitValue
+  } = props;
   return (
     <form onSubmit={handleSubmit}>
       {renderField(schema, null, theme || DefaultTheme, "", context)}
       <div>{error && <strong>{error}</strong>}</div>
-      <button className="btn btn-primary" type="submit" disabled={submitting}>
-        Submit
+      <button
+        className={submitClass || "btn btn-primary"}
+        type="submit"
+        disabled={submitting}
+      >
+        {submitValue || "Submit"}
       </button>
     </form>
   );
