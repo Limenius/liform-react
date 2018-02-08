@@ -10,8 +10,6 @@ import { shallow, mount, render } from "enzyme";
 import { FormFrame } from "./test-utils";
 import { Field } from "redux-form";
 
-
-
 describe("createLiform", () => {
   const schema = {
     title: "A schema",
@@ -68,5 +66,15 @@ describe("createLiform", () => {
     const wrapper = render(Component);
     expect(fun).toHaveBeenCalled();
     expect(wrapper.find("input").length).toEqual(1);
+  });
+
+  it("can render a form with custom submit button", () => {
+    const Component = (
+      <FormFrame>
+        <Liform schema={schema} submitClass={"custom_button_class"} />
+      </FormFrame>
+    );
+    const wrapper = render(Component);
+    expect(wrapper.find("button.custom_button_class").length).toEqual(1);
   });
 });
