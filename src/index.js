@@ -10,14 +10,17 @@ import { setError } from "./buildSyncValidation";
 import compileSchema from "./compileSchema";
 
 const BaseForm = props => {
-  const { schema, handleSubmit, theme, error, submitting, context } = props;
+  const { schema, handleSubmit, theme, error, submitting, context, children } = props;
   return (
     <form onSubmit={handleSubmit}>
       {renderField(schema, null, theme || DefaultTheme, "", context)}
       <div>{error && <strong>{error}</strong>}</div>
-      <button className="btn btn-primary" type="submit" disabled={submitting}>
-        Submit
-      </button>
+      {children ? 
+        children : 
+        <button className="btn btn-primary" type="submit" disabled={submitting}>
+          Submit
+        </button>
+      }
     </form>
   );
 };
