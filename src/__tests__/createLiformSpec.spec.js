@@ -22,6 +22,30 @@ describe("createLiform", () => {
     }
   };
 
+  it("should render the custom button", () => {
+    const Component = (
+      <FormFrame>
+        <Liform schema={schema}>
+          <button type="submit" className="btn, btn-primary" id="customBtn" />
+        </Liform>
+      </FormFrame>
+    );
+
+    const wrapper = render(Component);
+    expect(wrapper.find("#customBtn").length).toEqual(1);
+  });
+
+  it("should render the default button without custom", () => {
+    const Component = (
+      <FormFrame>
+        <Liform schema={schema} />
+      </FormFrame>
+    );
+
+    const wrapper = render(Component);
+    expect(wrapper.find("button.btn").length).toEqual(1);
+  });
+
   //const schemaWrong = {
   //    title: 'A schema',
   //    properties: {
