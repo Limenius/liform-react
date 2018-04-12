@@ -25,5 +25,7 @@ describe("TextareaWidget", () => {
     const wrapper = render(Component);
 
     expect(wrapper.find("textarea").length).toEqual(1);
+    expect(wrapper.find("textarea").prop('id')).toEqual('field-field');
+    expect(wrapper.find("label").prop('for')).toEqual('field-field');
   });
 });
