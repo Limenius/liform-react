@@ -32,16 +32,38 @@ const renderInput = field => {
   );
 };
 
+const inputFormatLength = "YYYY-MM-DDTHH:mm:ss".length; 
+
+const pad = (n) => {
+  return n < 10 ? '0' + n : n;
+}
+
+const timeZoneOffset = () =>{
+  const now = new Date();
+  const tz = now.getTimezoneOffset();
+  const sign = tz > 0 ? "-" : "+";
+  const hours = pad(Math.floor(Math.abs(tz) / 60));
+  const minutes = pad(Math.abs(tz) % 60);
+
+  return `${sign}${hours}:${minutes}`;
+}
 
 const toDateTimeFormat = (datetime) => {
-  return `${datetime}Z`;
+  //only change when fully entered
+  if(datetime.length < inputFormatLength){
+    return datetime;
+  }
+  return `${datetime}${timeZoneOffset()}`;
 }
+
+
 const toInputFormat = (datetime) => {
   if (!datetime) {
     return "";
   }
-  if (datetime.endsWith("Z")) {
-    return datetime.substring(0, datetime.length - 1);
+  //
+  if (datetime.length > inputFormatLength) {
+    return datetime.substring(0, inputFormatLength);
   }
   return datetime;
 }
