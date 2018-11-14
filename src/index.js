@@ -41,6 +41,17 @@ const Liform = props => {
   );
 };
 
+const EmbeddedLiform = props => {
+  const schema = compileSchema(props.schema);
+
+  return renderField(schema, 
+    props.fieldName || null, 
+    props.theme || DefaultTheme,
+    props.prefix || "");
+  
+}
+
+
 Liform.propTypes = {
   schema: PropTypes.object,
   onSubmit: PropTypes.func,
@@ -59,5 +70,6 @@ export {
   renderField,
   processSubmitErrors,
   DefaultTheme,
-  setError
+  setError,
+  EmbeddedLiform
 };
