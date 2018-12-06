@@ -10,13 +10,13 @@ const renderInput = field => {
   ]);
   return (
     <div className={className}>
-      <label className="control-label" htmlFor={"field-" + field.name}>
+      <label className="control-label" htmlFor={"field-" + field.input.name}>
         {field.label}
       </label>
       <textarea
         {...field.input}
         className="form-control"
-        id={"field-" + field.fieldName}
+        id={"field-" + field.input.name}
         required={field.required}
         placeholder={field.placeholder}
       />
