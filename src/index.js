@@ -59,5 +59,7 @@ export {
   renderField,
   processSubmitErrors,
   DefaultTheme,
-  setError
+  setError,
+  buildSyncValidation,
+  compileSchema,
 };
