@@ -71,5 +71,7 @@ export {
   processSubmitErrors,
   DefaultTheme,
   setError,
-  EmbeddedLiform
+  EmbeddedLiform,
+  buildSyncValidation,
+  compileSchema
 };
