@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { change } from "redux-form";
 import { connect } from "react-redux";
-import renderField from "../../renderField";
+import renderField from "../../../renderField";
 import { map as _map} from "lodash";
 
 class OneOfChoiceWidget extends Component {

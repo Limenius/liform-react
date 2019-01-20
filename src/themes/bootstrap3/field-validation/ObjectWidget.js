@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import renderFields from "../../renderFields";
+import renderFields from "../../../renderFields";
 
 const Widget = props => {
   return (

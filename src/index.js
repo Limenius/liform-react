@@ -1,19 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DefaultTheme from "./themes/bootstrap3";
+import DefaultTheme from "./themes/bootstrap3/sync-validation";
+import DefaultThemeFieldValidation from "./themes/bootstrap3/field-validation";
 import { reduxForm } from "redux-form";
 import renderFields from "./renderFields";
 import renderField from "./renderField";
 import processSubmitErrors from "./processSubmitErrors";
 import buildSyncValidation from "./buildSyncValidation";
+import fieldValidation from "./fieldValidation";
 import { setError } from "./buildSyncValidation";
 import compileSchema from "./compileSchema";
 
 const BaseForm = props => {
   const { schema, handleSubmit, theme, error, submitting, context } = props;
+  const defaultTheme = props.fieldValidation ? DefaultThemeFieldValidation : DefaultTheme;
   return (
     <form onSubmit={handleSubmit}>
-      {renderField(schema, null, theme || DefaultTheme, "", context)}
+      {renderField(schema, null, theme || defaultTheme, "", context)}
       <div>{error && <strong>{error}</strong>}</div>
       <button className="btn btn-primary" type="submit" disabled={submitting}>
         Submit
@@ -46,7 +49,7 @@ const EmbeddedLiform = props => {
 
   return renderField(schema, 
     props.fieldName || null, 
-    props.theme || DefaultTheme,
+    props.theme || DefaultThemeFieldValidation,
     props.prefix || "");
   
 }
@@ -56,6 +59,7 @@ Liform.propTypes = {
   schema: PropTypes.object,
   onSubmit: PropTypes.func,
   initialValues: PropTypes.object,
+  fieldValidatoin: PropTypes.bool,
   syncValidation: PropTypes.func,
   formKey: PropTypes.string,
   baseForm: PropTypes.func,
@@ -73,5 +77,6 @@ export {
   setError,
   EmbeddedLiform,
   buildSyncValidation,
+  fieldValidation,
   compileSchema
 };

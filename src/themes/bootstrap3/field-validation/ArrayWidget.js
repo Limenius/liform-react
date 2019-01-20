@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import renderField from "../../renderField";
-import { FieldArray } from "redux-form";
-import { times as _times} from "lodash";
+import renderField from "../../../renderField";
+import { times as _times } from "lodash";
 import ChoiceWidget from "./ChoiceWidget";
 import classNames from "classnames";
+import { FieldArrayValidation } from "../../../fieldValidation";
+
 
 const renderArrayFields = (
   count,
@@ -32,8 +33,8 @@ const renderArrayFields = (
                 <span className="glyphicon glyphicon-arrow-down" />
               </button>
             ) : (
-              ""
-            )}
+                ""
+              )}
             {idx !== 0 && count > 1 ? (
               <button
                 className="btn btn-primary"
@@ -45,8 +46,8 @@ const renderArrayFields = (
                 <span className="glyphicon glyphicon-arrow-up" />
               </button>
             ) : (
-              ""
-            )}
+                ""
+              )}
 
             <button
               className="btn btn-danger"
@@ -111,7 +112,7 @@ const renderInput = field => {
 
 const CollectionWidget = props => {
   return (
-    <FieldArray
+    <FieldArrayValidation
       component={renderInput}
       label={props.label}
       name={props.fieldName}
