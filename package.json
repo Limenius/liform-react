@@ -65,6 +65,7 @@
   },
   "jest": {
     "verbose": true,
+    "testEnvironment": "node",
     "collectCoverageFrom": [
       "src/**/*.{js}",
       "!**/node_modules/**",
