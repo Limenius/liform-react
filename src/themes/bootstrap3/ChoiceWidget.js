@@ -25,8 +25,7 @@ const renderSelect = field => {
         required={field.required}
         multiple={field.multiple}
       >
-        {!field.required &&
-          !field.multiple && (
+        {false !== field.placeholder && (
             <option key={""} value={""}>
               {field.placeholder}
             </option>
