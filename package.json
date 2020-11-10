@@ -1,6 +1,6 @@
 {
   "name": "liform-react",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Generate forms from json-schema to use with React (and redux-form)",
   "main": "./lib/index.js",
   "scripts": {
