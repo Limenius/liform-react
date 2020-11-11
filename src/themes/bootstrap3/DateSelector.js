@@ -10,7 +10,7 @@ const DateSelector = props => {
       id={"props-" + props.name}
       required={props.required}
     >
-      {!props.required && (
+      {props.emptyOption && (
         <option key={""} value={""}>
           {props.emptyOption}
         </option>

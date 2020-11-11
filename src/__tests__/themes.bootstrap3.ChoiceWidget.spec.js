@@ -27,7 +27,7 @@ describe("ChoiceWidget", () => {
     expect(wrapper.find("option").length).toEqual(3);
   });
 
-  it("required renders no extra field", () => {
+  it("required attr renders required field", () => {
     const schema = {
       title: "A schema",
       properties: {
@@ -37,6 +37,30 @@ describe("ChoiceWidget", () => {
         }
       },
       required: ["choice"]
+    };
+
+    const Component = (
+      <FormFrame>
+        <Liform schema={schema} />
+      </FormFrame>
+    );
+
+    const wrapper = render(Component);
+    expect(wrapper.find("select").length).toEqual(1);
+    expect(wrapper.find("option").length).toEqual(3);
+    expect(wrapper.find("select").prop('required')).toEqual(true);
+  });
+
+  it("default=false renders no extra field", () => {
+    const schema = {
+      title: "A schema",
+      properties: {
+        choice: {
+          default: false,
+          type: "string",
+          enum: ["foo", "bar"]
+        }
+      }
     };
 
     const Component = (
