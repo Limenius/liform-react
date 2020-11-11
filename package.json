@@ -59,12 +59,13 @@
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
+    "react-redux": "^5.0.6 || ^6.0.0 || ^7.0.0",
     "redux": "^3.5.2",
-    "redux-form": "^7.2.0"
+    "redux-form": "^7.2.0 || ^8.0.0"
   },
   "jest": {
     "verbose": true,
+    "testEnvironment": "node",
     "collectCoverageFrom": [
       "src/**/*.{js}",
       "!**/node_modules/**",
